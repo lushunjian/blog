@@ -6,11 +6,11 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lushunjian.github.io/blog">
-  <title>一叶知秋</title>
+  <title>Archives: 2018 | 一叶知秋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="一叶知秋">
-<meta property="og:url" content="https://lushunjian.github.io/blog/index.html">
+<meta property="og:url" content="https://lushunjian.github.io/blog/archives/2018/page/2/index.html">
 <meta property="og:site_name" content="一叶知秋">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
@@ -158,405 +158,49 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-虚拟机的类文件结构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/blog/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/blog/2018/06/02/hello-world/" class="archive-article-date">
+  	<time datetime="2018-06-02T06:11:49.354Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-02</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/blog/2018/06/16/虚拟机的类文件结构/">虚拟机的类文件结构</a>
+      <a class="archive-article-title" href="/blog/2018/06/02/hello-world/">Hello World</a>
     </h1>
   
 
-        
-        <a href="/blog/2018/06/16/虚拟机的类文件结构/" class="archive-article-date">
-  	<time datetime="2018-06-15T22:51:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    在没有Java之前，同一个应用程序，由于硬件架构和操作系统的不同而需要开发几套应用程序以便程序能运行在不同平台上，这对于开发人员来说无疑是件痛苦的事情，而不同的硬件体系结构和操作系统肯定会长期并存发展，因而需要一门语言解决这个问题，Java顺势而生。Java诞生之初曾有一个著名的口号 “一次编写，处处运行” ，也充分体现了当时的开发人员对实现平台无关性的渴望。实现平台无关性的理想最终实现在操作系统的应用层面上。Sun公司和其他虚拟机提供商发布了很多能运行在不同操作系统上的虚拟机，这些虚拟机都可以运行同一种字节码文件，从而实现了程序的 “一次编写，处处运行” 。通过字节码文件运行程序还有一个优势，实现了语言的无关性，而且这个特性越来越受到开发者的重视。</p>
-<p>​    发展之初，设计者就曾经考虑并实现让其他语言运行与Java虚拟机之上的可能性，在发布规范文档的时候就刻意把Java规范拆分成了Java语言规范和Java虚拟机规范。如今，商业机构以及开源机构已经发展出许多运行于Java虚拟机之上的语言，如Groovy，Scala，Jython等，从事过大数据相关工作的相信对Scala并不陌生。使用这些语言的开发者可能还不是很多，但随着时间的推移和发展，这个队伍正在逐渐壮大。实现语言无关性的仍是虚拟机和字节码文件，虚拟机不与任何编程语言绑定，而只与Class字节码文件绑定，处于安全方面的考虑，虚拟机对Class文件中使用了许多强制性的语法和结构化约束。Java语言的关键字，运算符的语义最终都是由多条字节码命令组合而成，因此字节码命令所能提供的语义描述能力肯定比Java语言本身更加强大，一些Java语言无法支持的语言特性不代表字节码不能有效的支持，这也为别的运行于虚拟机之上的语言提供了有别于Java语言特性的基础。</p>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2018/06/16/虚拟机的类文件结构/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-虚拟机指令集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2018/06/10/虚拟机指令集/">虚拟机指令集</a>
-    </h1>
-  
-
-        
-        <a href="/blog/2018/06/10/虚拟机指令集/" class="archive-article-date">
-  	<time datetime="2018-06-10T01:52:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    Java虚拟机既然是一台虚拟的计算机，那必有一套完善指令集，指令由一个字节长度，代表某种特定操作含义的操作码构成。这里在最初接触计算机的时候，我是有一些疑问的。例如为什么计算机都有它的指令集，这些指令是怎么被CPU执行的。由于我当初学的是电子科学，包含模电数电，单片机等内容，其中单片机就是一个小型的片上系统，随着学习的深入这些疑问自然就迎刃而解了。我谈一下自己的理解，也顺便做一下记录。</p>
-<p>​    对于CPU而言它只认识0和1，对应的是数字电路中的高低电平，实现原理是把MOS管当做开关使用，MOS管是一种半导体晶体管，主要成分硅（这也是美国硅谷这个名字的由来吧）。通过MOS管可以实现各种寄存器，累加器，计数器，与非门，或非门等逻辑门电路。每一条指令都是特定的门电路组成的，门电路是CPU的基本工作单元，数以亿计的门电路才造就了CPU的强大运算能力，这些门电路输入是一位或多位二进制数，输出也是一位或多位二进制数。在最早的计算机上，程序员需要将0101这种二进制代码给CPU计算，这里的二进制代码会控制CPU进行加减乘除或者逻辑运算，对应于在MOS管上的状态就是开和关，这种二进制代码也叫机器语言，是计算机能直接读懂的语言。但是这对于程序员来说简直是噩梦，一个小小的计算功能，用机器语言来编写需要写一大串0和1。最关键的是这些0和1代码代表什么意思也非常难以记忆，开发成本很大。于是科学家们用了一种高级的语言来代替它 ，然后汇编语言诞生了，汇编语言更接近人类自然语言的习惯。然后再做一个编译器工具帮我们把汇编语言翻译成机器语言就行了。    </p>
-<p><img src="/blog/2018/06/10/虚拟机指令集/heike.jpg" alt=""></p>
-        
-          <a class="article-more-a" href="/blog/2018/06/10/虚拟机指令集/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2018/06/10/虚拟机指令集/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Hexo-github搭建个人博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2018/06/03/Hexo-github搭建个人博客/">Hexo和Github搭建个人博客</a>
-    </h1>
-  
-
-        
-        <a href="/blog/2018/06/03/Hexo-github搭建个人博客/" class="archive-article-date">
-  	<time datetime="2018-06-03T12:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    作为一个纯种程序猿，怎么能没有自己的博客呢。每每看大牛的博客时总是充满敬畏的同时，也想拥有一个属于自己的博客，一方面记录自己在技术上的问题和心得体会，另一方面也是记录着自己从菜鸟到大牛的成长经历。话不多说，下面来一起搭建一个自己的个人博客吧。为了让小白和非猿类也能看明白，本篇搭建流程将尽可能详细，猿类朋友可跳过部分中间步骤，首先搭建个人博客方式主要分为三种。</p>
-<p>​    1 . 自己购买服务器，然后编写前后台代码，将项目部署在服务器上给别人访问。</p>
-<p>​    2 . 在博客平台上注册账号，通过平台来撰写博客。如博客园，CSDN，简书等。</p>
-<p>​    3 . 使用hexo生成静态网页并托管在免费的github平台上，开启GitHub Page即可。</p>
-<p>方案一：成本太高，对技术要求也较高，而且对于小白来说难度太大不推荐。方案二：这也是一种选择，而且很多大牛不只有自己的个人博客，而且在各大平台上都有自己的博客，成本低，只是个性化设置不够灵活，但不失为一个不错的选择。方案三：很多基于git的代码托管平台都提供静态网页服务，例如 Github，Gitlab，Gitee（码云）等，这些平台都可以和Hexo配合搭建个人博客，使用这种方式的好处是博客主题，布局，样式，域名全部可以私人订制，对于喜欢个性化的朋友是一个绝佳的选择，而且只需通过几个步骤即可拥有自己的个人博客。下面我记录了一下我个人使用 Hexo+Github的方式搭建个人博客的具体方法，同时今天也是Github被微软收购的日子，祝愿Github能越来越好 !</p>
-<p><img src="/blog/2018/06/03/Hexo-github搭建个人博客/github.jpeg" alt=""></p>
-        
-          <a class="article-more-a" href="/blog/2018/06/03/Hexo-github搭建个人博客/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">other</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2018/06/03/Hexo-github搭建个人博客/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java虚拟机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2018/06/03/java虚拟机/">Java虚拟机</a>
-    </h1>
-  
-
-        
-        <a href="/blog/2018/06/03/java虚拟机/" class="archive-article-date">
-  	<time datetime="2018-06-03T02:18:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    Java是一门面向对象的编程语言，在编程语言排行榜中常年排行前三，由于语言的优势和特点如今已经成为开发中最流行最受欢迎的编程语言，特别是在后台服务器开发领域，由于其跨平台性和庞大的生态圈，几乎没有其他语言能够撼动它的霸主地位。Java发展也是相当迅速，如今已经到Java 10 了，吸收了其他语言的一些优势和特点，融入了很多新的特性 。Java主要分为三个方向：</p>
-<p><strong>Java SE</strong>：Java Standard Edition，即Java标准版，也是Java技术的核心，是学习 Java ME和 Java EE的基础。用于开发和部署桌面、服务器的Java应用程序 ，也就是C/S架构开发。</p>
-<p><strong>Java EE</strong>：Java Enterprise Edition，即Java企业版，Java EE 是在 Java SE 的基础上构建的，它提供Web 服务、管理和通信 API ，是java技术应用最广泛的领域。主要用于B/S架构开发。</p>
-<p><strong>Java ME</strong>：Java Mirco Edition，即Java微型版，Java ME是对 Java SE 进行了精简，以提高运行效率，主要针对小型设备，移动设备以及嵌入式设备而构建，不过在移动设备上，现在基本已经被安卓代替了。</p>
-<p>Java虚拟机是整个java平台的基石，是java技术实现硬件无关和操作系统无关的关键环节，是java语言生成极小体积的编译代码的运行平台，是保护用户机器免受恶意代码侵袭的保护屏障。可以说JVM就是整个java体系的核心，在java中碰到的绝大部分问题都可以在JVM中找到答案。</p>
-<p><img src="/blog/2018/06/03/java虚拟机/java1.png" alt=""></p>
-        
-          <a class="article-more-a" href="/blog/2018/06/03/java虚拟机/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2018/06/03/java虚拟机/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-jvm的类加载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2018/06/02/jvm的类加载/">JVM的类加载</a>
-    </h1>
-  
-
-        
-        <a href="/blog/2018/06/02/jvm的类加载/" class="archive-article-date">
-  	<time datetime="2018-06-02T06:47:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>JVM的类加载机制</p>
-<p>​    整体来看，JVM体系分为三个部分：类加载器（Class Loader），运行时数据区（Runtime Data Area），和执行引擎（Execution Engine）,这里主要探讨一下 JVM 的类加载器</p>
-<h2 id="一-类的生命周期"><a href="#一-类的生命周期" class="headerlink" title="一 . 类的生命周期"></a>一 . 类的生命周期</h2><p>​    先通过一个图对类加载流程有个整体认识，如下图</p>
-<p><img src="/blog/2018/06/02/jvm的类加载/pic1.png" alt=""></p>
-<p>类从被加载到虚拟机内存中开始，直到卸载出内存为止，它的整个生命周期包括了：<strong>加载、验证、准备、解析、初始化、使用和卸载</strong>这7个阶段。其中，<strong>验证、准备和解析这三个部分统称为连接（linking）</strong>。</p>
-<p>其中，加载、验证、准备、初始化和卸载这五个阶段的顺序是确定的，类的加载过程必须按照这种顺序按部就班的“开始”（仅仅指的是开始，而非执行或者结束，因为这些阶段通常都是互相交叉的混合进行，通常会在一个阶段执行的过程中调用或者激活另一个阶段），而解析阶段则不一定（它在某些情况下可以在初始化阶段之后再开始，这是为了支持Java语言的运行时绑定。</p>
-        
-          <a class="article-more-a" href="/blog/2018/06/02/jvm的类加载/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2018/06/02/jvm的类加载/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/blog/archives/2018/">&laquo; Prev</a><a class="page-number" href="/blog/archives/2018/">1</a><span class="page-number current">2</span>
     </nav>
   
 
@@ -580,9 +224,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
