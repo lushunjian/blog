@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lushunjian.github.io/blog">
-  <title>java虚拟机 | 一叶知秋</title>
+  <title>Java虚拟机 | 一叶知秋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="​    Java是一门面向对象的编程语言，在编程语言排行榜中常年排行前三，由于语言的优势和特点如今已经成为开发中最流行最受欢迎的编程语言，特别是在后台服务器开发领域，由于其跨平台性和庞大的生态圈，几乎没有其他语言能够撼动它的霸主地位。Java发展也是相当迅速，如今已经到Java 10 了，吸收了其他语言的一些优势和特点，融入了很多新的特性 。Java主要分为三个方向： Java SE：Java">
 <meta name="keywords" content="jvm">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java虚拟机">
+<meta property="og:title" content="Java虚拟机">
 <meta property="og:url" content="https://lushunjian.github.io/blog/2018/06/03/java虚拟机/index.html">
 <meta property="og:site_name" content="一叶知秋">
 <meta property="og:description" content="​    Java是一门面向对象的编程语言，在编程语言排行榜中常年排行前三，由于语言的优势和特点如今已经成为开发中最流行最受欢迎的编程语言，特别是在后台服务器开发领域，由于其跨平台性和庞大的生态圈，几乎没有其他语言能够撼动它的霸主地位。Java发展也是相当迅速，如今已经到Java 10 了，吸收了其他语言的一些优势和特点，融入了很多新的特性 。Java主要分为三个方向： Java SE：Java">
@@ -20,9 +20,9 @@
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/03/java虚拟机/jvm.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/03/java虚拟机/openJDK_home.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/03/java虚拟机/jvmStart.png">
-<meta property="og:updated_time" content="2018-06-10T02:49:38.590Z">
+<meta property="og:updated_time" content="2018-06-15T23:11:21.860Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java虚拟机">
+<meta name="twitter:title" content="Java虚拟机">
 <meta name="twitter:description" content="​    Java是一门面向对象的编程语言，在编程语言排行榜中常年排行前三，由于语言的优势和特点如今已经成为开发中最流行最受欢迎的编程语言，特别是在后台服务器开发领域，由于其跨平台性和庞大的生态圈，几乎没有其他语言能够撼动它的霸主地位。Java发展也是相当迅速，如今已经到Java 10 了，吸收了其他语言的一些优势和特点，融入了很多新的特性 。Java主要分为三个方向： Java SE：Java">
 <meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/06/03/java虚拟机/java1.png">
   
@@ -69,7 +69,7 @@
 			
 				<li><a href="/blog/">主页</a></li>
 	        
-				<li><a href="/blog/">随笔</a></li>
+				<li><a href="/blog/archives">所有文章</a></li>
 	        
 			</ul>
 		</nav>
@@ -151,7 +151,7 @@
 				
 					<li style="width: 50%"><a href="/blog/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/blog/">随笔</a></li>
+					<li style="width: 50%"><a href="/blog/archives">所有文章</a></li>
 		        
 				</ul>
 			</nav>
@@ -173,7 +173,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      java虚拟机
+      Java虚拟机
     </h1>
   
 
@@ -269,7 +269,7 @@
 <p><img src="/blog/2018/06/03/java虚拟机/jvm.png" alt=""></p>
 <h2 id="三-JVM，JRE，JDK的联系"><a href="#三-JVM，JRE，JDK的联系" class="headerlink" title="三 . JVM，JRE，JDK的联系"></a>三 . JVM，JRE，JDK的联系</h2><p>​    JVM是JRE的一部分，JRE是我们安装运行Java程序的最基本运行环境。它和java类库以及运行java程序所需要的其他组件一起组成了JVM的一个实现。所以如果想运行java程序，只需安装JRE就够了。而JDK是JRE的超集，JDK是java开发工具包，里面包含了JRE，也包含了java编译器，调试器以及其他相关的java程序开发工具类。当我们需要开发和编译java源码时就需要用到JDK。</p>
 <p>​    Java提供了Java虚拟机规范来让我们对JVM的工作原理有一个完整的认识。你可以从这里得到概念性知识，并开发一个自己的JVM；但这并不是一个简单的工作。现在市场上已经有很多JVM了。众多JVM产品中最有名的莫过于现在Oracle公司的HotSpot。后续章节中将深入探讨 JVM 的工作原理，如果没有特别说明，探讨的都是Oracle公司的HotSpot虚拟机。 </p>
-<h2 id="四-JVM的原理"><a href="#四-JVM的原理" class="headerlink" title="四 . JVM的原理"></a>四 . JVM的原理</h2><p>​    在平常使用Java开发的过程中，我们写好代码然后再写一个main函数就可以把程序跑起来，一切是那么的简单，自然而然。但是好奇的朋友可能会去想 java 的 JVM 到底是怎么工作的，为什么main函数只能那么写？为什么运行main函数程序就能跑起来？为什么我们不能定义自己的main函数？在启动main函数的时候 JVM 底层到底发生了什么？</p>
+<h2 id="四-JVM的源码"><a href="#四-JVM的源码" class="headerlink" title="四 . JVM的源码"></a>四 . JVM的源码</h2><p>​    在平常使用Java开发的过程中，我们写好代码然后再写一个main函数就可以把程序跑起来，一切是那么的简单，自然而然。但是好奇的朋友可能会去想 java 的 JVM 到底是怎么工作的，为什么main函数只能那么写？为什么运行main函数程序就能跑起来？为什么我们不能定义自己的main函数？在启动main函数的时候 JVM 底层到底发生了什么？</p>
 <p>首先第一个问题，main函数的格式必须是 pubic static void main(String[] args) 吗？其实还有一种大同小异的写法，就是 public static void main(String…args) 。其余写法 JVM 都无法识别，会导致 JVM 找不到主函数而无法启动，那么其余几个关键字为什么要这么写？</p>
 <p>​    1 . 为什么是public，因为java程序是通过jvm虚拟机调用的，所以main()函数要是想被调用，必须是public</p>
 <p>​    2 . 为什么是static ，main函数是所有程序的入口，也就是main被调用时没有任何对象创建，不通过对象调用某一方法，只有将该方法定义为静态方法，所以main方法是一个静态方法，需要static修饰。</p>
@@ -467,7 +467,7 @@
   
   
     <a href="/blog/2018/06/02/jvm的类加载/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">jvm的类加载</div>
+      <div class="article-nav-title">JVM的类加载</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -746,5 +746,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
+  <img style="display:none" src="/blog/back.jpg"></img>
 </body>
 </html>
