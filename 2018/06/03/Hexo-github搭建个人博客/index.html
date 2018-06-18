@@ -47,7 +47,7 @@
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/03/Hexo-github搭建个人博客/hexo19.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/03/Hexo-github搭建个人博客/github18.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/03/Hexo-github搭建个人博客/github19.png">
-<meta property="og:updated_time" content="2018-06-11T23:52:51.961Z">
+<meta property="og:updated_time" content="2018-06-18T00:56:50.679Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo和Github搭建个人博客">
 <meta name="twitter:description" content="​    作为一个纯种程序猿，怎么能没有自己的博客呢。每每看大牛的博客时总是充满敬畏的同时，也想拥有一个属于自己的博客，一方面记录自己在技术上的问题和心得体会，另一方面也是记录着自己从菜鸟到大牛的成长经历。话不多说，下面来一起搭建一个自己的个人博客吧。为了让小白和非猿类也能看明白，本篇搭建流程将尽可能详细，猿类朋友可跳过部分中间步骤，首先搭建个人博客方式主要分为三种。 ​    1 . 自己购买服">
@@ -98,6 +98,7 @@
 	        
 				<li><a href="/blog/archives">所有文章</a></li>
 	        
+				<li><a href="/poetry"  target="_blank">诗和远方</a></li>
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -270,7 +271,7 @@
 <p>需要注意的就是上面红框里的地址，这个就是项目的git地址，选HTTPS的方式即可。<strong>这个地址要配置在前面提到过的hexo根路径的_config.yml文件的中项目地址。</strong></p>
 <p>然后点击右边的Settings，会来到如下界面</p>
 <p><img src="/blog/2018/06/03/Hexo-github搭建个人博客/github5.png" alt=""></p>
-<p>往下找到GitHub Pages，这里如果项目名称就是github的用户名，默认就是master branch。例如我这里就默认为None，这种情况下选择master branch然后保存即可，如果master branch是不可选的状态，也不要着急，稍等一会就可以了。然后点击Save。</p>
+<p>往下找到GitHub Pages，这里如果项目名称就是github的用户名，默认就是master branch。例如我这里就默认为None，这种情况下选择master branch然后保存即可，如果master branch是不可选的状态，选择下面一行有个Choose a theme的按钮，选择一个主题就可以开启GitHub Pages了。然后点击Save。</p>
 <p>接下来配置github的SSH密钥 ，在Hexo初始化的目录下，右键点击Git Bash Here。首先配置git的个人信息</p>
 <p>1、设置Git的user name和email：(如果是第一次的话) </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;xiaobai&quot;</span><br><span class="line">git config --global user.email &quot;xiaobai@163.com&quot;</span><br></pre></td></tr></table></figure>
@@ -289,7 +290,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 <p>发布项目到github吧，发布完成后可通过查看项目中的Settings查看发布路径，如下图</p>
 <p><img src="/blog/2018/06/03/Hexo-github搭建个人博客/github15.png" alt=""></p>
-<p>这里还有个需要注意的地方，在平常写博客中肯定会引用到图片资源，如果使用绝对路径，发布上去肯定会找不到图片资源，使用相对路径，也会因为经过Hexo的编译，使得路径发生了变化，还是会找不到图片资源。这里需要借助Hexo的一个插件，通过命令</p>
+<p>可能会遇到的问题：</p>
+<p>​    1 . 在平常写博客中肯定会引用到图片资源，如果使用绝对路径，发布上去肯定会找不到图片资源，使用相对路径，也会因为经过Hexo的编译，使得路径发生了变化，还是会找不到图片资源。这里需要借助Hexo的一个插件，通过命令</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 <p>此外还需把hexo路径下的post_asset_folder 属性设置为true</p>
 <p><img src="/blog/2018/06/03/Hexo-github搭建个人博客/hexo12.png" alt=""></p>
@@ -298,6 +300,7 @@
 <p>命令生成博客时，在/source/_posts 路径下会发现在生成xxx.md文件的同时，也生成了一个同名的xxx文件夹，然后在xxx.md中想引入图片时，先把图片复制到xxx这个文件夹中，然后只需要在xxx.md中按照markdown的格式引入图片：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![你想输入的替代文字](xxx/图片名.jpg)</span><br></pre></td></tr></table></figure>
 <p>这样就能解决图片资源的问题。</p>
+<p>​    2 . 使用 hexo d 命令报 ERROR Deployer not found: git ，原因是没有安装 hexo 发布到git的插件。在git终端中输入 npm install –save hexo-deployer-git 命令等待插件下载完成即可。</p>
 <h3 id="6-如何使用自定义首页"><a href="#6-如何使用自定义首页" class="headerlink" title="6 . 如何使用自定义首页"></a>6 . 如何使用自定义首页</h3><p>在做完上面五个步骤后，博客已经能正常访问了。但是爱折腾的朋友可能仍不满足，想自定义一个首页，打开博客时先到首页，然后再跳到博客主页。本人在搭博客时也想这样做，踩了不少坑，在此也分享一下。这里需要再建立一个github项目，名字随便起，可以起成blog，这里我做测试起名为test。</p>
 <p><img src="/blog/2018/06/03/Hexo-github搭建个人博客/github17.png" alt=""></p>
 <p>同时开启Github Pages，如果起名为blog，这时blog项目的网页预览功能的网址会是 <a href="https://xxx.github.io/blog，然后在" target="_blank" rel="noopener">https://xxx.github.io/blog，然后在</a> _ config.yml的相关配置</p>
