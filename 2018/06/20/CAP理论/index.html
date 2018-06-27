@@ -6,15 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lushunjian.github.io/blog">
-  <title>Tag: other | 一叶知秋</title>
+  <title>CAP理论 | 一叶知秋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="一叶知秋">
-<meta property="og:url" content="https://lushunjian.github.io/blog/tags/other/index.html">
+  <meta name="description" content="​    使用了一段时间的Hbase，一直没有时间去了解它的理论基础。最近在看分布式的一些原理，其中最著名的分布式理论就是CAP理论，CAP理论是分布式系统的基石，CAP是Consistency（一致性）。 Availability（可用性）。Partition tolerance（分区容错性） 三个单词的首字母缩写。下面是百度百科上的解释。 ● 一致性（C）：所有的节点上的数据时刻保持同步  ●">
+<meta name="keywords" content="分布式系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CAP理论">
+<meta property="og:url" content="https://lushunjian.github.io/blog/2018/06/20/CAP理论/index.html">
 <meta property="og:site_name" content="一叶知秋">
+<meta property="og:description" content="​    使用了一段时间的Hbase，一直没有时间去了解它的理论基础。最近在看分布式的一些原理，其中最著名的分布式理论就是CAP理论，CAP理论是分布式系统的基石，CAP是Consistency（一致性）。 Availability（可用性）。Partition tolerance（分区容错性） 三个单词的首字母缩写。下面是百度百科上的解释。 ● 一致性（C）：所有的节点上的数据时刻保持同步  ●">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/20/CAP理论/cap.jpg">
+<meta property="og:updated_time" content="2018-06-27T15:29:51.108Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一叶知秋">
+<meta name="twitter:title" content="CAP理论">
+<meta name="twitter:description" content="​    使用了一段时间的Hbase，一直没有时间去了解它的理论基础。最近在看分布式的一些原理，其中最著名的分布式理论就是CAP理论，CAP理论是分布式系统的基石，CAP是Consistency（一致性）。 Availability（可用性）。Partition tolerance（分区容错性） 三个单词的首字母缩写。下面是百度百科上的解释。 ● 一致性（C）：所有的节点上的数据时刻保持同步  ●">
+<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/06/20/CAP理论/cap.jpg">
   
     <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
   
@@ -159,60 +166,218 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-CAP理论" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/03/Hexo-github搭建个人博客/" class="archive-article-date">
-  	<time datetime="2018-06-03T12:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/03/Hexo-github搭建个人博客/">Hexo和Github搭建个人博客</a>
+    <h1 class="article-title" itemprop="name">
+      CAP理论
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/blog/2018/06/20/CAP理论/" class="archive-article-date">
+  	<time datetime="2018-06-20T14:22:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    使用了一段时间的Hbase，一直没有时间去了解它的理论基础。最近在看分布式的一些原理，其中最著名的分布式理论就是CAP理论，CAP理论是分布式系统的基石，CAP是Consistency（一致性）。 Availability（可用性）。Partition tolerance（分区容错性） 三个单词的首字母缩写。下面是百度百科上的解释。</p>
+<p>● 一致性（C）：所有的节点上的数据时刻保持同步 </p>
+<p>● 可用性（A）：每个请求都能接受到一个响应，无论响应成功或失败 </p>
+<p>● 分区容错性（P）：系统应该能持续提供服务，即使系统内部有消息丢失（分区） </p>
+<p>CAP理论在互联网界有着广泛的知名度，一般系统架构师会把其作为衡量系统设计的准则。大家都非常清楚地理解了CAP：任何分布式系统在可用性、一致性、分区容错性方面，不能兼得，最多只能得其二，所谓鱼和熊掌不可兼得。因此，任何分布式系统的设计只是在三者中实现其中的两者。</p>
+<p><img src="/blog/2018/06/20/CAP理论/cap.jpg" alt=""></p>
+<a id="more"></a> 
+<h3 id="1-发展"><a href="#1-发展" class="headerlink" title="1 . 发展"></a>1 . 发展</h3><p>​    所有理论都是从实际的经验中总结出来的，因此从实际的业务场景中去学习这些理论的原理也是最容易理解的。CAP理论的诞生也是技术发展的必然，在单机应用系统时代，一个系统会使用单节点的服务器做数据库，考虑的成本一般会使用开源中间件比如mysql。用户数据都存储在这台服务器上，开始一切都运转得很好，但随着用户的增长，突然有一天这台服务器挂了（宕机），导致mysql数据库不能对外提供服务了。虽然工程师能很快的修复了问题，但造成了不好的用户体验，究其原因是因为数据库在一台服务器上，会有单点故障的隐患。于是出现了把应用系统或是数据部署在多个节点上来避免单点故障的做法，提高了系统的可用性但是也会带来一系列问题，2000年，Eric Brewer教授在PODC的研讨会上提出了一个猜想：一致性、可用性和分区容错性三者无法在分布式系统中被同时满足，并且最多只能满足其中两个！ 这个猜想首次把一致性、可用性和分区容错三个因素提炼出来作为系统设计的重要特征，断言用此三者可以划分所有的分布式系统，并指明这三个特征之间的不可能性关系。Brewer猜想比单纯的“低延迟和顺序一致性不能被同时满足”的结论更具体，对实际系统的构建也更具有可操作性！ 于是就有了CAP理论，CAP的出现仿佛是一盏明灯，它揭露了分布式系统的本质，并给出了设计的准则，而这正是1985年以来人们正在寻找的东西！所以CAP在当时的影响力是非常大的！ </p>
+<h3 id="2-解释"><a href="#2-解释" class="headerlink" title="2 . 解释"></a>2 . 解释</h3><h4 id="1-数据一致性"><a href="#1-数据一致性" class="headerlink" title="(1) . 数据一致性"></a>(1) . 数据一致性</h4><p>由于在分布式系统中数据是存储在不同节点上的，必然就会带来数据一致性的问题，在集群中数据的一致性是指数据副本的一致性，与关系型数据库中强调的数据一致性是有区别的。在关系数据库中，数据的一致性是指事务开始之前和事务结束以后，数据库的完整性约束没有被破坏。这是说数据库事务不能破坏关系数据的完整性以及业务逻辑上的一致性 。而分布式系统中的一致性是指，数据副本之间的一致性，对于一个将数据副本分布在不同分布式节点上的系统来说，如果对第一个节点的数据进行了更新操作并且更新成功后，却没有使得第二个节点上的数据得到相应的更新，于是在对第二个节点的数据进行读取操作时，获取的依然是老数据（或称为脏数据），这就是典型的分布式数据不一致的情况。在分布式系统中，如果能够做到针对一个数据项的更新操作执行成功后，用户都可以读取到其最新的值，那么 这样的系统就可以被认为具有强一致性，而在集群中一致性也是相对而言的。</p>
+<ul>
+<li><p>强一致性：这是最符合人的本能感官的，它要求数据写入后，立马能读到最新的数据，但对于分布式系统而言实现起来往往对系统的性能影响很大</p>
+</li>
+<li><p>弱一致性：这种一致性级别是指系统在写入成功后，不承诺立即可以读到写入的值，，但会尽可能地保证到某个时间级别（比如秒级别）后，数据能够达到一致状态</p>
+</li>
+<li><p>最终一致性：这其实也是弱一致性，算是弱一致性的一个特例，也是目前分布式系统中被广泛使用的一致性原则。它不保证数据多长时间能够达到一致性的状态，但保证无论多久数据最终能够达到一致性。</p>
+<p>在实际工程实践中，最终一致性存在以下五类主要变种。</p>
+<h5 id="a-因果一致性："><a href="#a-因果一致性：" class="headerlink" title="a.因果一致性："></a>a.因果一致性：</h5><p>​        因果一致性是指，如果进程A在更新完某个数据项后通知了进程B，那么进程B之后对该数据项的访问都应该能够获取到进程A更新后的最新值，并且如果进程B要对该数据项进行更新操作的话，务必基于进程A更新后的最新值，即不能发生丢失更新情况。与此同时，与进程A无因果关系的进程C的数据访问则没有这样的限制。</p>
+<h5 id="b-读己之所写："><a href="#b-读己之所写：" class="headerlink" title="b.读己之所写："></a>b.读己之所写：</h5><p>​        读己之所写是指，进程A更新一个数据项之后，它自己总是能够访问到更新过的最新值，而不会看到旧值。也就是说，对于单个数据获取者而言，其读取到的数据一定不会比自己上次写入的值旧。因此，读己之所写也可以看作是一种特殊的因果一致性。</p>
+<h5 id="c-会话一致性："><a href="#c-会话一致性：" class="headerlink" title="c.会话一致性："></a>c.会话一致性：</h5><p>​        会话一致性将对系统数据的访问过程框定在了一个会话当中：系统能保证在同一个有效的会话中实现“读己之所写”的一致性，也就是说，执行更新操作之后，客户端能够在同一个会话中始终读取到该数据项的最新值。</p>
+<h5 id="d-单调读一致性："><a href="#d-单调读一致性：" class="headerlink" title="d.单调读一致性："></a>d.单调读一致性：</h5><p>​        单调读一致性是指如果一个进程从系统中读取出一个数据项的某个值后，那么系统对于该进程后续的任何数据访问都不应该返回更旧的值。</p>
+<h5 id="e-单调写一致性："><a href="#e-单调写一致性：" class="headerlink" title="e.单调写一致性："></a>e.单调写一致性：</h5><p>​         单调写一致性是指，一个系统需要能够保证来自同一个进程的写操作被顺序地执行。</p>
+<p>最终一致性并不是只有那些大型分布式系统的专属，许多现代的关系型数据库都采用了最终一致性模型。主要体现在数据库的主从热备，读写分离等场景，大多都会采用同步和异步方式来实现主备数据复制技术。在同步方式中，数据的同步通常是写在一个事务中，因此在事务完成后，主备数据库的数据就会达到一致。而在异步方式中，备库的更新往往存在延时，这取决于网络IO的时间，如果时间过长或者甚至在日志传输过程中出现异常导致无法及时将事务应用到备库上，那么很显然，从备库中读取的的数据是旧的，因此就出现了不一致的情况。无论是采用多次重试，关系型数据库还是能搞保证最终数据达到一致——这就是系统提供最终一致性保证的经典案例。 </p>
+</li>
+</ul>
+<h4 id="2-可用性"><a href="#2-可用性" class="headerlink" title="(2) . 可用性"></a>(2) . 可用性</h4><p>  可用性是指系统提供的服务必须一直处于可用的状态，对于用户的每一个操作请求总是能够在有限的时间内返回结果。这里的重点是”有限时间内”和”返回结果”。”有限时间内”是指，对于用户的一个操作请求，系统必须能够在指定的时间内返回对 应的处理结果，比如一秒或是五秒，如果超过了这个时间范围，那么系统就被认为是不可用的。另外，”有限的时间内”是指系统设计之初就设计好的运行指标，通常不同系统之间有很 大的不同，无论如何，对于用户请求，系统必须存在一个合理的响应时间，否则用户便会对系统感到失望。”返回结果”是可用性的另一个非常重要的指标，它要求系统在完成对用户请求的处理后，返回一个正常的响应结果。即成功或失败，而不是一个让用户感到困惑的返回结果。</p>
+<h4 id="3-分区容忍性"><a href="#3-分区容忍性" class="headerlink" title="(3) . 分区容忍性"></a>(3) . 分区容忍性</h4><p>这个词单从字面上有点难以理解它的意思，我的理解：在分布式系统中会出现一些局部小集群，这些局部网络的节点与集群中正常的节点不能通信，导致数据出现不一致的情况。举个例子，假设100个节点的集群，其中有20个节点由于网络波动或是其它原因，导致这20个节点不能与另外的80个节点通信，我们称这20个节点是一个局部小集群（专业术语称之为网络分区，实际情况集群可能出现多个网络分区）。由于不能通信导致，用户在向集群中存储数据时，这20节点不能同步集群的数据而出现数据不一致的情况。分区容忍性描述的就是这种情况，所谓容忍性就是在设计集群时，容忍或是不容忍出现这种情况，如果不容忍是牺牲了可用性，因为集群一旦出现网络分区，则意味着集群必须实现数据的一致性，这会使得集群一直等待，直到集群中那20个节点数据同步完成，这个等待的时间也是不确定的，意味着牺牲了集群的可用性。如果容忍出现这种情况，容忍的程度是多大，而且需要采取一定的策略在那20个节点正常通信后，完成集群的数据同步，这里则是牺牲了数据的一致性，而提高了集群的可性。</p>
+<h3 id="3-分布式环境的各种问题"><a href="#3-分布式环境的各种问题" class="headerlink" title="3 . 分布式环境的各种问题"></a>3 . 分布式环境的各种问题</h3><h4 id="1、网络分区"><a href="#1、网络分区" class="headerlink" title="1、网络分区"></a>1、网络分区</h4><p>当网络由于发生异常或波动情况，导致分布式系统中部分节点之间的网络延时不断增大，导致整个集群节点中，只有部分节点之间能够正常通信，而另一些节点则不能，我们将这个现象称为网络分区。当网络分区出现时，对集群的数据一致性，数据的事物处理，造成了非常大的挑战</p>
+<h4 id="2、节点故障"><a href="#2、节点故障" class="headerlink" title="2、节点故障"></a>2、节点故障</h4><p>节点故障则是分布式环境下另一个比较常见的问题，指的是组成分布式系统的服务器节点出现的宕机或”假死”现象，通常根据经验来说，每个节点都有可能出现故障，并且每天都在发生</p>
+<h4 id="3、三态"><a href="#3、三态" class="headerlink" title="3、三态"></a>3、三态</h4><p>在传统单机系统中，应用程序处理请求只有两种状态，要么成功，要么失败。而在集群中则多了一种状态超时，而且超时是一个非常普遍的现象，出现超时现象，通常有以下两种情况<br>（1）由于网络原因，该请求并没有被成功地发送到接收方，而是在发送过程中就发生了消息丢失现象<br>（2）该请求成功地被接收方接收后，进行了处理，但是在将响应反馈给发送方的过程中，发生了消息丢失现象<br>当出现这样的超时现象时，网络通信的发起方是无法确定当前请求是否被成功处理。因而在集群设计之初就必须假定集群中节点是不稳定的，网络是不可靠的，这样才能设计出一个良好的分布式系统，在很多分布式框架中如Kafka,Zookeeper都有类似情况的处理方式，值得借鉴。</p>
+<h3 id="4-CAP的权衡"><a href="#4-CAP的权衡" class="headerlink" title="4 . CAP的权衡"></a>4 . CAP的权衡</h3><table>
+<thead>
+<tr>
+<th>选择</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CA</td>
+<td>放弃分区容错性，加强一致性和可用性，就是传统的单机数据库的选择</td>
+</tr>
+<tr>
+<td>AP</td>
+<td>放弃强一致性，追求分区容错性和可用性，这是很多分布式系统设计时的选择，如NOSQL</td>
+</tr>
+<tr>
+<td>CP</td>
+<td>放弃可用性，追求一致性和分区容错性</td>
+</tr>
+</tbody>
+</table>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">other</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">分布式系统</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lushunjian.github.io/blog/2018/06/20/CAP理论/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/blog/2018/06/16/虚拟机的类文件结构/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">虚拟机的类文件结构</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
+
 
           </div>
         </div>
@@ -234,9 +399,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
