@@ -51,7 +51,7 @@
 		  <h1 class="header-author"><a href="/blog/">一叶知秋</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">永远年轻，永远热闹盈眶！</p>
+		<p class="header-subtitle">你必须非常努力，才能看起来毫不费力</p>
 		
 
 		<nav class="header-menu">
@@ -112,7 +112,7 @@
 			  <h1 class="header-author js-header-author">一叶知秋</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>永远年轻，永远热闹盈眶！<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>你必须非常努力，才能看起来毫不费力<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -160,6 +160,85 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-Http请求中转" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/06/30/Http请求中转/">Http请求中转</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2018/06/30/Http请求中转/" class="archive-article-date">
+  	<time datetime="2018-06-30T14:58:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    在工作中碰到需要在服务端中转Http请求的需求，一般的请求其实问题不大，用apache的HttpClient 提供的jar包即可解决问题，但是带文件上传的请求中转，遇到了一些小麻烦，在此记录一下。</p>
+<p>业务场景是这样的，由于是做系统升级，升级的同时不影响老版本的使用，同时又不和新版本的代码耦合，所以做了一个适配模块，这个模块是个单独的项目。在前端请求新版本系统时会先进入新版本系统的拦截器中，在拦截器中判断该请求是调用新版本的系统接口还是老版本的系统接口，如果调用老版本系统接口，就会先走适配模块，在适配模块中调用老系统的接口。整个流程大致如下图：</p>
+<p><img src="/blog/2018/06/30/Http请求中转/work.png" alt=""></p>
+<p>在适配器中使用了apache的HttpClient包，而在拦截器中使用的是jdk自带的java.net.URL类。因此两种方式我都会提供，此外还可以通过java.net.socket类实现Http请求，这几种种方式大同小异，只是HttpClient做了一下封装。最重要的还是要对Http请求协议有比较全面的认识，然后模拟出一个符合协议标准的请求报文就可以像浏览器那样模拟Http请求了。</p>
+        
+          <a class="article-more-a" href="/blog/2018/06/30/Http请求中转/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">-- 网络编程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2018/06/30/Http请求中转/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-CAP理论" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -805,11 +884,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color3">-- 网络编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
             
             <div class="clearfix"></div>
