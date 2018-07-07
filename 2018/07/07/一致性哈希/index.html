@@ -6,15 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lushunjian.github.io/blog">
-  <title>Archives: 2018 | 一叶知秋</title>
+  <title>一致性哈希 | 一叶知秋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="一叶知秋">
-<meta property="og:url" content="https://lushunjian.github.io/blog/archives/2018/index.html">
+  <meta name="description" content="​    最近几天研究了下一致性哈希算法，总算是搞明白它是怎么一回事了，这里记录一下自己的理解。一致性哈希算法主要是针对分布式缓存系统的算法。要想搞清楚一致性哈希的的优缺点，那就必须从它的发应用场景说起，也就是为什么分布式缓存中要使用一致性哈希算法，传统的做法有什么缺点，会带来什么问题。首先来看一下传统的做法，我们知道缓存在大型的应用系统中的地位是很重要的，它能有效的减少数据库的访问次数，从而减少">
+<meta name="keywords" content="分布式系统">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一致性哈希">
+<meta property="og:url" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/index.html">
 <meta property="og:site_name" content="一叶知秋">
+<meta property="og:description" content="​    最近几天研究了下一致性哈希算法，总算是搞明白它是怎么一回事了，这里记录一下自己的理解。一致性哈希算法主要是针对分布式缓存系统的算法。要想搞清楚一致性哈希的的优缺点，那就必须从它的发应用场景说起，也就是为什么分布式缓存中要使用一致性哈希算法，传统的做法有什么缺点，会带来什么问题。首先来看一下传统的做法，我们知道缓存在大型的应用系统中的地位是很重要的，它能有效的减少数据库的访问次数，从而减少">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi.jpg">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/mode.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/mode1.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/yizhixinghaxi.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi1.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi2.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi3.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi5.png">
+<meta property="og:updated_time" content="2018-07-07T09:10:52.802Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一叶知秋">
+<meta name="twitter:title" content="一致性哈希">
+<meta name="twitter:description" content="​    最近几天研究了下一致性哈希算法，总算是搞明白它是怎么一回事了，这里记录一下自己的理解。一致性哈希算法主要是针对分布式缓存系统的算法。要想搞清楚一致性哈希的的优缺点，那就必须从它的发应用场景说起，也就是为什么分布式缓存中要使用一致性哈希算法，传统的做法有什么缺点，会带来什么问题。首先来看一下传统的做法，我们知道缓存在大型的应用系统中的地位是很重要的，它能有效的减少数据库的访问次数，从而减少">
+<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi.jpg">
   
     <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
   
@@ -159,36 +174,82 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-一致性哈希" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      一致性哈希
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/07/07/一致性哈希/" class="archive-article-date">
+
+        
+        <a href="/blog/2018/07/07/一致性哈希/" class="archive-article-date">
   	<time datetime="2018-07-06T23:44:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-07</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/07/07/一致性哈希/">一致性哈希</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    最近几天研究了下一致性哈希算法，总算是搞明白它是怎么一回事了，这里记录一下自己的理解。一致性哈希算法主要是针对分布式缓存系统的算法。要想搞清楚一致性哈希的的优缺点，那就必须从它的发应用场景说起，也就是为什么分布式缓存中要使用一致性哈希算法，传统的做法有什么缺点，会带来什么问题。首先来看一下传统的做法，我们知道缓存在大型的应用系统中的地位是很重要的，它能有效的减少数据库的访问次数，从而减少IO提高系统的反应速度，得到较好的用户体验。因此一般应用系统都会使用Redis或者Memcached等中间件做缓存。而在数据量比较大的情况下，一台缓存服务器往往是不足以扛住大数据量的压力，所以会搭建一个缓存服务器的集群。缓存数据就会由原来在一台服务器上变为分布在一个缓存集群上，那数据怎么才能均匀的分布在集群中的节点上呢。又该怎么快速去定位待查询的数据在哪台缓存服务器上呢。</p>
+<p><img src="/blog/2018/07/07/一致性哈希/haxi.jpg" alt=""></p>
+<a id="more"></a> 
+<h3 id="1-实际场景"><a href="#1-实际场景" class="headerlink" title="1 . 实际场景"></a>1 . 实际场景</h3><p>现在假设有三台缓存服务器节点，当有查询请求来时，首先会去缓存中查找数据，最简单的做法就是轮询三个节点，然后找到待查询的数据，如果数据没找到就到数据库中去查询，这种做法是大多数人最直观的做法。但这种做法的效率很低，需要去轮询服务器，不利于横向拓展。因此就出现了哈希算法去定位服务器，假设有4条数据，那么这4条数据是怎么分布在缓存中的呢？传统的取模哈希算法相对简单，就是用数据的key对服务器的个数取模，在这个例子中再假设4条数据的key分别是1,2,3,4。服务器的编号分别是A,B,C。那么数据1，数据4是在节点B上，数据2在节点C上，数据3在节点A上。如下图所示：</p>
+<p><img src="/blog/2018/07/07/一致性哈希/mode.png" alt=""></p>
+<p>这里数据取模后的值为0,1,2对应于服务器A,B,C。在查询数据的时候，就能快速的得到这条数据所在的服务器编号，从而大大提高了查询速度。这种方式比起前一种方式优势明显，但在实际环境中却有很大的问题，因为我们忽略了一个问题，那就是这是一个分布式环境。分布式环境中最让人头疼的问题就是环境是不稳定的，随时都有可能会有节点宕机，在刚刚那个例子中，如果有一个节点挂机，数据分布会是怎么样的，假设节点C宕机，还剩下节点A,B在正常运行。此时服务器数量是2，那么数据的分布应该是这样的，数据2和数据4在节点A上，数据1和数据3在节点B上，如下图</p>
+<p><img src="/blog/2018/07/07/一致性哈希/mode1.png" alt=""></p>
+<p>由此可见，大部分数据都被重新定位到新的服务器上了。这种情况会带来一个很大的隐患，就是当系统运行时，某个缓存节点突然宕机，查询数据时，首先会去缓存中查找这条数据，如果这些数据刚好在这个宕机的节点上，导致没有查到数据，故只能去数据库查询数据。由于短时间内大量的数据缓存在同一时间失效，数据库将面临大量的IO请求，此时应用系统和数据库都面临着巨大的压力。如果由于大量请求导致应用服务器的某个节点宕机，这些请求又会负载到其他服务节点，巨大的请求量同样会导致其他服务节点宕机，。最终导致雪崩式的宕机，拖垮整个系统。如果发生这种情况，那可能是灾难性的。因此要尽量避免这种情况的发生。这种情况在架构设计时应该考虑到采取一定的方式应对。这里就不做深入讨论了，同样在应用系统用户量增加的时候，缓存集群可能不足以支撑查询压力，因而需要增加缓存节点来提高系统的性能。如果往缓存集群中动态的增加一个节点同样会导致类似的情况，大部分的数据需要重新定位。因此需要一种更好的算法去解决这个问题，一致性哈希算法就应运而生了。</p>
+<h3 id="2-一致性Hash概述"><a href="#2-一致性Hash概述" class="headerlink" title="2 . 一致性Hash概述"></a>2 . 一致性Hash概述</h3><p>一致性哈希把数据映射到0到2^32次方个哈希桶的空间，形成一个哈希环。通俗的理解，就是在一个圆环有很多个整数点，这些点从0开始，一直到2的32次方结束，然后通过哈希算法将缓存服务器映射到这个环上。那么在刚刚那个例子中服务器A,B,C映射到哈希环上会是什么样子呢？一般我们使用服务器的ip地址，作为哈希的key值，（这个key值可以自己定义，前面的例子中是使用的服务器编号），通过 <strong>Hash(服务器ip)%2^32</strong> 得到哈希值，那么3个服务器节点通过哈希算法计算后，在哈希环上是这样分布的</p>
+<p><img src="/blog/2018/07/07/一致性哈希/haxi.png" alt=""></p>
+<p>当有数据请求时，一致性哈希是怎么存储数据的呢？这需要在数据存储的时候，把数据的id作为哈希的key值，以同样的公式计算出哈希值，即通过 <strong>Hash(数据id)%2^32</strong> 公式得到哈希值，这里假设有6条数据，在哈希环得到如下的数据分布图。</p>
+<p><img src="/blog/2018/07/07/一致性哈希/yizhixinghaxi.png" alt=""></p>
+<p>这里数据的分布和前面通过取模方式区别比较大，前面的方式数据id取模后，会直接得到服务器节点的编号（因为取模后的值就是服务器的编号），于是便确定到这条数据在哪个节点上。而一致性哈希计算出哈希值后，数据离散的分布在整个哈希环上，通过哈希值还不能确认这条数据分布在哪个节点上。这里还需要一个约定，就是沿顺时针或是逆时针方向，数据会被存储到这个方向上遇到的第一个节点中。例如上图中，沿顺时针方向走，数据1,2遇到的第一个节点是节点B，所以数据1,2会被存储在节点B上，同理数据3,4存储在节点C上，数据5,6存储在节点A上。一致性哈希就是通过这种方式定位数据的。</p>
+<h3 id="3-一致性哈希的优点"><a href="#3-一致性哈希的优点" class="headerlink" title="3 . 一致性哈希的优点"></a>3 . 一致性哈希的优点</h3><p>在前面的阐述中通过简单的取模方式，如果服务器数量发生变化，容易引发集群的雪崩。那么一致性哈希能很好的解决这个问题吗？再来模拟一遍服务节点数量发生变化的情况下，一致性哈希会是怎样的结果。</p>
+<h4 id="1-节点宕机"><a href="#1-节点宕机" class="headerlink" title="(1) . 节点宕机"></a>(1) . 节点宕机</h4><p>上图中假设节点C宕机了，那么数据的分布是变成什么样的呢。由于哈希算法跟节点数量没有关系，那么数据在哈希环上的位置不会改变。于是可得的如下图的数据分布图</p>
+<p><img src="/blog/2018/07/07/一致性哈希/haxi1.png" alt=""></p>
+<p>沿顺时针方向走，可得数据1,2存储在节点B上，而数据3,4,5,6都存储在节点A上。通过和正常情况下的数据分布比较，可以看出来，在节点C宕机的情况下，只有节点C上的数据需要迁移。而其他数据都不会受到影响。</p>
+<h4 id="2-增加节点"><a href="#2-增加节点" class="headerlink" title="(2) . 增加节点"></a>(2) . 增加节点</h4><p>如果集群想动态的增加一个缓存节点，以提升性能，那么在一致性哈希下，集群会受到什么影响呢？现在假设在数据3和数据4之间增加一个节点x，数据分布会得到如下图的效果。</p>
+<p><img src="/blog/2018/07/07/一致性哈希/haxi2.png" alt=""></p>
+<p>从图中可以看出，除了数据3会被迁移到节点x以外，其他数据都不会受到影响。通过和节点宕机的情况下比较还可以知道，增加节点时，需要迁移的数据比节点宕机时要少。而且集群节点越多，受影响的数据占比就越少，这说明一致性哈希比较适用于集群的横向扩展。</p>
+<h3 id="3-数据倾斜"><a href="#3-数据倾斜" class="headerlink" title="3 . 数据倾斜"></a>3 . 数据倾斜</h3><p>在前面的讨论中，服务器是被均匀的映射在哈希环上了，但是理想很丰满，现实很骨感。实际映射到哈希环上的节点并不如我们想象的那么美好，而往往是下面这般模样</p>
+<p><img src="/blog/2018/07/07/一致性哈希/haxi3.png" alt=""></p>
+<p>很明显，如果节点在哈希环上分配不均匀，那么节点A负载的数据量将远远大于节点B，节点C。这可能导致节点A由于承受较大的负载而宕机，如果节点A宕机，那么数据量会积压到节点B上，然后节点B宕机，然后节点C，然后雪崩了。这种情况叫做哈希环的倾斜，这些专业名称总会不明白的人望而生畏，其实不过是给一件简单的事情起了个名字。那么哈希环倾斜的问题该怎么解决呢？</p>
+<h3 id="4-虚拟节点"><a href="#4-虚拟节点" class="headerlink" title="4 . 虚拟节点"></a>4 . 虚拟节点</h3><p>从上面的图可以看出，如果哈希函数本身没问题的话，出现哈希环倾斜的原因，是因为节点。如果节点数足够多的话，就可以让节点尽可能离散的分布在哈希环上。但实际情况中，就只有3个节点怎么办呢？一致性哈希算法种使用虚拟节点解决了这个问题。理解起来也简单，就是节点数不够多嘛，那么通过虚拟出足够多的节点，不就能让节点均匀的分布在哈希环上了吗。那么虚拟节点是怎么得到的呢，既然是虚拟节点，那说白了就是个假节点，是通过实际节点复制而来的。说专业点就叫做虚拟，比如把节点A虚拟出两个节点叫节点A-1，节点A-2。同样节点B和节点C也各虚拟两个节点那么就会得到如下的分布图了</p>
+<p><img src="/blog/2018/07/07/一致性哈希/haxi5.png" alt=""></p>
+<p>这样在哈希环上，节点就是均匀分布的，很好的解决了由于节点分布不均匀而带来的数据倾斜问题。这里节点A-1和节点A-2是节点A虚拟出的两个节点，那么实际上存储在节点A-1和节点A-2上的数据是存储在物理节点A上的。如果虚拟节点在哈希环上分布还是不均匀，可以继续虚拟出更多的节点。虚拟节点越多，节点在哈希环上就会分布的越均匀，哈希环倾斜带来的影响也会越小。</p>
+<p>一致性哈希基本解决了在P2P环境中最为关键的问题——如何在动态的网络拓扑中分布存储和路由。每个节点仅需维护少量相邻节点的信息，并且在节点加入/退出集群时，仅有相关的少量节点参与到拓扑的维护中。所有这一切使得一致性哈希成为第一个实用的DHT算法。 </p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -200,289 +261,107 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lushunjian.github.io/blog/2018/07/07/一致性哈希/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/30/Http请求中转/" class="archive-article-date">
-  	<time datetime="2018-06-30T14:58:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-30</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2018/06/30/Http请求中转/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Http请求中转</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/30/Http请求中转/">Http请求中转</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/20/CAP理论/" class="archive-article-date">
-  	<time datetime="2018-06-20T14:22:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/20/CAP理论/">CAP理论</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">分布式系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/16/虚拟机的类文件结构/" class="archive-article-date">
-  	<time datetime="2018-06-15T22:51:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/16/虚拟机的类文件结构/">虚拟机的类文件结构</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/10/虚拟机指令集/" class="archive-article-date">
-  	<time datetime="2018-06-10T01:52:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/10/虚拟机指令集/">虚拟机指令集</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/03/Hexo-github搭建个人博客/" class="archive-article-date">
-  	<time datetime="2018-06-03T12:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/03/Hexo-github搭建个人博客/">Hexo和Github搭建个人博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">other</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/03/java虚拟机/" class="archive-article-date">
-  	<time datetime="2018-06-03T02:18:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/03/java虚拟机/">一杯Java 不加糖</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/02/jvm的类加载/" class="archive-article-date">
-  	<time datetime="2018-06-02T06:47:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/02/jvm的类加载/">JVM的类加载</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/blog/archives/2018/page/2/">2</a><a class="extend next" rel="next" href="/blog/archives/2018/page/2/">Next &raquo;</a>
-    </nav>
-  
 
           </div>
         </div>
@@ -504,8 +383,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
