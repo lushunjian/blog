@@ -17,7 +17,7 @@
 <meta property="og:description" content="Paxos算法是莱斯利·兰伯特（Leslie Lamport，就是 LaTeX 中的”La”，此人现在在微软研究院）于1990年提出的一种基于消息传递且具有高度容错特性的一致性算法。 Paxos算法应用非常广泛，目前在Google的Chubby、MegaStore、Spanner等系统中得到了应用，Hadoop中的ZooKeeper中实现数据的一致性也是基于Paxos算法。根据 CAP 理论，一个">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/14/paxos算法/paxos.jpg">
-<meta property="og:updated_time" content="2018-07-14T10:02:45.595Z">
+<meta property="og:updated_time" content="2018-07-14T10:08:34.545Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="paxos算法">
 <meta name="twitter:description" content="Paxos算法是莱斯利·兰伯特（Leslie Lamport，就是 LaTeX 中的”La”，此人现在在微软研究院）于1990年提出的一种基于消息传递且具有高度容错特性的一致性算法。 Paxos算法应用非常广泛，目前在Google的Chubby、MegaStore、Spanner等系统中得到了应用，Hadoop中的ZooKeeper中实现数据的一致性也是基于Paxos算法。根据 CAP 理论，一个">
@@ -208,10 +208,8 @@
 <h5 id="2-2-1、第一阶段-Prepare"><a href="#2-2-1、第一阶段-Prepare" class="headerlink" title="2.2.1、第一阶段 Prepare"></a>2.2.1、第一阶段 Prepare</h5><p>Proposer 发送提案，发送提前前需生成生成全局唯一且递增的提案 ID（Proposalid，以高位时间戳 + 低位机器 IP 可以保证唯一性和递增性），向 Paxos 集群的所有机器发送 PrepareRequest请求，这里无需携带提案内容，只携带 Proposalid 即可。Acceptor在接收到Proposer发来的提案后需要做几件事情，总结来说就是：两个承诺，一个应答 。</p>
 <p>两个承诺：</p>
 <ul>
-<li><p>第一，不再应答 Proposalid 小于当前请求的 PrepareRequest。</p>
-</li>
-<li><p>第二，不再应答 Proposalid 小于当前请求的 AcceptRequest 。</p>
-</li>
+<li>第一，不再应答 Proposalid 小于当前请求的 PrepareRequest。</li>
+<li>第二，不再应答 Proposalid 小于当前请求的 AcceptRequest 。</li>
 </ul>
 <p>一个应答：</p>
 <ul>
@@ -221,7 +219,7 @@
 <p>两个判断：</p>
 <ul>
 <li>第一，判断收到的Acceptor的应答数量超过总数的一半，如果没有超过一半则直接进入第一阶段的流程，继续发送提案。如果超过一半，则进入第二个判断。</li>
-<li>第二，判断所有返回Acceptor的应答中是否存在已经采纳的提案，如果不存在则自己决定提案值，如果存在提案值则进入第三个判断</li>
+<li>第二，判断所有返回Acceptor的应答中是否存在已经采纳的提案，如果不存在则自己决定提案值，如果存在提案值则进入第三个判断。</li>
 <li>第三，判断应答的所有提案中，是否存在数量超过一半的提案，如果存在则选中这个过半数的提案值，如果不存在则在所有Acceptor的应答中选中Proposalid最大的提案值。</li>
 </ul>
 <p>一个请求：</p>
@@ -232,7 +230,7 @@
 <ul>
 <li>Acceptor接受一个提案，就将该提案发送给所有Learner。优点是Learner能快速获取被选定的Value值，缺点是通信次数为：M*N</li>
 <li>Acceptor接受一个提案，就将该提案发送给主Learner，主Learner再发送给其他的Learner。优点是通信次数只有：M+N，缺点是主Learner会出现单点故障，而且主Learner怎么选举来的也是个问题。</li>
-<li>Acceptor接受一个提案，就将提案发送给多个Learner，也就是一个Learner集合。再由这个Learner集合发送给剩下的Learner。优点是综合了方案一和方案二，减少了通信次数的同时提高了可靠性。缺点是网络通信的复杂度增加了。</li>
+<li>Acceptor接受一个提案，就将提案发送给多个Learner，也就是一个Learner集合。再由这个Learner集合发送给剩下的Learner。优点是综合了方案一和方案二，减少了通信次数的同时提高了可靠性。缺点是网络通信更复杂。</li>
 </ul>
 <p>可以看出Paxos的关键所在是Proposer的决策，在收到Acceptor的应答后，会选出应答中最新的决策，然后服从该决策，后者认同前者，最后Acceptor接受的同一个提议的数量会越来越多，最终超过一半，达成一致，否则整个决策过程永无止境 。在分布式系统中，上面提到的几种角色并不需要在不同节点上，实际上一个节点既可以是Proposer，也可以是Acceptor只是各自对应的端口不一样就行了，zookeeper就是这样做的。上面两个阶段是分开描述的，可能不便于理解整个连贯的流程。下面以生活中的实际场景来模拟一下paxos算法的流程。</p>
 <h3 id="2-通俗理解"><a href="#2-通俗理解" class="headerlink" title="2 . 通俗理解"></a>2 . 通俗理解</h3><p>相信大家都参与过班级中竞选班长的场景。班长竞选流程一般是首先竞选者上台演讲，演讲结束后，大家同意投票，比如没人写个小纸条，在纸条上，我想选谁当班长就写他的名字。最后由老师或是一个同学数纸条上的名字数最多的人当选班长。这种方式其实就是数据共享的方式，因为所有人的小纸条都聚集在了一起，最后只要数这些小纸条就行了。但Paxos算法不是这种场景 ，Paxos算法的场景对应一种分布式场景。假设这个班级有20个人要竞选一名班长，而这20个同学不在教室，而各自在家且这20个同学相互不能通信如何完成班长的选举。为了完成班长的选举，他们请来了隔壁班的5位同学，且这5位同学也不能相互通信。但20位同学中的每个人都可以自由的和隔壁班的这5位同学通信，现假设他们通信的方式为短信，隔壁班的5位同学称他们为队长，20位同学为队员。下面宣布选举开始！</p>
@@ -495,19 +493,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>
