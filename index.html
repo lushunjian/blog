@@ -161,6 +161,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-paxos算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/07/14/paxos算法/">paxos算法</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2018/07/14/paxos算法/" class="archive-article-date">
+  	<time datetime="2018-07-14T02:29:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-14</time>
+</a>
+        
+		
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Paxos算法是莱斯利·兰伯特（Leslie Lamport，就是 LaTeX 中的”La”，此人现在在微软研究院）于1990年提出的一种基于消息传递且具有高度容错特性的一致性算法。 Paxos算法应用非常广泛，目前在Google的Chubby、MegaStore、Spanner等系统中得到了应用，Hadoop中的ZooKeeper中实现数据的一致性也是基于Paxos算法。根据 CAP 理论，一个分布式集群中网络分区必然会出现，这样就会出现脑裂的情况，所谓脑裂，就是由于网络分区的出现，一个集群被分割为多个互不通信的小集群，小集群中由于没有Leader，会自主选择master节点，造成原本的集群会同时存在多个master节点。 而 paxos 算法有效的杜绝了脑裂现象，并在 C 和 A 之间保留了较好的均衡性。因此paxos算法的重要性不言而喻了，但Paxos 算法号称史上最晦涩难懂的算法，而原版论文也是让人难以理解 。经过一段时间研究，对 Paxos 有了一些理解，在这里总结一下。paxos算法的学习最好的资料就是作者发表的三篇论文，分别是Fast Paxos，Paxos made simple和The Part-Time Parliament。另外还有一个被称为有史以来学习paxos最好的地方的英文网站，百度网盘地址如下：</p>
+<p>Fast Paxos：链接: <a href="https://pan.baidu.com/s/1Eaxpvh5AqUNyxySPAOrwYQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1Eaxpvh5AqUNyxySPAOrwYQ</a> 密码: ij5v</p>
+<p>Paxos made simple：链接: <a href="https://pan.baidu.com/s/1rBjQ4rXnBWO1hXdOllGguw" target="_blank" rel="noopener">https://pan.baidu.com/s/1rBjQ4rXnBWO1hXdOllGguw</a> 密码: k7fj</p>
+<p>The Part-Time Parliament：链接: <a href="https://pan.baidu.com/s/18SZs710g_VAPoM1wbijHnQ" target="_blank" rel="noopener">https://pan.baidu.com/s/18SZs710g_VAPoM1wbijHnQ</a> 密码: ww4w</p>
+<p>英文学习网址：<a href="http://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Paxos_%28computer_science%29" target="_blank" rel="noopener">Paxos (computer science)</a> </p>
+<p><img src="/blog/2018/07/14/paxos算法/paxos.jpg" alt=""></p>
+        
+          <a class="article-more-a" href="/blog/2018/07/14/paxos算法/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">分布式系统</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2018/07/14/paxos算法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-博客个性化配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -283,6 +370,10 @@
 			 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">分布式系统</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -729,89 +820,6 @@
 
 
   
-    <article id="post-java虚拟机" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2018/06/03/java虚拟机/">一杯Java 不加糖</a>
-    </h1>
-  
-
-        
-        <a href="/blog/2018/06/03/java虚拟机/" class="archive-article-date">
-  	<time datetime="2018-06-03T02:18:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
-</a>
-        
-		
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    Java是一门面向对象的编程语言，在编程语言排行榜中常年排行前三，由于语言的优势和特点如今已经成为开发中最流行最受欢迎的编程语言，特别是在后台服务器开发领域，由于其跨平台性和庞大的生态圈，几乎没有其他语言能够撼动它的霸主地位。Java发展也是相当迅速，如今已经到Java 10 了，吸收了其他语言的一些优势和特点，融入了很多新的特性 。Java主要分为三个方向：</p>
-<p><strong>Java SE</strong>：Java Standard Edition，即Java标准版，也是Java技术的核心，是学习 Java ME和 Java EE的基础。用于开发和部署桌面、服务器的Java应用程序 ，也就是C/S架构开发。</p>
-<p><strong>Java EE</strong>：Java Enterprise Edition，即Java企业版，Java EE 是在 Java SE 的基础上构建的，它提供Web 服务、管理和通信 API ，是java技术应用最广泛的领域。主要用于B/S架构开发。</p>
-<p><strong>Java ME</strong>：Java Mirco Edition，即Java微型版，Java ME是对 Java SE 进行了精简，以提高运行效率，主要针对小型设备，移动设备以及嵌入式设备而构建，不过在移动设备上，现在基本已经被安卓代替了。</p>
-<p>Java虚拟机是整个java平台的基石，是java技术实现硬件无关和操作系统无关的关键环节，是java语言生成极小体积的编译代码的运行平台，是保护用户机器免受恶意代码侵袭的保护屏障。可以说JVM就是整个java体系的核心，在java中碰到的绝大部分问题都可以在JVM中找到答案。</p>
-<p><img src="/blog/2018/06/03/java虚拟机/java1.png" alt=""></p>
-        
-          <a class="article-more-a" href="/blog/2018/06/03/java虚拟机/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2018/06/03/java虚拟机/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/blog/page/2/">2</a><a class="extend next" rel="next" href="/blog/page/2/">Next &raquo;</a>
@@ -927,6 +935,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>

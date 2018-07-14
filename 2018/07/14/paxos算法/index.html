@@ -6,30 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lushunjian.github.io/blog">
-  <title>一致性哈希 | 一叶知秋</title>
+  <title>paxos算法 | 一叶知秋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="​    最近几天研究了下一致性哈希算法，总算是搞明白它是怎么一回事了，这里记录一下自己的理解。一致性哈希算法主要是针对分布式缓存系统的算法。要想搞清楚一致性哈希的的优缺点，那就必须从它的发应用场景说起，也就是为什么分布式缓存中要使用一致性哈希算法，传统的做法有什么缺点，会带来什么问题。首先来看一下传统的做法，我们知道缓存在大型的应用系统中的地位是很重要的，它能有效的减少数据库的访问次数，从而减少">
+  <meta name="description" content="Paxos算法是莱斯利·兰伯特（Leslie Lamport，就是 LaTeX 中的”La”，此人现在在微软研究院）于1990年提出的一种基于消息传递且具有高度容错特性的一致性算法。 Paxos算法应用非常广泛，目前在Google的Chubby、MegaStore、Spanner等系统中得到了应用，Hadoop中的ZooKeeper中实现数据的一致性也是基于Paxos算法。根据 CAP 理论，一个">
 <meta name="keywords" content="分布式系统,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一致性哈希">
-<meta property="og:url" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/index.html">
+<meta property="og:title" content="paxos算法">
+<meta property="og:url" content="https://lushunjian.github.io/blog/2018/07/14/paxos算法/index.html">
 <meta property="og:site_name" content="一叶知秋">
-<meta property="og:description" content="​    最近几天研究了下一致性哈希算法，总算是搞明白它是怎么一回事了，这里记录一下自己的理解。一致性哈希算法主要是针对分布式缓存系统的算法。要想搞清楚一致性哈希的的优缺点，那就必须从它的发应用场景说起，也就是为什么分布式缓存中要使用一致性哈希算法，传统的做法有什么缺点，会带来什么问题。首先来看一下传统的做法，我们知道缓存在大型的应用系统中的地位是很重要的，它能有效的减少数据库的访问次数，从而减少">
+<meta property="og:description" content="Paxos算法是莱斯利·兰伯特（Leslie Lamport，就是 LaTeX 中的”La”，此人现在在微软研究院）于1990年提出的一种基于消息传递且具有高度容错特性的一致性算法。 Paxos算法应用非常广泛，目前在Google的Chubby、MegaStore、Spanner等系统中得到了应用，Hadoop中的ZooKeeper中实现数据的一致性也是基于Paxos算法。根据 CAP 理论，一个">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi.jpg">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/mode.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/mode1.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/yizhixinghaxi.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi1.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi2.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi3.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi5.png">
-<meta property="og:updated_time" content="2018-07-14T02:34:11.947Z">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/14/paxos算法/paxos.jpg">
+<meta property="og:updated_time" content="2018-07-14T09:55:35.332Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一致性哈希">
-<meta name="twitter:description" content="​    最近几天研究了下一致性哈希算法，总算是搞明白它是怎么一回事了，这里记录一下自己的理解。一致性哈希算法主要是针对分布式缓存系统的算法。要想搞清楚一致性哈希的的优缺点，那就必须从它的发应用场景说起，也就是为什么分布式缓存中要使用一致性哈希算法，传统的做法有什么缺点，会带来什么问题。首先来看一下传统的做法，我们知道缓存在大型的应用系统中的地位是很重要的，它能有效的减少数据库的访问次数，从而减少">
-<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/07/07/一致性哈希/haxi.jpg">
+<meta name="twitter:title" content="paxos算法">
+<meta name="twitter:description" content="Paxos算法是莱斯利·兰伯特（Leslie Lamport，就是 LaTeX 中的”La”，此人现在在微软研究院）于1990年提出的一种基于消息传递且具有高度容错特性的一致性算法。 Paxos算法应用非常广泛，目前在Google的Chubby、MegaStore、Spanner等系统中得到了应用，Hadoop中的ZooKeeper中实现数据的一致性也是基于Paxos算法。根据 CAP 理论，一个">
+<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/07/14/paxos算法/paxos.jpg">
   
     <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
   
@@ -174,20 +166,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-一致性哈希" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-paxos算法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      一致性哈希
+      paxos算法
     </h1>
   
 
         
-        <a href="/blog/2018/07/07/一致性哈希/" class="archive-article-date">
-  	<time datetime="2018-07-06T23:44:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-07</time>
+        <a href="/blog/2018/07/14/paxos算法/" class="archive-article-date">
+  	<time datetime="2018-07-14T02:29:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-14</time>
 </a>
         
 		
@@ -200,33 +192,65 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​    最近几天研究了下一致性哈希算法，总算是搞明白它是怎么一回事了，这里记录一下自己的理解。一致性哈希算法主要是针对分布式缓存系统的算法。要想搞清楚一致性哈希的的优缺点，那就必须从它的发应用场景说起，也就是为什么分布式缓存中要使用一致性哈希算法，传统的做法有什么缺点，会带来什么问题。首先来看一下传统的做法，我们知道缓存在大型的应用系统中的地位是很重要的，它能有效的减少数据库的访问次数，从而减少IO提高系统的反应速度，得到较好的用户体验。因此一般应用系统都会使用Redis或者Memcached等中间件做缓存。而在数据量比较大的情况下，一台缓存服务器往往是不足以扛住大数据量的压力，所以会搭建一个缓存服务器的集群。缓存数据就会由原来在一台服务器上变为分布在一个缓存集群上，那数据怎么才能均匀的分布在集群中的节点上呢。又该怎么快速去定位待查询的数据在哪台缓存服务器上呢。</p>
-<p><img src="/blog/2018/07/07/一致性哈希/haxi.jpg" alt=""></p>
+        <p>Paxos算法是莱斯利·兰伯特（Leslie Lamport，就是 LaTeX 中的”La”，此人现在在微软研究院）于1990年提出的一种基于消息传递且具有高度容错特性的一致性算法。 Paxos算法应用非常广泛，目前在Google的Chubby、MegaStore、Spanner等系统中得到了应用，Hadoop中的ZooKeeper中实现数据的一致性也是基于Paxos算法。根据 CAP 理论，一个分布式集群中网络分区必然会出现，这样就会出现脑裂的情况，所谓脑裂，就是由于网络分区的出现，一个集群被分割为多个互不通信的小集群，小集群中由于没有Leader，会自主选择master节点，造成原本的集群会同时存在多个master节点。 而 paxos 算法有效的杜绝了脑裂现象，并在 C 和 A 之间保留了较好的均衡性。因此paxos算法的重要性不言而喻了，但Paxos 算法号称史上最晦涩难懂的算法，而原版论文也是让人难以理解 。经过一段时间研究，对 Paxos 有了一些理解，在这里总结一下。paxos算法的学习最好的资料就是作者发表的三篇论文，分别是Fast Paxos，Paxos made simple和The Part-Time Parliament。另外还有一个被称为有史以来学习paxos最好的地方的英文网站，百度网盘地址如下：</p>
+<p>Fast Paxos：链接: <a href="https://pan.baidu.com/s/1Eaxpvh5AqUNyxySPAOrwYQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1Eaxpvh5AqUNyxySPAOrwYQ</a> 密码: ij5v</p>
+<p>Paxos made simple：链接: <a href="https://pan.baidu.com/s/1rBjQ4rXnBWO1hXdOllGguw" target="_blank" rel="noopener">https://pan.baidu.com/s/1rBjQ4rXnBWO1hXdOllGguw</a> 密码: k7fj</p>
+<p>The Part-Time Parliament：链接: <a href="https://pan.baidu.com/s/18SZs710g_VAPoM1wbijHnQ" target="_blank" rel="noopener">https://pan.baidu.com/s/18SZs710g_VAPoM1wbijHnQ</a> 密码: ww4w</p>
+<p>英文学习网址：<a href="http://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Paxos_%28computer_science%29" target="_blank" rel="noopener">Paxos (computer science)</a> </p>
+<p><img src="/blog/2018/07/14/paxos算法/paxos.jpg" alt=""></p>
 <a id="more"></a> 
-<h3 id="1-实际场景"><a href="#1-实际场景" class="headerlink" title="1 . 实际场景"></a>1 . 实际场景</h3><p>现在假设有三台缓存服务器节点，当有查询请求来时，首先会去缓存中查找数据，最简单的做法就是轮询三个节点，然后找到待查询的数据，如果数据没找到就到数据库中去查询，这种做法是大多数人最直观的做法。但这种做法的效率很低，需要去轮询服务器，不利于横向拓展。因此就出现了哈希算法去定位服务器，假设有4条数据，那么这4条数据是怎么分布在缓存中的呢？传统的取模哈希算法相对简单，就是用数据的key对服务器的个数取模，在这个例子中再假设4条数据的key分别是1,2,3,4。服务器的编号分别是A,B,C。那么数据1，数据4是在节点B上，数据2在节点C上，数据3在节点A上。如下图所示：</p>
-<p><img src="/blog/2018/07/07/一致性哈希/mode.png" alt=""></p>
-<p>这里数据取模后的值为0,1,2对应于服务器A,B,C。在查询数据的时候，就能快速的得到这条数据所在的服务器编号，从而大大提高了查询速度。这种方式比起前一种方式优势明显，但在实际环境中却有很大的问题，因为我们忽略了一个问题，那就是这是一个分布式环境。分布式环境中最让人头疼的问题就是环境是不稳定的，随时都有可能会有节点宕机，在刚刚那个例子中，如果有一个节点挂机，数据分布会是怎么样的，假设节点C宕机，还剩下节点A,B在正常运行。此时服务器数量是2，那么数据的分布应该是这样的，数据2和数据4在节点A上，数据1和数据3在节点B上，如下图</p>
-<p><img src="/blog/2018/07/07/一致性哈希/mode1.png" alt=""></p>
-<p>由此可见，大部分数据都被重新定位到新的服务器上了。这种情况会带来一个很大的隐患，就是当系统运行时，某个缓存节点突然宕机，查询数据时，首先会去缓存中查找这条数据，如果这些数据刚好在这个宕机的节点上，导致没有查到数据，故只能去数据库查询数据。由于短时间内大量的数据缓存在同一时间失效，数据库将面临大量的IO请求，此时应用系统和数据库都面临着巨大的压力。如果由于大量请求导致应用服务器的某个节点宕机，这些请求又会负载到其他服务节点，巨大的请求量同样会导致其他服务节点宕机，。最终导致雪崩式的宕机，拖垮整个系统。如果发生这种情况，那可能是灾难性的。因此要尽量避免这种情况的发生。这种情况在架构设计时应该考虑到采取一定的方式应对。这里就不做深入讨论了，同样在应用系统用户量增加的时候，缓存集群可能不足以支撑查询压力，因而需要增加缓存节点来提高系统的性能。如果往缓存集群中动态的增加一个节点同样会导致类似的情况，大部分的数据需要重新定位。因此需要一种更好的算法去解决这个问题，一致性哈希算法就应运而生了。</p>
-<h3 id="2-一致性Hash概述"><a href="#2-一致性Hash概述" class="headerlink" title="2 . 一致性Hash概述"></a>2 . 一致性Hash概述</h3><p>一致性哈希把数据映射到0到2^32次方个哈希桶的空间，形成一个哈希环。通俗的理解，就是在一个圆环有很多个整数点，这些点从0开始，一直到2的32次方结束，然后通过哈希算法将缓存服务器映射到这个环上。那么在刚刚那个例子中服务器A,B,C映射到哈希环上会是什么样子呢？一般我们使用服务器的ip地址，作为哈希的key值，（这个key值可以自己定义，前面的例子中是使用的服务器编号），通过 <strong>Hash(服务器ip)%2^32</strong> 得到哈希值，那么3个服务器节点通过哈希算法计算后，在哈希环上是这样分布的</p>
-<p><img src="/blog/2018/07/07/一致性哈希/haxi.png" alt=""></p>
-<p>当有数据请求时，一致性哈希是怎么存储数据的呢？这需要在数据存储的时候，把数据的id作为哈希的key值，以同样的公式计算出哈希值，即通过 <strong>Hash(数据id)%2^32</strong> 公式得到哈希值，这里假设有6条数据，在哈希环得到如下的数据分布图。</p>
-<p><img src="/blog/2018/07/07/一致性哈希/yizhixinghaxi.png" alt=""></p>
-<p>这里数据的分布和前面通过取模方式区别比较大，前面的方式数据id取模后，会直接得到服务器节点的编号（因为取模后的值就是服务器的编号），于是便确定到这条数据在哪个节点上。而一致性哈希计算出哈希值后，数据离散的分布在整个哈希环上，通过哈希值还不能确认这条数据分布在哪个节点上。这里还需要一个约定，就是沿顺时针或是逆时针方向，数据会被存储到这个方向上遇到的第一个节点中。例如上图中，沿顺时针方向走，数据1,2遇到的第一个节点是节点B，所以数据1,2会被存储在节点B上，同理数据3,4存储在节点C上，数据5,6存储在节点A上。一致性哈希就是通过这种方式定位数据的。</p>
-<h3 id="3-一致性哈希的优点"><a href="#3-一致性哈希的优点" class="headerlink" title="3 . 一致性哈希的优点"></a>3 . 一致性哈希的优点</h3><p>在前面的阐述中通过简单的取模方式，如果服务器数量发生变化，容易引发集群的雪崩。那么一致性哈希能很好的解决这个问题吗？再来模拟一遍服务节点数量发生变化的情况下，一致性哈希会是怎样的结果。</p>
-<h4 id="1-节点宕机"><a href="#1-节点宕机" class="headerlink" title="(1) . 节点宕机"></a>(1) . 节点宕机</h4><p>上图中假设节点C宕机了，那么数据的分布是变成什么样的呢。由于哈希算法跟节点数量没有关系，那么数据在哈希环上的位置不会改变。于是可得的如下图的数据分布图</p>
-<p><img src="/blog/2018/07/07/一致性哈希/haxi1.png" alt=""></p>
-<p>沿顺时针方向走，可得数据1,2存储在节点B上，而数据3,4,5,6都存储在节点A上。通过和正常情况下的数据分布比较，可以看出来，在节点C宕机的情况下，只有节点C上的数据需要迁移。而其他数据都不会受到影响。</p>
-<h4 id="2-节点加入"><a href="#2-节点加入" class="headerlink" title="(2) . 节点加入"></a>(2) . 节点加入</h4><p>如果集群想动态的增加一个缓存节点，以提升性能，那么在一致性哈希下，集群会受到什么影响呢？现在假设在数据3和数据4之间增加一个节点x，数据分布会得到如下图的效果。</p>
-<p><img src="/blog/2018/07/07/一致性哈希/haxi2.png" alt=""></p>
-<p>从图中可以看出，除了数据3会被迁移到节点x以外，其他数据都不会受到影响。通过和节点宕机的情况下比较还可以知道，增加节点时，需要迁移的数据比节点宕机时要少。而且集群节点越多，受影响的数据占比就越少，这说明一致性哈希比较适用于集群的横向扩展。</p>
-<h3 id="3-数据倾斜"><a href="#3-数据倾斜" class="headerlink" title="3 . 数据倾斜"></a>3 . 数据倾斜</h3><p>在前面的讨论中，服务器是被均匀的映射在哈希环上了，但是理想很丰满，现实很骨感。实际映射到哈希环上的节点并不如我们想象的那么美好，而往往是下面这般模样</p>
-<p><img src="/blog/2018/07/07/一致性哈希/haxi3.png" alt=""></p>
-<p>很明显，如果节点在哈希环上分配不均匀，那么节点A负载的数据量将远远大于节点B，节点C。这可能导致节点A由于承受较大的负载而宕机，如果节点A宕机，那么数据量会积压到节点B上，然后节点B宕机，然后节点C，然后雪崩了。这种情况叫做哈希环的倾斜，这些专业名称总会不明白的人望而生畏，其实不过是给一件简单的事情起了个名字。那么哈希环倾斜的问题该怎么解决呢？</p>
-<h3 id="4-虚拟节点"><a href="#4-虚拟节点" class="headerlink" title="4 . 虚拟节点"></a>4 . 虚拟节点</h3><p>从上面的图可以看出，如果哈希函数本身没问题的话，出现哈希环倾斜的原因，是因为节点。如果节点数足够多的话，就可以让节点尽可能离散的分布在哈希环上。但实际情况中，就只有3个节点怎么办呢？一致性哈希算法种使用虚拟节点解决了这个问题。理解起来也简单，就是节点数不够多嘛，那么通过虚拟出足够多的节点，不就能让节点均匀的分布在哈希环上了吗。那么虚拟节点是怎么得到的呢，既然是虚拟节点，那说白了就是个假节点，是通过实际节点复制而来的。说专业点就叫做虚拟，比如把节点A虚拟出两个节点叫节点A-1，节点A-2。同样节点B和节点C也各虚拟两个节点那么就会得到如下的分布图了</p>
-<p><img src="/blog/2018/07/07/一致性哈希/haxi5.png" alt=""></p>
-<p>这样在哈希环上，节点就是均匀分布的，很好的解决了由于节点分布不均匀而带来的数据倾斜问题。这里节点A-1和节点A-2是节点A虚拟出的两个节点，那么实际上存储在节点A-1和节点A-2上的数据是存储在物理节点A上的。如果虚拟节点在哈希环上分布还是不均匀，可以继续虚拟出更多的节点。虚拟节点越多，节点在哈希环上就会分布的越均匀，哈希环倾斜带来的影响也会越小。</p>
-<p>一致性哈希基本解决了在P2P环境中最为关键的问题——如何在动态的网络拓扑中分布存储和路由。每个节点仅需维护少量相邻节点的信息，并且在节点加入/退出集群时，仅有相关的少量节点参与到拓扑的维护中。所有这一切使得一致性哈希成为第一个实用的DHT算法。 </p>
+<h3 id="1-Paxos算法"><a href="#1-Paxos算法" class="headerlink" title="1 . Paxos算法"></a>1 . Paxos算法</h3><h4 id="1-1-Paxos算法的角色"><a href="#1-1-Paxos算法的角色" class="headerlink" title="1.1 Paxos算法的角色"></a>1.1 Paxos算法的角色</h4><p><strong>Client</strong>：客户端，发起请求并等待返回。 </p>
+<p><strong>Proposer</strong>:提案发起者，处理客户端请求，将客户端的请求发送给Acceptor，并接收Acceptor返回的信息</p>
+<p><strong>Acceptor</strong>:提案决策者，负责处理接收到的提案，决策提议通过还是拒绝，并把信息返回给Proposer</p>
+<p><strong>Learner</strong>：当有同一个提案的值被超过一半的Acceptor采纳并发送消息给Learner时，Learner学习该提案值。 </p>
+<p>其实最核心的角色就两个，分别是Proposer 和 acceptor。</p>
+<h4 id="2-2-Paxos算法流程"><a href="#2-2-Paxos算法流程" class="headerlink" title="2.2 Paxos算法流程"></a>2.2 Paxos算法流程</h4><p>简单来说Paxos 是一个经典的两阶段提交（2PC）</p>
+<h5 id="2-2-1、第一阶段-Prepare"><a href="#2-2-1、第一阶段-Prepare" class="headerlink" title="2.2.1、第一阶段 Prepare"></a>2.2.1、第一阶段 Prepare</h5><p>Proposer 发送提案，发送提前前需生成生成全局唯一且递增的提案 ID（Proposalid，以高位时间戳 + 低位机器 IP 可以保证唯一性和递增性），向 Paxos 集群的所有机器发送 PrepareRequest请求，这里无需携带提案内容，只携带 Proposalid 即可。Acceptor在接收到Proposer发来的提案后需要做几件事情，总结来说就是：两个承诺，一个应答 。</p>
+<p>两个承诺：</p>
+<ul>
+<li><p>第一，不再应答 Proposalid 小于当前请求的 PrepareRequest。</p>
+</li>
+<li><p>第二，不再应答 Proposalid 小于当前请求的 AcceptRequest 。</p>
+</li>
+</ul>
+<p>一个应答：</p>
+<ul>
+<li>返回自己已经采纳的提案中 Proposalid 最大的那个提案的内容，如果没有则返回空值;。</li>
+</ul>
+<h5 id="2-2-2、第二阶段-Accept"><a href="#2-2-2、第二阶段-Accept" class="headerlink" title="2.2.2、第二阶段 Accept"></a>2.2.2、第二阶段 Accept</h5><p>经过第一阶段，Proposer会收到Acceptor的应答。这时Proposer也需要做几件事情。总结来说就是：二个判断，一个请求。注意只有应答数过半才会发送AcceptRequest 请求。</p>
+<p>两个判断：</p>
+<ul>
+<li><p>第一，判断收到的Acceptor的应答数量超过总数的一半，如果没有超过一半则直接进入第一阶段的流程，继续发送提案。如果超过一半，则进入第二个判断。</p>
+</li>
+<li><p>第二，判断所有返回Acceptor的应答中是否存在已经采纳的提案，如果不存在则自己决定提案值，如果存在则在所有Acceptor的应答中选出Proposalid最大的提案值。</p>
+</li>
+</ul>
+<p>一个请求：</p>
+<ul>
+<li>发送AcceptRequest 请求，将决定的提案值发送给Acceptor，然后会得到Acceptor的应答，根据应答数量再走第二阶段的流程。</li>
+</ul>
+<p>Learner学习被选定的Value值（也就是提案值）。假设集群中有M个Acceptor，N个Learner，那么Learner学习的策略有三种方案：</p>
+<ul>
+<li>Acceptor接受一个提案，就将该提案发送给所有Learner。优点是Learner能快速获取被选定的Value值，缺点是通信次数为：M*N</li>
+<li>Acceptor接受一个提案，就将该提案发送给主Learner，主Learner再发送给其他的Learner。优点是通信次数只有：M+N，缺点是主Learner会出现单点故障，而且主Learner怎么选举来的也是个问题。</li>
+<li>Acceptor接受一个提案，就将提案发送给多个Learner，也就是一个Learner集合。再由这个Learner集合发送给剩下的Learner。优点是综合了方案一和方案二，减少了通信次数的同时提高了可靠性。缺点是网络通信的复杂度增加了。</li>
+</ul>
+<p>可以看出Paxos的关键所在是Proposer的决策，在收到Acceptor的应答后，会选出应答中最新的决策，然后服从该决策，后者认同前者，最后Acceptor接受的同一个提议的数量会越来越多，最终超过一半，达成一致，否则整个决策过程永无止境 。在分布式系统中，上面提到的几种角色并不需要在不同节点上，实际上一个节点既可以是Proposer，也可以是Acceptor只是各自对应的端口不一样就行了，zookeeper就是这样做的。上面两个阶段是分开描述的，可能不便于理解整个连贯的流程。下面以生活中的实际场景来模拟一下paxos算法的流程。</p>
+<h3 id="2-通俗理解"><a href="#2-通俗理解" class="headerlink" title="2 . 通俗理解"></a>2 . 通俗理解</h3><p>相信大家都参与过班级中竞选班长的场景。班长竞选流程一般是首先竞选者上台演讲，演讲结束后，大家同意投票，比如没人写个小纸条，在纸条上，我想选谁当班长就写他的名字。最后由老师或是一个同学数纸条上的名字数最多的人当选班长。这种方式其实就是数据共享的方式，因为所有人的小纸条都聚集在了一起，最后只要数这些小纸条就行了。但Paxos算法不是这种场景 ，Paxos算法的场景对应一种分布式场景。假设这个班级有20个人要竞选一名班长，而这20个同学不在教室，而各自在家且这20个同学相互不能通信如何完成班长的选举。为了完成班长的选举，他们请来了隔壁班的5位同学，且这5位同学也不能相互通信。但20位同学中的每个人都可以自由的和隔壁班的这5位同学通信，现假设他们通信的方式为短信，隔壁班的5位同学称他们为队长，20位同学为队员。下面宣布选举开始！</p>
+<p>首先队员的第一件事就是与至少3个队长取得联系（超过队长人数的一半），于是队员们开始疯狂的给5位队长发短信，队员发送信息时，会把当前的信息的发送时间一起发过去，这个时候队员仅仅只是为了与队长取得联系，并不会把班长竞选人的名单发送过去。队长会收到来自20名队员的短信，面对大量的短信，队长的做法是倾听最新的声音，于是队长只回复信息中发送时间最新的队员。这里队长如果接受过队员的班长人选提议，就会把那个提议回复给这个队员，如果没有接受过提议，就会回复队员：“我还没有班长人选的名字，快告诉我你要选谁当班长”。这时队员a在接收到队长的回复后，并不会马上就把自己的班长人选发送给队长。队员a首先会判断我收到的队长回复人数有没有超过一半，如果没有那我就继续发申请，联系队长。如果超过了一半就看看班长回复的信息中，是不是已经有一些班长人选的名单了，如果没有，那么队员a想选赵六当班长，就会把赵六发送给所有队长。如果有了那么队员a会服从队长的班长人选，从队长返回的班长人选中选择最新的班长人选名字再发送给队长们，比如这时队员a收到的信息如下</p>
+<p>队长a的信息：班长人选名字是张三，时间是6分钟前；</p>
+<p>队长b的信息：班长人选名字是张三，时间是4分钟前；</p>
+<p>队长c的信息：班长人选名字是张三，时间是3分钟前；</p>
+<p>队长d的信息：班长人选名字是李四，时间是1分钟前；</p>
+<p>队长e的信息：没有班长人选，时间是1分钟前；</p>
+<p>如果出现了这种情况，那就别扯了，说明整个决定过程已经达成一致了，张三已经当选班长，队员a也选张三做班长。这里还会出现另一种情况，就是决定过程还没有达成一致，收到的信息如下：</p>
+<p>队长a的信息：班长人选名字是李四，时间是3分钟前；</p>
+<p>队长b的信息：班长人选名字是李三，时间是5分钟前；</p>
+<p>队长c的信息：没有班长人选，时间是1分钟前；</p>
+<p>没有收到队长d和队长e的信息</p>
+<p>这时队员a就会选择队长a的班长人选名字，即李四，并把这个名字发送给所有队长，告诉他们这个人就是我想要选的班长。</p>
+<p>从这面的逻辑可以看出，一旦某个时刻有半数以上队长同意了一个班长人选比如张三，紧跟着后面的队员b继续发短信时，如果和队长们获得联系，说明队员b收到了来自半数以上队长发过来的消息，那么队员b必然会收到至少一个队长给他发的张三的这个结果（否则说明半数以上队长都没有同意张三这个结果，这显然与前面的假设矛盾），于是队员b也会顶这个最新的班长人选，不会更改。其他队员也是一样，因为最终都会与队长取得联系，而此时队长最新的人选是张三，于是会有越来越多的人支持张三，最终达成一致，张三当选班长。这个例子中的队长就相当于paxos算法种的Acceptor，而队员就相当于Proposer和Learner。在选举过程中，队员既会提交选举的提案，也会根据队长返回的信息来学习被选中的人选。</p>
+<p>在分布式系统中，一致性的问题一直是个拦路虎。Paxos解决这一问题利用的是选举，少数服从多数的思想，只要2N+1个节点中，有N个（不包含N）以上同意了某个决定，则认为系统达到了一致，并且按照Paxos原则，最终理论上也达到了一致，不会再改变。这样的话，客户端不必与所有服务器通信，选择与大部分通信即可；也无需服务器都全部处于工作状态，有一些服务器挂掉，只有保证半数以上存活着，整个过程也能持续下去，容错性相当好。因此，说ZooKeeper 要部署奇数个节点也是有道理的。另外谈到Paxos时，还会涉及到拜占庭将军问题，拜占庭将军问题指的是在存在消息丢失的不可靠信道上试图通过消息传递的方式达到一致性是不可能的。注意拜占庭将军问题中描述的不可靠信道是指信息可能会丢失，也可能会被篡改。Paxos本身就是利用消息传递方式解决一致性问题的，所以它的假定是信道必须可靠，这里的可靠，主要指信息可以丢失，但不会被篡改。</p>
 
       
 
@@ -321,7 +345,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://qr.liantu.com/api.php?text=https://lushunjian.github.io/blog/2018/07/07/一致性哈希/" alt="微信分享二维码">
+      <img src="http://qr.liantu.com/api.php?text=https://lushunjian.github.io/blog/2018/07/14/paxos算法/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -335,18 +359,9 @@
   
 <nav id="article-nav">
   
-    <a href="/blog/2018/07/08/博客个性化配置/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          博客个性化配置
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/2018/06/30/Http请求中转/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Http请求中转</div>
+    <a href="/blog/2018/07/08/博客个性化配置/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">博客个性化配置</div>
       <i class="icon-circle-right"></i>
     </a>
   
