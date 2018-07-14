@@ -17,7 +17,7 @@
 <meta property="og:description" content="Paxos算法是莱斯利·兰伯特（Leslie Lamport，就是 LaTeX 中的”La”，此人现在在微软研究院）于1990年提出的一种基于消息传递且具有高度容错特性的一致性算法。 Paxos算法应用非常广泛，目前在Google的Chubby、MegaStore、Spanner等系统中得到了应用，Hadoop中的ZooKeeper中实现数据的一致性也是基于Paxos算法。根据 CAP 理论，一个">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/14/paxos算法/paxos.jpg">
-<meta property="og:updated_time" content="2018-07-14T09:55:35.332Z">
+<meta property="og:updated_time" content="2018-07-14T10:02:45.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="paxos算法">
 <meta name="twitter:description" content="Paxos算法是莱斯利·兰伯特（Leslie Lamport，就是 LaTeX 中的”La”，此人现在在微软研究院）于1990年提出的一种基于消息传递且具有高度容错特性的一致性算法。 Paxos算法应用非常广泛，目前在Google的Chubby、MegaStore、Spanner等系统中得到了应用，Hadoop中的ZooKeeper中实现数据的一致性也是基于Paxos算法。根据 CAP 理论，一个">
@@ -217,13 +217,12 @@
 <ul>
 <li>返回自己已经采纳的提案中 Proposalid 最大的那个提案的内容，如果没有则返回空值;。</li>
 </ul>
-<h5 id="2-2-2、第二阶段-Accept"><a href="#2-2-2、第二阶段-Accept" class="headerlink" title="2.2.2、第二阶段 Accept"></a>2.2.2、第二阶段 Accept</h5><p>经过第一阶段，Proposer会收到Acceptor的应答。这时Proposer也需要做几件事情。总结来说就是：二个判断，一个请求。注意只有应答数过半才会发送AcceptRequest 请求。</p>
+<h5 id="2-2-2、第二阶段-Accept"><a href="#2-2-2、第二阶段-Accept" class="headerlink" title="2.2.2、第二阶段 Accept"></a>2.2.2、第二阶段 Accept</h5><p>经过第一阶段，Proposer会收到Acceptor的应答。这时Proposer也需要做几件事情。总结来说就是：三个判断，一个请求。注意只有应答数过半才会发送AcceptRequest 请求。</p>
 <p>两个判断：</p>
 <ul>
-<li><p>第一，判断收到的Acceptor的应答数量超过总数的一半，如果没有超过一半则直接进入第一阶段的流程，继续发送提案。如果超过一半，则进入第二个判断。</p>
-</li>
-<li><p>第二，判断所有返回Acceptor的应答中是否存在已经采纳的提案，如果不存在则自己决定提案值，如果存在则在所有Acceptor的应答中选出Proposalid最大的提案值。</p>
-</li>
+<li>第一，判断收到的Acceptor的应答数量超过总数的一半，如果没有超过一半则直接进入第一阶段的流程，继续发送提案。如果超过一半，则进入第二个判断。</li>
+<li>第二，判断所有返回Acceptor的应答中是否存在已经采纳的提案，如果不存在则自己决定提案值，如果存在提案值则进入第三个判断</li>
+<li>第三，判断应答的所有提案中，是否存在数量超过一半的提案，如果存在则选中这个过半数的提案值，如果不存在则在所有Acceptor的应答中选中Proposalid最大的提案值。</li>
 </ul>
 <p>一个请求：</p>
 <ul>
@@ -504,11 +503,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
             
             <div class="clearfix"></div>
