@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lushunjian.github.io/blog">
-  <title>Archives: 2018/6 | 一叶知秋</title>
+  <title>长连接的负载均衡 | 一叶知秋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="一叶知秋">
-<meta property="og:url" content="https://lushunjian.github.io/blog/archives/2018/06/index.html">
+  <meta name="description" content="​    最近公司培训，讲到了有关于长连接的负载均衡解决方案，确有体会，故此记录一下。在之前做负载均衡一般针对的是短连接，短连接的场景在实际应用中非常普遍。浏览器中大部分的请求都是短连接，例如用户登录，注册。商城的订单，付款等功能都属于短连接。短连接的特点就是无状态，连接时间短，长则三四秒，短则几毫秒。短连接的负载均衡很容易解决，开源中间件也比较多,例如nginx，F5等。而长连接的负载均衡解决方">
+<meta name="keywords" content="算法,负载均衡">
+<meta property="og:type" content="article">
+<meta property="og:title" content="长连接的负载均衡">
+<meta property="og:url" content="https://lushunjian.github.io/blog/2018/07/28/长连接的负载均衡/index.html">
 <meta property="og:site_name" content="一叶知秋">
+<meta property="og:description" content="​    最近公司培训，讲到了有关于长连接的负载均衡解决方案，确有体会，故此记录一下。在之前做负载均衡一般针对的是短连接，短连接的场景在实际应用中非常普遍。浏览器中大部分的请求都是短连接，例如用户登录，注册。商城的订单，付款等功能都属于短连接。短连接的特点就是无状态，连接时间短，长则三四秒，短则几毫秒。短连接的负载均衡很容易解决，开源中间件也比较多,例如nginx，F5等。而长连接的负载均衡解决方">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/28/长连接的负载均衡/clj1.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/28/长连接的负载均衡/clj2.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/28/长连接的负载均衡/clj3.png">
+<meta property="og:updated_time" content="2018-07-28T00:50:53.660Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一叶知秋">
+<meta name="twitter:title" content="长连接的负载均衡">
+<meta name="twitter:description" content="​    最近公司培训，讲到了有关于长连接的负载均衡解决方案，确有体会，故此记录一下。在之前做负载均衡一般针对的是短连接，短连接的场景在实际应用中非常普遍。浏览器中大部分的请求都是短连接，例如用户登录，注册。商城的订单，付款等功能都属于短连接。短连接的特点就是无状态，连接时间短，长则三四秒，短则几毫秒。短连接的负载均衡很容易解决，开源中间件也比较多,例如nginx，F5等。而长连接的负载均衡解决方">
+<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/07/28/长连接的负载均衡/clj1.png">
   
     <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
   
@@ -159,315 +168,241 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-长连接的负载均衡" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      长连接的负载均衡
+    </h1>
+  
+
+        
+        <a href="/blog/2018/07/28/长连接的负载均衡/" class="archive-article-date">
+  	<time datetime="2018-07-28T00:11:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-28</time>
+</a>
+        
+		
+		
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
+		
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    最近公司培训，讲到了有关于长连接的负载均衡解决方案，确有体会，故此记录一下。在之前做负载均衡一般针对的是短连接，短连接的场景在实际应用中非常普遍。浏览器中大部分的请求都是短连接，例如用户登录，注册。商城的订单，付款等功能都属于短连接。短连接的特点就是无状态，连接时间短，长则三四秒，短则几毫秒。短连接的负载均衡很容易解决，开源中间件也比较多,例如nginx，F5等。而长连接的负载均衡解决方案则比较少了，主要原因是长连接相对于短连接来说应用面比较窄。一般是定制化需求会使用长连接。而生活中长连接作为普遍的应用就是直播系统了，近几年直播这种娱乐方式也越来越受到年轻人的喜爱，虎牙，斗鱼等直播平台如雨后春笋般涌现。我所在的公司主要从事安防行业，其中最为普遍的业务是摄像头的录像，在城市中每个街头，小区，公交地铁上的摄像头都会接入到公安体系中，其中录像不但能实时播放而且还会保存到服务器中，方便公安人员破案时可以随时查看录像。由于摄像机是24小时录像的，所以在这种场景下摄像机是使用长连接，而且一旦摄像机和某个服务器节点建立连接，就会长期和这个服务器保持着连接。一个城市的摄像头成千上万，后台不但需要考虑并发，还要考虑负载均衡。传统的负载均衡算法如轮询，哈希，随机等算法并不适用于长连接的一些业务场景。这里长连接可比作一个持续进行的任务，那么长连接的负载均衡就是每个任务的资源调度，最终使每个节点上的资源，均匀的分布在这些任务上。</p>
+<a id="more"></a> 
+<h3 id="1-长连接的特点"><a href="#1-长连接的特点" class="headerlink" title="1.长连接的特点"></a>1.长连接的特点</h3><p>由于业务场景不同，长连接的特点也不一样。不同的业务场景会有各种各样的特点，需要做定制化需求的开发，这里例举的摄像机长连接特点：</p>
+<p>1.每个长连接任务的时间长，短则几天，长则几个月。并且长期占用服务器的资源。<br>2.每个长连接任务消耗的资源不一样。以摄像机为例，不同规格的摄像机像素不一样。有标清，高清，超清之分。对应的就是流量带宽的区别，有2M，4M，8M之分。因此每个长连接任务占用的资源大小不一样的。<br>3.长连接任务启动时，初始化较慢，例如需要做认证，或是请求一些接口来获取数据。这样会导致做负载均衡时，并不能实时获取到节点的负载情况，出现几秒钟的延时。</p>
+<p>在这些特点下如何做负载均衡呢？短连接的负载均衡算法轮询，哈希，随机，平均负载。如果这些算法能不能直接应用于长连接的业务场景，会出现哪些问题呢？我们先从最简单的特点开始，逐渐递进的去思考这个问题，从无到有的推导出一个针对这些特点的负载均衡算法。上面三个特点以下简称特点一，特点二，特点三。</p>
+<h4 id="1，满足特点一，不考虑特点二，三。"><a href="#1，满足特点一，不考虑特点二，三。" class="headerlink" title="1，满足特点一，不考虑特点二，三。"></a>1，满足特点一，不考虑特点二，三。</h4><p>这种情景下长连接任务只是时间长，但每个长连接任务消耗资源大小一样，启动时无延时。这种场景是最为简单也是最理想的场景，在这种场景下轮询，哈希，随机算法都适用。因为每个任务大小一样，当任务数量够多时就能保证任务是平均分配到节点上的，从而保证了每个节点的负载基本一致，这些算法都能使服务器节点达到较为均匀的负载状态，这种情况根短连接的情况差不多，只是任务时间长一些。如下图</p>
+<p><img src="/blog/2018/07/28/长连接的负载均衡/clj1.png" alt=""></p>
+<h4 id="2，满足特点一，二，不考虑特点三"><a href="#2，满足特点一，二，不考虑特点三" class="headerlink" title="2，满足特点一，二，不考虑特点三"></a>2，满足特点一，二，不考虑特点三</h4><p>这种场景下任务启动时没有延时。但由于每个任务大小不一样轮询，哈希，随机就也就不再适应了。因为这几种算法适用于请求数量很大，任务大小差别不大的情况。也就是样本数足够大，样本基本一致才能保证这些样本均匀的分布在节点上。但也仅仅只是保证了每个节点上的样本数量均匀分布，倘若每个样本的所占用的资源不一样。那么这种均匀分配实际并不会使服务器的节点能够均匀的负载，达不到负载均衡的效果。那么这样的场景下，只平均负载的算法能够适用与这种场景。平均负载算法是在每次派发任务时，会收到节点反馈过来的负载情况，然后根据每个节点的负载情况，选择负载最小的节点派发任务。下面以图来说明这两种情况，如下图</p>
+<p><img src="/blog/2018/07/28/长连接的负载均衡/clj2.png" alt=""></p>
+<p>从图上可知，有任务a,b,c分别对应三个摄像机。任务a是2M流量，任务b是4M流量，任务c是8M流量，假设每个节点配置都一样，满载时为100。很明显如果使用轮询节点c的负载肯定会大，这样实际上集群负载并不均衡。但如果使用平均负载，那么负载均衡器在派发任务时会根据节点的负载情况去分发任务，这样最终效果肯定是要比轮询好的</p>
+<h4 id="3，满足特点一，二，三"><a href="#3，满足特点一，二，三" class="headerlink" title="3，满足特点一，二，三"></a>3，满足特点一，二，三</h4><p>其实在前面两个特点下，我们忽略了一个重要问题。就是可信度问题，也就是特点三带来的问题。在分布式环境中，节点之间通信是不可靠。如果由于网络波动，或是业务场景导致负载均衡器在得到节点反馈过来的负载信息时，这个负载信息可能是存在几秒钟的延时。实际上得到的并不是当前的实时负载情况，而是几秒钟之前的负载情况。如下图：</p>
+<p><img src="/blog/2018/07/28/长连接的负载均衡/clj3.png" alt=""></p>
+<p>这样会存在一个极大的隐患。假设有1000个请求过来了。根据平均负载的算法得到节点a的负载最低。那么请求理应分发到节点a上，但是由于反馈过来的负载信息是存在延时的，于是在两三秒内得到的结果都是节点a负载最低，那么这1000个请求可能会全部被分发到节点a上。这种现象被称为扎堆效应。这种情况的结果就是节点a扛不住压力宕机。那么由此可见平均负载算法也不适用了。</p>
+
+      
+
+	  <!-- 博客主题自带打赏样式注释 -->
+	  <!--
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/blog/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/blog/weixin.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+       -->
+	  
+	 <!-- 自定义打赏样式 -->
+	 
+		<br>
+		<a href="javascript:void(0)" onclick="dashangToggle()" class="dashang" title="打赏，支持一下" style="display: block;width: 110px;margin: 5px auto;height: 40px;line-height: 25px;padding: 8px;background-color: #E74851;color: #fff;text-align: center;text-decoration: none;border-radius: 10px; font-weight: bold;font-size: 16px;transition: all 0.3s;">打赏一个呗</a>
+		<div id="hide_box" style="display: none;z-index: 999;background: #666;height: 100%;width: 100%;position: fixed;opacity: 0.5;left: 0;top: 0;"></div>
+		<div id="shang_box" style="display: none;width: 540px;height: 540px;padding: 10px;background-color: #fff;border-radius: 10px;position: fixed;z-index: 1000;left: 50%;top: 50%;margin-left: -280px;margin-top: -280px; border: 1px dotted #dedede;">
+					<a class="shang_close-play" href="javascript:void(0)" onclick="dashangToggle()" title="关闭" style="float: right;display: inline-block;margin-right: 10px;margin-top: 20px;">关闭</a>
+					<div class="shang_tit-play">
+					  <p style="color: #a3a3a3;text-align: center;font-size: 16px;">感谢您的支持，我会继续努力的</p>
+					</div>
+					 
+						<div class="shang_payimg" id="alipay" style="width: 250px;padding: 10px;padding-left: 80px; margin: 0 auto;border-radius: 3px;height: 160px;display: inline-block;">
+							<img src="/blog/alipay.png" alt="扫码支持" title="扫一扫" style="display: inline-block;margin-right: 10px;float: left;text-align: center;width: 140px;height: 140px;">
+						</div>
+					
+                    
+						<div class="shang_payimg" id="weixin" style="width: 250px;padding: 10px;padding-left: 70px; margin: 0 auto;border-radius: 3px;height: 160px;display: inline-block;">    
+							<img src="/blog/weixin.png" alt="扫码支持" title="扫一扫" style="display: inline-block;margin-right: 10px;float: left;text-align: center;width: 140px;height: 140px;">
+						</div>
+					
+					<div class="pay_explain" style="text-align: center;margin: 10px auto;font-size: 12px;color: #545454">扫码打赏，你说多少就多少</div>
+					<div class="shang_payselect" style="text-align: center;margin: 0 auto;margin-top: 40px;cursor: pointer;height: 60px;width: 500px; margin-left: 110px;">
+					  <div class="pay_item" data-id="alipay" style="display: inline-block;margin-right: 140px;float: left;">
+						<span class="pay_logo"><img src="/blog/alipay.jpg" alt="支付宝"></span>
+					  </div>
+					  <div class="pay_item" data-id="weipay" style="display: inline-block;margin-right: 140px;float: left;">
+						<span class="pay_logo"><img src="/blog/wechat.jpg" alt="微信"></span>
+					  </div>
+					</div>
+					<div class="shang_info-play">
+					  <p style="color: #C3C3C3;text-align: center;font-size: 12px;text-decoration: none;line-height: 2em;">打开<span id="shang_pay_txt">支付宝或微信</span>扫一扫，即可进行扫码打赏哦</p>
+					   <p style="color: #dfdddd;text-align: center;font-size: 12px;text-decoration: none;line-height: 2em;">双击关闭</p>
+				</div>
+		</div>
+	 
+    </div>
+	
+	
+	
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/blog/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/30/Http请求中转/" class="archive-article-date">
-  	<time datetime="2018-06-30T14:58:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/30/Http请求中转/">Http请求中转</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络编程</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/20/CAP理论/" class="archive-article-date">
-  	<time datetime="2018-06-20T14:22:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/20/CAP理论/">CAP理论</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">分布式系统</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">负载均衡</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://qr.liantu.com/api.php?text=https://lushunjian.github.io/blog/2018/07/28/长连接的负载均衡/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/16/虚拟机的类文件结构/" class="archive-article-date">
-  	<time datetime="2018-06-15T22:51:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/blog/2018/07/15/大数据生态圈/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">大数据生态圈</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/16/虚拟机的类文件结构/">虚拟机的类文件结构</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/10/虚拟机指令集/" class="archive-article-date">
-  	<time datetime="2018-06-10T01:52:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/10/虚拟机指令集/">虚拟机指令集</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/03/Hexo-github搭建个人博客/" class="archive-article-date">
-  	<time datetime="2018-06-03T12:35:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/03/Hexo-github搭建个人博客/">Hexo和Github搭建个人博客</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">other</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/03/java虚拟机/" class="archive-article-date">
-  	<time datetime="2018-06-03T02:18:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-03</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/03/java虚拟机/">一杯Java 不加糖</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/02/jvm的类加载/" class="archive-article-date">
-  	<time datetime="2018-06-02T06:47:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/02/jvm的类加载/">JVM的类加载</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/blog/2018/06/02/hello-world/" class="archive-article-date">
-  	<time datetime="2018-06-02T06:11:49.354Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/blog/2018/06/02/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
           </div>
         </div>
@@ -495,8 +430,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

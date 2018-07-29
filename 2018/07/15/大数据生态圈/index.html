@@ -17,7 +17,18 @@
 <meta property="og:description" content="现今的社会是一个高速发展的社会，科技发达，信息流通，人们之间的交流越来越密切，生活也越来越方便，大数据就是这个高科技时代的产物。创办人马云来台演讲中就提到，未来的时代将不是IT时代，而是DT的时代，DT就是Data Technology数据科技，显示大数据对于阿里巴巴集团来说举足轻重。 有人把数据比喻为蕴藏能量的煤矿。煤炭按照性质有焦煤、无烟煤、肥煤、贫煤等分类，而露天煤矿、深山煤矿的挖掘成本又不">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/bigdata.png">
-<meta property="og:updated_time" content="2018-07-15T11:45:12.125Z">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/hdfs.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/hbase.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/elasticSearch.jpeg">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/kafka.jpg">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/hive.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/mapreduce.jpg">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/spark.jpg">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/sprakstreaming.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/graphx.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/mesos.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/ambari.png">
+<meta property="og:updated_time" content="2018-07-29T00:26:46.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据生态圈">
 <meta name="twitter:description" content="现今的社会是一个高速发展的社会，科技发达，信息流通，人们之间的交流越来越密切，生活也越来越方便，大数据就是这个高科技时代的产物。创办人马云来台演讲中就提到，未来的时代将不是IT时代，而是DT的时代，DT就是Data Technology数据科技，显示大数据对于阿里巴巴集团来说举足轻重。 有人把数据比喻为蕴藏能量的煤矿。煤炭按照性质有焦煤、无烟煤、肥煤、贫煤等分类，而露天煤矿、深山煤矿的挖掘成本又不">
@@ -196,6 +207,36 @@
 <p>大数据本身是个很宽泛的概念，就数据而言，大数据是指数据量已经大到单机处理不了的尺度。大数据一般是指处理PB级别以上的数据。PB是个什么概念的单位呢？1 TB= 1,024 GB ；1 PB = 1,024 TB ；1 EB = 1,024 PB  由这个单位换算可以看出PB级的数据是很大的，对个人而言，数据量基本就在GB级别。处理这些海量数据当然也不能使用传统的手段。在大数据领域，有一系列组件专门用来处理大数据，例如Spark，Hadoop等。下面就来认识一下大数据组件的生态圈吧</p>
 <p><img src="/blog/2018/07/15/大数据生态圈/bigdata.png" alt=""></p>
 <a id="more"></a> 
+<h3 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h3><p>Hadoop的开源子项目，是一个分布式的文件存储系统，基于流数据模式访问和处理超大文件的需求而开发的，可以运行于廉价的商用服务器上。它所具有的高容错、高可靠、高可扩展性、高吞吐率等特征，能够在集群出现名字节点故障，数据节点故障和节点网络断开等故障的情况下也能可靠地存储数据，为超大数据集（Large Data Set）的应用处理带来了很多便利。通俗的讲，它就充当着windows上的资源管理器角色，管理着硬盘上的所有资源。只不过在分布式系统中，hdfs管理的是所有节点上的硬盘文件资源。</p>
+<p><img src="/blog/2018/07/15/大数据生态圈/hdfs.png" alt=""></p>
+<h3 id="Hbase"><a href="#Hbase" class="headerlink" title="Hbase"></a>Hbase</h3><p>是一个高可靠性、高性能、面向列、可伸缩的数据库，依赖HDFS，底层数据最终是存储在HDFS上。利用HBase技术可在廉价商用服务器上搭建起大规模结构化存储集群。HBase是面向列的数据库，列式存储，其数据在表中是按照某列存储的，这样在查询只需要少数几个字段的时候，能大大减少读取的数据量。提供权限控制，支持独立检索，和多种过滤器。HBase单表可以有上百亿行、百万列，数据矩阵横向和纵向两个维度所支持的数据量级都非常具有弹性。类比于windows系统的话，Hbase相当于windows上的数据库，例如Mysql，不同之处在于HBase是分布式的，它提供的是所有节点上的数据查询服务，还有一点不同之处是Hbase是Nosql。</p>
+<p><img src="/blog/2018/07/15/大数据生态圈/hbase.png" alt=""></p>
+<h3 id="ElasticSearch"><a href="#ElasticSearch" class="headerlink" title="ElasticSearch"></a>ElasticSearch</h3><p>它是一个分布式多用户能力的全文搜索引擎。Elasticsearch使用Lucene作为内部引擎，但是，你没法直接用Lucene，必须自己写代码去调用它的接口。而ElasticSearch提供了 REST API 的操作接口，开箱即用。这使得Elasticsearch的上手非常简单。而且它附带了很多非常合理的默认值，这让初学者很好地避免一上手就要面对复杂的理论。能够实现近实时（NRT）搜索，稳定、可靠、安装方便。性能不错、可以水平扩展、文档也相当齐全。</p>
+<p><img src="/blog/2018/07/15/大数据生态圈/elasticSearch.jpeg" alt=""></p>
+<h3 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a>kafka</h3><p>Kafka是一种高吞吐量的分布式发布订阅消息系统，最初由Linkedin公司开发，后捐献给Apache软件基金会并成为了Apache的等级项目。它由Scala和Java编写。高吞吐，低延时和高可扩展性的特点使得它成为市场上主流的消息队列中间件，它的最大的特性就是可以实时的处理大量数据以满足各种需求场景：比如基于hadoop的批处理系统、低延迟的实时系统、storm/Spark流式处理引擎、访问日志，消息服务等等</p>
+<p><img src="/blog/2018/07/15/大数据生态圈/kafka.jpg" alt=""></p>
+<h3 id="Flume"><a href="#Flume" class="headerlink" title="Flume"></a>Flume</h3><p>Flume是由Cloudera软件公司提供的一个分布式，可靠地，用户高效收集，聚合，移动大量数据的可用系统服务，后与2009年被捐赠了apache软件基金会，成为hadoop相关组件之一。它有着基于流动数据技术的简单灵活架构。具有健壮性和容错性，使用可调节的可靠机制以及多种容灾和恢复机制。使用可扩展数据模型，运行在线分析应用。</p>
+<h3 id="Sqoop"><a href="#Sqoop" class="headerlink" title="Sqoop"></a>Sqoop</h3><p>是一个用来将Hadoop和关系型数据库中的数据相互转移的工具，主要用于在Hadoop(Hive)与传统的数据库间进行数据的传递。可以将一个关系型数据库（例如 ： MySQL ,Oracle ,Postgres等）中的数据导进到Hadoop的HDFS中，也可以将HDFS的数据导进到关系型数据库中。Sqoop专为大数据批量传输设计，能够分割数据集并创建Hadoop任务来处理每个区块。</p>
+<h3 id="Hive"><a href="#Hive" class="headerlink" title="Hive"></a>Hive</h3><p>是建立在 Hadoop 上的数据仓库基础构架。它提供了一系列的工具，可以用来进行数据提取转化加载（ETL），这是一种可以存储、查询和分析存储在 Hadoop 中的大规模数据的机制。可以将结构化的数据文件映射为一张数据库表，并提供简单的sql查询功能，可以将sql语句转换为MapReduce任务进行运行。也正因如此，Hive在执行SQL时会有较高的延时，不适合那些需要低延迟的应用。</p>
+<p><img src="/blog/2018/07/15/大数据生态圈/hive.png" alt=""></p>
+<h3 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h3><p>是一种编程模型，用于大规模数据集（大于1TB）的并行运算。概念”Map（映射）”和”Reduce（归约）”，是它们的主要思想，都是从函数式编程语言里借来的，还有从矢量编程语言里借来的特性。MapReduce将复杂的、运行于大规模集群上的并行计算过程高度地抽象到了两个函数：Map和Reduce，降低了开发人员分布式编程的学习成本，不需要掌握分布式并行编程细节，也可以很容易把自己的程序运行在分布式系统上，完成海量数据的计算。</p>
+<p><img src="/blog/2018/07/15/大数据生态圈/mapreduce.jpg" alt=""></p>
+<h3 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h3><p>Spark是一个围绕速度、易用性和复杂分析构建的大数据处理框架。Spark是UC是专为大规模数据处理而设计的快速通用的计算引擎。Spark是UC Berkeley AMP lab (加州大学伯克利分校的AMP实验室)所开源的类似于Hadoop MapReduce的通用并行框架，并于2010年成为Apache的开源项目之一。Spark，拥有Hadoop MapReduce所具有的优点；但不同于MapReduce的是——Job中间输出结果可以保存在内存中，从而不再需要读写HDFS。由于这种特性Spark衍生出自己的生态圈，下面介绍一下Spark的生态圈</p>
+<p><img src="/blog/2018/07/15/大数据生态圈/spark.jpg" alt=""></p>
+<h4 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core"></a>Spark Core</h4><p>Spark最基础与最核心的功能；尤其是定义RDD的API、操作以及这两者上的动作。其他Spark的库都是构建在RDD和Spark Core之上的</p>
+<h4 id="Spark-SQL"><a href="#Spark-SQL" class="headerlink" title="Spark SQL"></a>Spark SQL</h4><p>提供通过Apache Hive的SQL变体Hive查询语言（HiveQL）与Spark进行交互的API。每个数据库表被当做一个RDD，Spark SQL查询被转换为Spark操作。实际上就是底层执行引擎的改变。之前Hive的执行引擎是MapReduce，而Spark SQL则使用Spark作为SQL的执行引擎。</p>
+<h4 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming"></a>Spark Streaming</h4><p>对实时数据流进行处理和控制。Spark Streaming允许程序能够像普通RDD一样处理实时数据。实际上Spark Streaming并不是真正意义上的实时处理，而是微批处理。所谓微批处理，就是短时间内的批处理。但只要这个时间短到我们可以接受的范围，就可以认为是实时处理。因此Spark Streaming有一个重要的参数就是batchTime。这个参数是用来设置批处理的时间间隔。一般对于实时性不是特别高的场景，这个参数会设置为30秒左右</p>
+<p><img src="/blog/2018/07/15/大数据生态圈/sprakstreaming.png" alt=""></p>
+<h4 id="Spark-MLlib"><a href="#Spark-MLlib" class="headerlink" title="Spark MLlib"></a>Spark MLlib</h4><p>一个常用机器学习算法库，算法被实现为对RDD的Spark操作。这个库包含可扩展的学习算法，机器学习是一门设计概率论、统计学、逼近论、凸分析、算法复杂度理论等多领域的交叉学科。MLlib目前已经提供了基础统计、分析、回归、决策树、随机森林、朴素贝叶斯、保序回归、协同过滤等需要对大量数据集进行迭代的操作。</p>
+<h4 id="Spark-GraphX"><a href="#Spark-GraphX" class="headerlink" title="Spark GraphX"></a>Spark GraphX</h4><p>Spark提供的分布式图计算框架。控制图、并行图操作和计算的一组算法和工具的集合。GraphX主要遵循整体同步并行（bulk Synchronous parallel，BSP）计算模式下的Pregel模型实现。GraphX扩展了RDD API，包含控制图、创建子图、访问路径上所有顶点的操作。封装了最短路径，网页排名，连接组件，三角关系统计等算法的实现，用户可以选择使用。</p>
+<p><img src="/blog/2018/07/15/大数据生态圈/graphx.png" alt=""></p>
+<h3 id="Yarn"><a href="#Yarn" class="headerlink" title="Yarn"></a>Yarn</h3><p>是一个分布式的资源管理系统，用以提高分布式的集群环境下的资源利用率，这些资源包括内存、IO、网络、磁盘等。其产生的原因是最初为了解决原MapReduce框架的不足。如今已发展成一个通用资源管理系统，可为上层应用提供统一的资源管理和调度，它的引入为集群在利用率、资源统一管理和数据共享等方面带来了巨大好处。</p>
+<h3 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h3><p>是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件，可以提供配置信息管理、命名、分布式同步、集群管理、数据库切换等服务。它不适合用来存储大量信息，可以用来存储一些配置、发布与订阅等少量信息。</p>
+<h3 id="Oozie"><a href="#Oozie" class="headerlink" title="Oozie"></a>Oozie</h3><p>是一个工作流引擎服务器，用于运行hadoop map/reduce和hive等任务工作流。以action为基本单位，可以将多个action构成一个DAG图的模式运行。其实本质上它的底层原理是通过将xml语言转换成mapreduce程序来做，但只是在集中map端做处理，避免shuffle的过程。</p>
+<h3 id="Mesos"><a href="#Mesos" class="headerlink" title="Mesos"></a>Mesos</h3><p>负责集群资源的分配， Mesos能够管理每台机器的CPU、内存、存储以及其它计算资源由设备（物理或虚拟）中抽象出来，形成一个池的逻辑概念，让你像操纵单个资源池一样来操纵整个数据中心。 Mesos 是一个集群管理器，提供了有效的、跨分布式应用或框架的资源隔离和共享，在Mesos上可以运行Spark， Storm， Hadoop等大数据组件</p>
+<p><img src="/blog/2018/07/15/大数据生态圈/mesos.png" alt=""></p>
+<h3 id="Ambari"><a href="#Ambari" class="headerlink" title="Ambari"></a>Ambari</h3><p>Ambari是Hortonworks开源的Hadoop平台的管理软件，具备Hadoop组件的安装、管理、运维等基本功能，提供Web UI进行可视化的集群管理，简化了大数据平台的安装、使用难度。Ambari已支持大多数Hadoop组件，包括HDFS、MapReduce、Hive、Pig、 Hbase、Zookeeper、Sqoop和Hcatalog等。Apache Ambari 支持HDFS、MapReduce、Hive、Pig、Hbase、Zookeepr、Sqoop和Hcatalog等的集中管理。也是5个顶级hadoop管理工具之一。</p>
+<p><img src="/blog/2018/07/15/大数据生态圈/ambari.png" alt=""></p>
 
       
 
@@ -350,6 +391,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/blog/2018/07/28/长连接的负载均衡/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          长连接的负载均衡
+        
+      </div>
+    </a>
   
   
     <a href="/blog/2018/07/14/paxos算法/" id="article-nav-older" class="article-nav-link-wrap">
@@ -508,15 +558,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">负载均衡</a>
               </li>
             
             <div class="clearfix"></div>
@@ -569,6 +623,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           
             <li class="search-li">
               <a href="http://www.apachecn.org/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>ApacheCN</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://hadoop.apache.org/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Apache Hadoop</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://spark.apache.org/docs/latest" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Spark</a>
             </li>
           
             <li class="search-li">
