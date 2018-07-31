@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/graphx.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/mesos.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/15/大数据生态圈/ambari.png">
-<meta property="og:updated_time" content="2018-07-29T00:26:46.534Z">
+<meta property="og:updated_time" content="2018-07-31T15:33:33.275Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据生态圈">
 <meta name="twitter:description" content="现今的社会是一个高速发展的社会，科技发达，信息流通，人们之间的交流越来越密切，生活也越来越方便，大数据就是这个高科技时代的产物。创办人马云来台演讲中就提到，未来的时代将不是IT时代，而是DT的时代，DT就是Data Technology数据科技，显示大数据对于阿里巴巴集团来说举足轻重。 有人把数据比喻为蕴藏能量的煤矿。煤炭按照性质有焦煤、无烟煤、肥煤、贫煤等分类，而露天煤矿、深山煤矿的挖掘成本又不">
@@ -223,12 +223,12 @@
 <p><img src="/blog/2018/07/15/大数据生态圈/mapreduce.jpg" alt=""></p>
 <h3 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h3><p>Spark是一个围绕速度、易用性和复杂分析构建的大数据处理框架。Spark是UC是专为大规模数据处理而设计的快速通用的计算引擎。Spark是UC Berkeley AMP lab (加州大学伯克利分校的AMP实验室)所开源的类似于Hadoop MapReduce的通用并行框架，并于2010年成为Apache的开源项目之一。Spark，拥有Hadoop MapReduce所具有的优点；但不同于MapReduce的是——Job中间输出结果可以保存在内存中，从而不再需要读写HDFS。由于这种特性Spark衍生出自己的生态圈，下面介绍一下Spark的生态圈</p>
 <p><img src="/blog/2018/07/15/大数据生态圈/spark.jpg" alt=""></p>
-<h4 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core"></a>Spark Core</h4><p>Spark最基础与最核心的功能；尤其是定义RDD的API、操作以及这两者上的动作。其他Spark的库都是构建在RDD和Spark Core之上的</p>
-<h4 id="Spark-SQL"><a href="#Spark-SQL" class="headerlink" title="Spark SQL"></a>Spark SQL</h4><p>提供通过Apache Hive的SQL变体Hive查询语言（HiveQL）与Spark进行交互的API。每个数据库表被当做一个RDD，Spark SQL查询被转换为Spark操作。实际上就是底层执行引擎的改变。之前Hive的执行引擎是MapReduce，而Spark SQL则使用Spark作为SQL的执行引擎。</p>
-<h4 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming"></a>Spark Streaming</h4><p>对实时数据流进行处理和控制。Spark Streaming允许程序能够像普通RDD一样处理实时数据。实际上Spark Streaming并不是真正意义上的实时处理，而是微批处理。所谓微批处理，就是短时间内的批处理。但只要这个时间短到我们可以接受的范围，就可以认为是实时处理。因此Spark Streaming有一个重要的参数就是batchTime。这个参数是用来设置批处理的时间间隔。一般对于实时性不是特别高的场景，这个参数会设置为30秒左右</p>
+<h3 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core"></a>Spark Core</h3><p>Spark最基础与最核心的功能；尤其是定义RDD的API、操作以及这两者上的动作。其他Spark的库都是构建在RDD和Spark Core之上的</p>
+<h3 id="Spark-SQL"><a href="#Spark-SQL" class="headerlink" title="Spark SQL"></a>Spark SQL</h3><p>提供通过Apache Hive的SQL变体Hive查询语言（HiveQL）与Spark进行交互的API。每个数据库表被当做一个RDD，Spark SQL查询被转换为Spark操作。实际上就是底层执行引擎的改变。之前Hive的执行引擎是MapReduce，而Spark SQL则使用Spark作为SQL的执行引擎。</p>
+<h3 id="Spark-Streaming"><a href="#Spark-Streaming" class="headerlink" title="Spark Streaming"></a>Spark Streaming</h3><p>对实时数据流进行处理和控制。Spark Streaming允许程序能够像普通RDD一样处理实时数据。实际上Spark Streaming并不是真正意义上的实时处理，而是微批处理。所谓微批处理，就是短时间内的批处理。但只要这个时间短到我们可以接受的范围，就可以认为是实时处理。因此Spark Streaming有一个重要的参数就是batchTime。这个参数是用来设置批处理的时间间隔。一般对于实时性不是特别高的场景，这个参数会设置为30秒左右</p>
 <p><img src="/blog/2018/07/15/大数据生态圈/sprakstreaming.png" alt=""></p>
-<h4 id="Spark-MLlib"><a href="#Spark-MLlib" class="headerlink" title="Spark MLlib"></a>Spark MLlib</h4><p>一个常用机器学习算法库，算法被实现为对RDD的Spark操作。这个库包含可扩展的学习算法，机器学习是一门设计概率论、统计学、逼近论、凸分析、算法复杂度理论等多领域的交叉学科。MLlib目前已经提供了基础统计、分析、回归、决策树、随机森林、朴素贝叶斯、保序回归、协同过滤等需要对大量数据集进行迭代的操作。</p>
-<h4 id="Spark-GraphX"><a href="#Spark-GraphX" class="headerlink" title="Spark GraphX"></a>Spark GraphX</h4><p>Spark提供的分布式图计算框架。控制图、并行图操作和计算的一组算法和工具的集合。GraphX主要遵循整体同步并行（bulk Synchronous parallel，BSP）计算模式下的Pregel模型实现。GraphX扩展了RDD API，包含控制图、创建子图、访问路径上所有顶点的操作。封装了最短路径，网页排名，连接组件，三角关系统计等算法的实现，用户可以选择使用。</p>
+<h3 id="Spark-MLlib"><a href="#Spark-MLlib" class="headerlink" title="Spark MLlib"></a>Spark MLlib</h3><p>一个常用机器学习算法库，算法被实现为对RDD的Spark操作。这个库包含可扩展的学习算法，机器学习是一门设计概率论、统计学、逼近论、凸分析、算法复杂度理论等多领域的交叉学科。MLlib目前已经提供了基础统计、分析、回归、决策树、随机森林、朴素贝叶斯、保序回归、协同过滤等需要对大量数据集进行迭代的操作。</p>
+<h3 id="Spark-GraphX"><a href="#Spark-GraphX" class="headerlink" title="Spark GraphX"></a>Spark GraphX</h3><p>Spark提供的分布式图计算框架。控制图、并行图操作和计算的一组算法和工具的集合。GraphX主要遵循整体同步并行（bulk Synchronous parallel，BSP）计算模式下的Pregel模型实现。GraphX扩展了RDD API，包含控制图、创建子图、访问路径上所有顶点的操作。封装了最短路径，网页排名，连接组件，三角关系统计等算法的实现，用户可以选择使用。</p>
 <p><img src="/blog/2018/07/15/大数据生态圈/graphx.png" alt=""></p>
 <h3 id="Yarn"><a href="#Yarn" class="headerlink" title="Yarn"></a>Yarn</h3><p>是一个分布式的资源管理系统，用以提高分布式的集群环境下的资源利用率，这些资源包括内存、IO、网络、磁盘等。其产生的原因是最初为了解决原MapReduce框架的不足。如今已发展成一个通用资源管理系统，可为上层应用提供统一的资源管理和调度，它的引入为集群在利用率、资源统一管理和数据共享等方面带来了巨大好处。</p>
 <h3 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h3><p>是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，是Hadoop和Hbase的重要组件。它是一个为分布式应用提供一致性服务的软件，可以提供配置信息管理、命名、分布式同步、集群管理、数据库切换等服务。它不适合用来存储大量信息，可以用来存储一些配置、发布与订阅等少量信息。</p>
