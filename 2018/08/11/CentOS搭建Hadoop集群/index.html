@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop5.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop6.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop7.png">
-<meta property="og:updated_time" content="2018-08-11T16:06:54.024Z">
+<meta property="og:updated_time" content="2018-08-11T16:10:04.677Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS搭建Hadoop集群">
 <meta name="twitter:description" content="Hadoop是一个由Apache基金会所开发的分布式系统基础架构。 Hadoop实现了一个分布式文件系统（Hadoop Distributed File System），简称HDFS。HDFS有高容错性的特点，并且设计用来部署在低廉的（low-cost）硬件上 。Hadoop的框架最核心的设计就是：HDFS和MapReduce。HDFS为海量的数据提供了存储，则MapReduce为海量的数据提供了">
@@ -254,19 +254,19 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 ~]# hadoop -help</span><br><span class="line">Usage: hadoop [--config confdir] [COMMAND | CLASSNAME]</span><br><span class="line">  CLASSNAME            run the class named CLASSNAME</span><br><span class="line"> or</span><br><span class="line">  where COMMAND is one of:</span><br><span class="line">  fs                   run a generic filesystem user client</span><br><span class="line">  version              print the version</span><br><span class="line">  jar &lt;jar&gt;            run a jar file</span><br><span class="line">                       note: please use "yarn jar" to launch</span><br><span class="line">                             YARN applications, not this command.</span><br><span class="line">  checknative [-a|-h]  check native hadoop and compression libraries availability</span><br><span class="line">  distcp &lt;srcurl&gt; &lt;desturl&gt; copy file or directories recursively</span><br><span class="line">  archive -archiveName NAME -p &lt;parent path&gt; &lt;src&gt;* &lt;dest&gt; create a hadoop archive</span><br><span class="line">  classpath            prints the class path needed to get the</span><br><span class="line">                       Hadoop jar and the required libraries</span><br><span class="line">  credential           interact with credential providers</span><br><span class="line">  daemonlog            get/set the log level for each daemon</span><br><span class="line">  trace                view and modify Hadoop tracing settings</span><br><span class="line"></span><br><span class="line">Most commands print help when invoked w/o parameters.</span><br></pre></td></tr></table></figure>
 <h3 id="3-Hadoop配置"><a href="#3-Hadoop配置" class="headerlink" title="(3) . Hadoop配置"></a>(3) . Hadoop配置</h3><p>进入到hadoop安装目录</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 ~]# cd /user/hadoop/hadoop-2.8.4/etc/hadoop/</span><br></pre></td></tr></table></figure>
-<h4 id="一-hadoop-env-sh"><a href="#一-hadoop-env-sh" class="headerlink" title="一 . hadoop-env.sh"></a>一 . <strong>hadoop-env.sh</strong></h4><p>使用vi编辑</p>
+<h3 id="一-hadoop-env-sh"><a href="#一-hadoop-env-sh" class="headerlink" title="一 . hadoop-env.sh"></a>一 . <strong>hadoop-env.sh</strong></h3><p>使用vi编辑</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 hadoop]# vi hadoop-env.sh</span><br></pre></td></tr></table></figure>
 <p>配置JAVA_HOME</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> The only required environment variable is JAVA_HOME.  All others are</span><br><span class="line"><span class="meta">#</span> optional.  When running a distributed configuration it is best to</span><br><span class="line"><span class="meta">#</span> set JAVA_HOME in this file, so that it is correctly defined on</span><br><span class="line"><span class="meta">#</span> remote nodes.</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> The java implementation to use.</span><br><span class="line"><span class="meta">#</span>export JAVA_HOME=$&#123;JAVA_HOME&#125;</span><br><span class="line">export JAVA_HOME=/user/java/jdk1.8.0_45</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> The jsvc implementation to use. Jsvc is required to run secure datanodes</span><br></pre></td></tr></table></figure>
-<h4 id="二-yarn-env-sh"><a href="#二-yarn-env-sh" class="headerlink" title="二 . yarn-env.sh"></a>二 . <strong>yarn-env.sh</strong></h4><p>使用vi编辑</p>
+<h3 id="二-yarn-env-sh"><a href="#二-yarn-env-sh" class="headerlink" title="二 . yarn-env.sh"></a>二 . <strong>yarn-env.sh</strong></h3><p>使用vi编辑</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 hadoop]# vi yarn-env.sh</span><br></pre></td></tr></table></figure>
 <p>配置JAVA_HOME</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> some Java parameters</span><br><span class="line"><span class="meta">#</span> export JAVA_HOME=/home/y/libexec/jdk1.6.0/</span><br><span class="line">export JAVA_HOME=/user/java/jdk1.8.0_45</span><br><span class="line">if [ "$JAVA_HOME" != "" ]; then</span><br><span class="line"><span class="meta">  #</span>echo "run java in $JAVA_HOME"</span><br><span class="line">  JAVA_HOME=$JAVA_HOME</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<h4 id="三-slaves"><a href="#三-slaves" class="headerlink" title="三 . slaves"></a>三 . <strong>slaves</strong></h4><p>使用vi编辑</p>
+<h3 id="三-slaves"><a href="#三-slaves" class="headerlink" title="三 . slaves"></a>三 . <strong>slaves</strong></h3><p>使用vi编辑</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi slaves</span><br></pre></td></tr></table></figure>
 <p>注释掉文件中原本的localhost，加入dataNode的节点配置。节点配置可以配置ip也可配置主机名。如果配置主机名，则需要在hosts文件中配置主机和ip的映射关系。这里我配置的是ip</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>localhost</span><br><span class="line">192.168.31.136</span><br><span class="line">192.168.31.137</span><br></pre></td></tr></table></figure>
-<h4 id="四-配置文件介绍"><a href="#四-配置文件介绍" class="headerlink" title="四 . 配置文件介绍"></a>四 . 配置文件介绍</h4><p>在hadoop集群中，需要配置的文件主要包括四个，分别是core-site.xml、hdfs-site.xml、mapred-site.xml和yarn-site.xml，这四个文件分别是对不同组件的配置参数，主要内容如下表所示： </p>
+<h3 id="四-配置文件介绍"><a href="#四-配置文件介绍" class="headerlink" title="四 . 配置文件介绍"></a>四 . 配置文件介绍</h3><p>在hadoop集群中，需要配置的文件主要包括四个，分别是core-site.xml、hdfs-site.xml、mapred-site.xml和yarn-site.xml，这四个文件分别是对不同组件的配置参数，主要内容如下表所示： </p>
 <div class="table-container">
 <table>
 <thead>
@@ -301,7 +301,7 @@
 </table>
 </div>
 <p>下面详细介绍各个配置文件的配置。</p>
-<h4 id="五-core-site-xml"><a href="#五-core-site-xml" class="headerlink" title="五 . core-site.xml"></a>五 . <strong>core-site.xml</strong></h4><p>配置信息如下，其中tmp目录已经在步骤(2)中创建好，如果没有请自行创建</p>
+<h3 id="五-core-site-xml"><a href="#五-core-site-xml" class="headerlink" title="五 . core-site.xml"></a>五 . <strong>core-site.xml</strong></h3><p>配置信息如下，其中tmp目录已经在步骤(2)中创建好，如果没有请自行创建</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;/user/hadoop/tmp&lt;/value&gt;</span><br><span class="line">        &lt;description&gt;Abase for other temporary directories.&lt;/description&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">        &lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;hdfs://192.168.31.135:9000/&lt;/value&gt;</span><br><span class="line">    &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
 <p>属性解释</p>
 <div class="table-container">
@@ -826,11 +826,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
