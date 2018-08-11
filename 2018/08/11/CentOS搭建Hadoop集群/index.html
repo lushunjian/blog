@@ -6,22 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lushunjian.github.io/blog">
-  <title>虚拟机的类文件结构 | 一叶知秋</title>
+  <title>CentOS搭建Hadoop集群 | 一叶知秋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="​    在没有Java之前，同一个应用程序，由于硬件架构和操作系统的不同而需要开发几套应用程序以便程序能运行在不同平台上，这对于开发人员来说无疑是件痛苦的事情，而不同的硬件体系结构和操作系统肯定会长期并存发展，因而需要一门语言解决这个问题，Java顺势而生。Java诞生之初曾有一个著名的口号 “一次编写，处处运行” ，也充分体现了当时的开发人员对实现平台无关性的渴望。实现平台无关性的理想最终实现">
-<meta name="keywords" content="jvm">
+  <meta name="description" content="Hadoop是一个由Apache基金会所开发的分布式系统基础架构。 Hadoop实现了一个分布式文件系统（Hadoop Distributed File System），简称HDFS。HDFS有高容错性的特点，并且设计用来部署在低廉的（low-cost）硬件上 。Hadoop的框架最核心的设计就是：HDFS和MapReduce。HDFS为海量的数据提供了存储，则MapReduce为海量的数据提供了">
+<meta name="keywords" content="hadoop,实践">
 <meta property="og:type" content="article">
-<meta property="og:title" content="虚拟机的类文件结构">
-<meta property="og:url" content="https://lushunjian.github.io/blog/2018/06/16/虚拟机的类文件结构/index.html">
+<meta property="og:title" content="CentOS搭建Hadoop集群">
+<meta property="og:url" content="https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/index.html">
 <meta property="og:site_name" content="一叶知秋">
-<meta property="og:description" content="​    在没有Java之前，同一个应用程序，由于硬件架构和操作系统的不同而需要开发几套应用程序以便程序能运行在不同平台上，这对于开发人员来说无疑是件痛苦的事情，而不同的硬件体系结构和操作系统肯定会长期并存发展，因而需要一门语言解决这个问题，Java顺势而生。Java诞生之初曾有一个著名的口号 “一次编写，处处运行” ，也充分体现了当时的开发人员对实现平台无关性的渴望。实现平台无关性的理想最终实现">
+<meta property="og:description" content="Hadoop是一个由Apache基金会所开发的分布式系统基础架构。 Hadoop实现了一个分布式文件系统（Hadoop Distributed File System），简称HDFS。HDFS有高容错性的特点，并且设计用来部署在低廉的（low-cost）硬件上 。Hadoop的框架最核心的设计就是：HDFS和MapReduce。HDFS为海量的数据提供了存储，则MapReduce为海量的数据提供了">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/16/虚拟机的类文件结构/code.png">
-<meta property="og:updated_time" content="2018-06-20T14:18:55.378Z">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop1.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop2.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop3.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop4.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop5.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop6.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop7.png">
+<meta property="og:updated_time" content="2018-08-11T16:00:30.877Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="虚拟机的类文件结构">
-<meta name="twitter:description" content="​    在没有Java之前，同一个应用程序，由于硬件架构和操作系统的不同而需要开发几套应用程序以便程序能运行在不同平台上，这对于开发人员来说无疑是件痛苦的事情，而不同的硬件体系结构和操作系统肯定会长期并存发展，因而需要一门语言解决这个问题，Java顺势而生。Java诞生之初曾有一个著名的口号 “一次编写，处处运行” ，也充分体现了当时的开发人员对实现平台无关性的渴望。实现平台无关性的理想最终实现">
-<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/06/16/虚拟机的类文件结构/code.png">
+<meta name="twitter:title" content="CentOS搭建Hadoop集群">
+<meta name="twitter:description" content="Hadoop是一个由Apache基金会所开发的分布式系统基础架构。 Hadoop实现了一个分布式文件系统（Hadoop Distributed File System），简称HDFS。HDFS有高容错性的特点，并且设计用来部署在低廉的（low-cost）硬件上 。Hadoop的框架最核心的设计就是：HDFS和MapReduce。HDFS为海量的数据提供了存储，则MapReduce为海量的数据提供了">
+<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop.png">
   
     <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
   
@@ -166,20 +173,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-虚拟机的类文件结构" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-CentOS搭建Hadoop集群" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      虚拟机的类文件结构
+      CentOS搭建Hadoop集群
     </h1>
   
 
         
-        <a href="/blog/2018/06/16/虚拟机的类文件结构/" class="archive-article-date">
-  	<time datetime="2018-06-15T22:51:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-16</time>
+        <a href="/blog/2018/08/11/CentOS搭建Hadoop集群/" class="archive-article-date">
+  	<time datetime="2018-08-11T13:41:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-11</time>
 </a>
         
 		
@@ -192,10 +199,296 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​    在没有Java之前，同一个应用程序，由于硬件架构和操作系统的不同而需要开发几套应用程序以便程序能运行在不同平台上，这对于开发人员来说无疑是件痛苦的事情，而不同的硬件体系结构和操作系统肯定会长期并存发展，因而需要一门语言解决这个问题，Java顺势而生。Java诞生之初曾有一个著名的口号 “一次编写，处处运行” ，也充分体现了当时的开发人员对实现平台无关性的渴望。实现平台无关性的理想最终实现在操作系统的应用层面上。Sun公司和其他虚拟机提供商发布了很多能运行在不同操作系统上的虚拟机，这些虚拟机都可以运行同一种字节码文件，从而实现了程序的 “一次编写，处处运行” 。通过字节码文件运行程序还有一个优势，实现了语言的无关性，而且这个特性越来越受到开发者的重视。</p>
-<p>​    发展之初，设计者就曾经考虑并实现让其他语言运行与Java虚拟机之上的可能性，在发布规范文档的时候就刻意把Java规范拆分成了Java语言规范和Java虚拟机规范。如今，商业机构以及开源机构已经发展出许多运行于Java虚拟机之上的语言，如Groovy，Scala，Jython等，从事过大数据相关工作的相信对Scala并不陌生。使用这些语言的开发者可能还不是很多，但随着时间的推移和发展，这个队伍正在逐渐壮大。实现语言无关性的仍是虚拟机和字节码文件，虚拟机不与任何编程语言绑定，而只与Class字节码文件绑定，处于安全方面的考虑，虚拟机对Class文件中使用了许多强制性的语法和结构化约束。Java语言的关键字，运算符的语义最终都是由多条字节码命令组合而成，因此字节码命令所能提供的语义描述能力肯定比Java语言本身更加强大，一些Java语言无法支持的语言特性不代表字节码不能有效的支持，这也为别的运行于虚拟机之上的语言提供了有别于Java语言特性的基础。</p>
-<p><img src="/blog/2018/06/16/虚拟机的类文件结构/code.png" alt=""></p>
+        <p>Hadoop是一个由Apache基金会所开发的分布式系统基础架构。 Hadoop实现了一个分布式文件系统（Hadoop Distributed File System），简称HDFS。HDFS有高容错性的特点，并且设计用来部署在低廉的（low-cost）硬件上 。Hadoop的框架最核心的设计就是：HDFS和MapReduce。HDFS为海量的数据提供了存储，则MapReduce为海量的数据提供了计算。 通俗的理解就是我们计算的数据量超过了单机处理的能力，于是使用多台机器并行处理计算数据，但并行处理数据会存在各种问题，例如怎么给每个节点分派任务，怎么使各个节点算力达到均衡，在部分节点任务失败时如何恢复。这些便Hadoop帮我们解决的问题，简而言之，Hadoop是一个计算框架，并行处理计算模型。本文主要记录使用虚拟机搭建Hadoop集群过程。Hadoop有几种部署模式，分别是本地模式，伪分布式模式，完全分布式。其中本地模式和伪分布式模式都是在本地运行，其算力使用的是本机资源，并不是真正的并行计算，完全作体验之用，且过程也相对简单，不做介绍。本文记录的是完全分布式搭建过程。</p>
+<p><img src="/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop.png" alt=""></p>
 <a id="more"></a> 
+<h3 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="(1) . 准备工作"></a>(1) . 准备工作</h3><p>1.准备三台Centos虚拟机，信息如下</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>ip</th>
+<th>OS</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>192.168.31.135</td>
+<td>CentOS 7</td>
+<td>nameNode</td>
+</tr>
+<tr>
+<td>192.168.31.136</td>
+<td>CentOS 7</td>
+<td>dataNode</td>
+</tr>
+<tr>
+<td>192.168.31.137</td>
+<td>CentOS 7</td>
+<td>dataNode</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>2 . JAVA，去Oracle下载，注意Hadoop所要求的JAVA版本（java环境配置可参考我之前的博客，这里不赘述）</p>
+<p>3 . Hadoop，一般YARN被集成在这里面</p>
+<h3 id="2-下载Hadoop"><a href="#2-下载Hadoop" class="headerlink" title="(2) . 下载Hadoop"></a>(2) . 下载Hadoop</h3><p>进入hadoop官网下载tar包，下载地址：<a href="http://www.apache.org/dyn/closer.cgi/hadoop/common/" target="_blank" rel="noopener">Hadoop官网</a></p>
+<p><img src="/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop1.png" alt=""></p>
+<p>如图，选择http下载</p>
+<p><img src="/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop2.png" alt=""></p>
+<p>这里有很多hadoop的版本，选择一个下载即可。</p>
+<p><img src="/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop3.png" alt=""></p>
+<p>选择tar.gz包下载</p>
+<h3 id="2-解压-amp-环境变量配置"><a href="#2-解压-amp-环境变量配置" class="headerlink" title="(2) . 解压&amp;环境变量配置"></a>(2) . 解压&amp;环境变量配置</h3><p>首先在主节点上创建比要的文件夹</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mkdir  /user/hadoop</span><br><span class="line">mkdir  /user/hadoop/tmp</span><br><span class="line">mkdir  /user/hadoop/var</span><br><span class="line">mkdir  /user/hadoop/dfs</span><br><span class="line">mkdir  /user/hadoop/dfs/name</span><br><span class="line">mkdir  /user/hadoop/dfs/<span class="keyword">data</span></span><br></pre></td></tr></table></figure>
+<p>将下载好的tar包上传到 /user/hadoop 目录，并执行解压命令</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>待解压完成后，执行下面命令配置环境变量</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br></pre></td></tr></table></figure>
+<p>在底部加入以下配置</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#hadoop</span></span><br><span class="line">export HADOOP_HOME=/user/hadoop/hadoop-<span class="number">2.8</span>.<span class="number">4</span></span><br><span class="line">export PATH=<span class="variable">$PATH:</span><span class="variable">$HADOOP_HOME</span>/bin</span><br></pre></td></tr></table></figure>
+<p>保存后，执行以下命令使修改生效</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<p>然后执行以下命令，如果出现如下提示则说明配置成功</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 ~]<span class="comment"># hadoop -help</span></span><br><span class="line">Usage: hadoop [--config confdir] [COMMAND | CLASSNAME]</span><br><span class="line">  CLASSNAME            run the class named CLASSNAME</span><br><span class="line"> or</span><br><span class="line">  where COMMAND is one of:</span><br><span class="line">  fs                   run a generic filesystem user client</span><br><span class="line">  version              print the version</span><br><span class="line">  jar &lt;jar&gt;            run a jar file</span><br><span class="line">                       note: please use <span class="string">"yarn jar"</span> to launch</span><br><span class="line">                             YARN applications, not this command.</span><br><span class="line">  checknative [-a|-h]  check native hadoop and compression libraries availability</span><br><span class="line">  distcp &lt;srcurl&gt; &lt;desturl&gt; copy file or directories recursively</span><br><span class="line">  archive -archiveName NAME -p &lt;parent path&gt; &lt;src&gt;* &lt;dest&gt; create a hadoop archive</span><br><span class="line">  classpath            prints the class path needed to get the</span><br><span class="line">                       Hadoop jar and the required libraries</span><br><span class="line">  credential           interact with credential providers</span><br><span class="line">  daemonlog            get/set the log level <span class="keyword">for</span> each daemon</span><br><span class="line">  trace                view and modify Hadoop tracing settings</span><br><span class="line"></span><br><span class="line">Most commands print help when invoked w/o parameters.</span><br></pre></td></tr></table></figure>
+<h3 id="3-Hadoop配置"><a href="#3-Hadoop配置" class="headerlink" title="(3) . Hadoop配置"></a>(3) . Hadoop配置</h3><p>进入到hadoop安装目录</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 ~]<span class="comment"># cd /user/hadoop/hadoop-2.8.4/etc/hadoop/</span></span><br></pre></td></tr></table></figure>
+<h4 id="一-hadoop-env-sh"><a href="#一-hadoop-env-sh" class="headerlink" title="一 . hadoop-env.sh"></a>一 . <strong>hadoop-env.sh</strong></h4><p>使用vi编辑</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 hadoop]<span class="comment"># vi hadoop-env.sh</span></span><br></pre></td></tr></table></figure>
+<p>配置JAVA_HOME</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># The only required environment variable is JAVA_HOME.  All others are</span></span><br><span class="line"><span class="comment"># optional.  When running a distributed configuration it is best to</span></span><br><span class="line"><span class="comment"># set JAVA_HOME in this file, so that it is correctly defined on</span></span><br><span class="line"><span class="comment"># remote nodes.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># The java implementation to use.</span></span><br><span class="line"><span class="comment">#export JAVA_HOME=$&#123;JAVA_HOME&#125;</span></span><br><span class="line">export JAVA_HOME=/user/java/jdk1.<span class="number">8.0</span>_45</span><br><span class="line"></span><br><span class="line"><span class="comment"># The jsvc implementation to use. Jsvc is required to run secure datanodes</span></span><br></pre></td></tr></table></figure>
+<h4 id="二-yarn-env-sh"><a href="#二-yarn-env-sh" class="headerlink" title="二 . yarn-env.sh"></a>二 . <strong>yarn-env.sh</strong></h4><p>使用vi编辑</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 hadoop]# vi yarn-env.sh</span><br></pre></td></tr></table></figure>
+<p>配置JAVA_HOME</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># some Java parameters</span></span><br><span class="line"><span class="comment"># export JAVA_HOME=/home/y/libexec/jdk1.6.0/</span></span><br><span class="line">export JAVA_HOME=/user/java/jdk1.<span class="number">8.0</span>_45</span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$JAVA_HOME</span>"</span> != <span class="string">""</span> ]; then</span><br><span class="line">  <span class="comment">#echo "run java in $JAVA_HOME"</span></span><br><span class="line">  JAVA_HOME=<span class="variable">$JAVA_HOME</span></span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<h4 id="三-slaves"><a href="#三-slaves" class="headerlink" title="三 . slaves"></a>三 . <strong>slaves</strong></h4><p>使用vi编辑</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi slaves</span><br></pre></td></tr></table></figure>
+<p>注释掉文件中原本的localhost，加入dataNode的节点配置。节点配置可以配置ip也可配置主机名。如果配置主机名，则需要在hosts文件中配置主机和ip的映射关系。这里我配置的是ip</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#localhost</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">31.136</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">31.137</span></span><br></pre></td></tr></table></figure>
+<h4 id="四-配置文件介绍"><a href="#四-配置文件介绍" class="headerlink" title="四 . 配置文件介绍"></a>四 . 配置文件介绍</h4><p>在hadoop集群中，需要配置的文件主要包括四个，分别是core-site.xml、hdfs-site.xml、mapred-site.xml和yarn-site.xml，这四个文件分别是对不同组件的配置参数，主要内容如下表所示： </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>文件名称</th>
+<th>作用对象</th>
+<th>配置说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>core-site.xml</td>
+<td>集群全局参数</td>
+<td>定义系统级别的参数 ， 如HDFS  URL的临时目录等</td>
+</tr>
+<tr>
+<td>hdfs-site.xml</td>
+<td>HDFS参数</td>
+<td>定义nameNode存放位置、文件副本的个数、文件读取权限等</td>
+</tr>
+<tr>
+<td>mapred-site.xml</td>
+<td>Mapreduce参数</td>
+<td>reduce任务的默认个数、任务所能够使用内存的默认上下限等</td>
+</tr>
+<tr>
+<td>yarn-site.xml</td>
+<td>Yarn参数</td>
+<td>ResourceManager，NodeManager 通信端口，web监控端口等</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>下面详细介绍各个配置文件的配置。</p>
+<h4 id="五-core-site-xml"><a href="#五-core-site-xml" class="headerlink" title="五 . core-site.xml"></a>五 . <strong>core-site.xml</strong></h4><p>配置信息如下，其中tmp目录已经在步骤(2)中创建好，如果没有请自行创建</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/user/hadoop/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>Abase for other temporary directories.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://192.168.31.135:9000/<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>属性解释</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性值</th>
+<th>属性说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fs.defaultFS</td>
+<td>hdfs://192.168.31.135:9000/</td>
+<td>文件系统主机和端口，需配置nameNode的IP地址</td>
+</tr>
+<tr>
+<td>io.file.buffer.size</td>
+<td>4096</td>
+<td>流文件的缓冲区大小，不配置则为默认值4096</td>
+</tr>
+<tr>
+<td>hadoop.tmp.dir</td>
+<td>/user/hadoop/tmp</td>
+<td>临时文件夹，需提前创建好文件夹</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="六-hdfs-site-xml"><a href="#六-hdfs-site-xml" class="headerlink" title="六 . hdfs-site.xml"></a>六 . <strong>hdfs-site.xml</strong></h3><p>配置信息如下，其中tmp目录已经在步骤(2)中创建好，如果没有请自行创建</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.admin.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>192.168.31.135:9001<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>/user/hadoop/dfs/name<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">description</span>&gt;</span>Path on the local filesystem where theNameNode stores the namespace and transactions logs persistently.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>/user/hadoop/dfs/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">description</span>&gt;</span>Comma separated list of paths on the localfilesystem of a DataNode where it should store its blocks.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.permissions<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">description</span>&gt;</span>need not permissions<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>属性解释</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性值</th>
+<th>属性说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yarn.resourcemanager.admin.address</td>
+<td>192.168.31.135:9001</td>
+<td>Hdfs对应的Http服务器地址和端口，需配置nameNode的IP地址</td>
+</tr>
+<tr>
+<td>dfs.name.dir</td>
+<td>/user/hadoop/dfs/name</td>
+<td>nameNode数据在本地文件系统的位置</td>
+</tr>
+<tr>
+<td>dfs.data.dir</td>
+<td>/user/hadoop/dfs/data</td>
+<td>dataNode 储数据块时存储在本地文件系统的位置</td>
+</tr>
+<tr>
+<td>dfs.replication</td>
+<td>1</td>
+<td>数据块副本数量，默认为3</td>
+</tr>
+<tr>
+<td>dfs.permissions</td>
+<td>false</td>
+<td>是否在HDFS中开启权限检查</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="七-mapred-site-xml"><a href="#七-mapred-site-xml" class="headerlink" title="七 . mapred-site.xml"></a>七 . <strong>mapred-site.xml</strong></h3><p>配置信息如下，其中tmp目录已经在步骤(2)中创建好，如果没有请自行创建</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapred.job.tracker<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>192.168.31.135:49001<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapred.local.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>/user/hadoop/var<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>属性解释</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性值</th>
+<th>属性说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mapred.job.tracker</td>
+<td>192.168.31.135:49001</td>
+<td>指定的是job.tracker的地址，没有设置这个参数的话，默认是local，即job会进行本地运行。</td>
+</tr>
+<tr>
+<td>mapreduce.framework.name</td>
+<td>yarn</td>
+<td>取值local，classic或yarn其中之一，如果不是yarn，则不会使用YARN集群来实现资源的分配</td>
+</tr>
+<tr>
+<td>mapred.local.dir</td>
+<td>/user/hadoop/var</td>
+<td>mapred做本地计算所使用的文件夹，可以配置多块硬盘，逗号分隔</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="八-yarn-site-xml"><a href="#八-yarn-site-xml" class="headerlink" title="八 . yarn-site.xml"></a>八 . <strong>yarn-site.xml</strong></h3><p>配置信息如下，其中tmp目录已经在步骤(2)中创建好，如果没有请自行创建</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Site specific YARN configuration properties --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>The address of the applications manager interface in the RM.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>192.168.31.135:8032<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>The address of the scheduler interface.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.scheduler.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>192.168.31.135:8030<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>The http address of the RM web application.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.webapp.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>192.168.31.135:8088<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.resource-tracker.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>192.168.31.135:8031<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>The address of the RM admin interface.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.admin.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>192.168.31.135:8033<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.auxservices.mapreduce.shuffle.class<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>org.apache.hadoop.mapred.ShuffleHandler<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.scheduler.maximum-allocation-mb<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>2048<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">discription</span>&gt;</span>every node memery size(MB) default is 8182MB<span class="tag">&lt;/<span class="name">discription</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.resource.memory-mb<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>2048<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.vmem-check-enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>属性解释</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>属性值</th>
+<th>属性说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>yarn.resourcemanager.address</td>
+<td>192.168.31.135:8032</td>
+<td>ResourceManager 提供给客户端访问的地址。客户端通过该地址向RM提交应用程序，杀死应用程序等</td>
+</tr>
+<tr>
+<td>yarn.resourcemanager.scheduler.address</td>
+<td>192.168.31.135:8030</td>
+<td>ResourceManager提供给ApplicationMaster的访问地址。ApplicationMaster通过该地址向RM申请资源、释放资源等</td>
+</tr>
+<tr>
+<td>yarn.resourcemanager.resource-tracker.address</td>
+<td>192.168.31.135:8031</td>
+<td>ResourceManager 提供给NodeManager的地址。NodeManager通过该地址向RM汇报心跳，领取任务等</td>
+</tr>
+<tr>
+<td>yarn.resourcemanager.admin.address</td>
+<td>192.168.31.135:8033</td>
+<td>ResourceManager 提供给管理员的访问地址。管理员通过该地址向RM发送管理命令等</td>
+</tr>
+<tr>
+<td>yarn.resourcemanager.webapp.address</td>
+<td>192.168.31.135:8088</td>
+<td>ResourceManager对web 服务提供地址。用户可通过该地址在浏览器中查看集群各类信息</td>
+</tr>
+<tr>
+<td>yarn.nodemanager.aux-services</td>
+<td>mapreduce_shuffle</td>
+<td>通过此配置项，用户可以自定义一些服务，例如Map-Reduce的shuffle功能就是采用这种方式实现的，这样就可以在NodeManager上扩展自己的服务。</td>
+</tr>
+<tr>
+<td>yarn.scheduler.maximum-allocation-mb</td>
+<td>2048</td>
+<td>每个container向RM申请内存的最大值，单位MB。申请值大于此值，将最多得到此值内存。</td>
+</tr>
+<tr>
+<td>yarn.nodemanager.resource.memory-mb</td>
+<td>2048</td>
+<td>NodeManager上可以用于container申请的物理内存大小，单位MB。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="4-配置ssh免密登录"><a href="#4-配置ssh免密登录" class="headerlink" title="(4) . 配置ssh免密登录"></a>(4) . 配置ssh免密登录</h3><p>因为Hadoop需要通过SSH登录到各个节点进行操作，以免以后集群运算时，频繁提示输入密码。在三个节点上输入如下命令生成秘钥</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+<p>然后一直按回车，直到生成完成。如下图</p>
+<p><img src="/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop4.png" alt=""></p>
+<p>将两个从节点slave1与slave2上的id_rsa.pub用scp命令发送给master</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos2 ~]<span class="comment"># scp ~/.ssh/id_rsa.pub root@192.168.31.135:~/.ssh/id_rsa.pub.slave1</span></span><br><span class="line">[root@centos3 ~]<span class="comment"># scp ~/.ssh/id_rsa.pub root@192.168.31.135:~/.ssh/id_rsa.pub.slave2</span></span><br></pre></td></tr></table></figure>
+<p>在master上，将所有公钥加到用于认证的公钥文件authorized_keys中</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub* &gt;&gt; ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<p>然后将公钥文件authorized_keys分发给每台slave </p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 ~]<span class="comment"># scp ~/.ssh/authorized_keys root@192.168.31.135:~/.ssh/</span></span><br><span class="line">[root@centos1 ~]<span class="comment"># scp ~/.ssh/authorized_keys root@192.168.31.135:~/.ssh/</span></span><br></pre></td></tr></table></figure>
+<p>最后在每台主机上，用SSH命令，检验下是否能免密码登录</p>
+<h3 id="5-从节点配置"><a href="#5-从节点配置" class="headerlink" title="(5) . 从节点配置"></a>(5) . 从节点配置</h3><p>从节点配置文件跟主节点保持一致，不需要修改。在步骤(3)中配置了<strong>hadoop-env.sh</strong> ，<strong>yarn-env.sh</strong> ，<strong>slaves</strong> ，<strong>core-site.xml</strong> ，<strong>hdfs-site.xml</strong> ，<strong>mapred-site.xml</strong> ，<strong>yarn-site.xml</strong> 。把这些配置文件原封不动的复制到从节点的 /user/hadoop/hadoop-2.8.4/etc/hadoop/ 目录下即可</p>
+<h3 id="6-启动Hadoop"><a href="#6-启动Hadoop" class="headerlink" title="(6) . 启动Hadoop"></a>(6) . 启动Hadoop</h3><p>启动之前首先将nameNode格式化，执行下面的命令，格式化nameNode</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 hadoop]<span class="comment"># cd hadoop-2.8.4/bin/</span></span><br><span class="line">[root@centos1 bin]<span class="comment"># ./hadoop namenode –format</span></span><br></pre></td></tr></table></figure>
+<p>结果如下，则表示格式化成功</p>
+<p><img src="/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop5.png" alt=""></p>
+<p>再进入sbin目录，启动Hadoop</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 sbin]<span class="comment"># ./start-all.sh</span></span><br></pre></td></tr></table></figure>
+<p>出现如下结果表示启动成功</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 ~]<span class="comment"># cd /user/hadoop/hadoop-2.8.4/sbin/</span></span><br><span class="line">[root@centos1 sbin]<span class="comment"># ./start-all.sh </span></span><br><span class="line">This script is Deprecated. Instead use start-dfs.sh and start-yarn.sh</span><br><span class="line">Starting namenodes on [centos1]</span><br><span class="line">centos1: starting namenode, logging to /user/hadoop/hadoop-<span class="number">2.8</span>.<span class="number">4</span>/logs/hadoop-root-namenode-centos1.out</span><br><span class="line"><span class="number">192.168</span>.<span class="number">31.136</span>: starting datanode, logging to /user/hadoop/hadoop-<span class="number">2.8</span>.<span class="number">4</span>/logs/hadoop-root-datanode-centos2.out</span><br><span class="line"><span class="number">192.168</span>.<span class="number">31.137</span>: starting datanode, logging to /user/hadoop/hadoop-<span class="number">2.8</span>.<span class="number">4</span>/logs/hadoop-root-datanode-centos3.out</span><br><span class="line">Starting secondary namenodes [<span class="number">0.0</span>.<span class="number">0.0</span>]</span><br><span class="line"><span class="number">0.0</span>.<span class="number">0.0</span>: starting secondarynamenode, logging to /user/hadoop/hadoop-<span class="number">2.8</span>.<span class="number">4</span>/logs/hadoop-root-secondarynamenode-centos1.out</span><br><span class="line">starting yarn daemons</span><br><span class="line">starting resourcemanager, logging to /user/hadoop/hadoop-<span class="number">2.8</span>.<span class="number">4</span>/logs/yarn-root-resourcemanager-centos1.out</span><br><span class="line"><span class="number">192.168</span>.<span class="number">31.137</span>: starting nodemanager, logging to /user/hadoop/hadoop-<span class="number">2.8</span>.<span class="number">4</span>/logs/yarn-root-nodemanager-centos3.out</span><br><span class="line"><span class="number">192.168</span>.<span class="number">31.136</span>: starting nodemanager, logging to /user/hadoop/hadoop-<span class="number">2.8</span>.<span class="number">4</span>/logs/yarn-root-nodemanager-centos2.out</span><br></pre></td></tr></table></figure>
+<p>也可通过 jps 命令查询状态 ，nameNode上结果</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 sbin]<span class="comment"># jps</span></span><br><span class="line"><span class="number">10902</span> Jps</span><br><span class="line"><span class="number">10281</span> NameNode</span><br><span class="line"><span class="number">10478</span> SecondaryNameNode</span><br><span class="line"><span class="number">10638</span> ResourceManager</span><br></pre></td></tr></table></figure>
+<p>dataNode上结果</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@centos2 ~]<span class="comment"># jps</span></span><br><span class="line"><span class="number">10437</span> Jps</span><br><span class="line"><span class="number">10300</span> NodeManager</span><br><span class="line"><span class="number">10191</span> DataNode</span><br></pre></td></tr></table></figure>
+<p>本地打开 <a href="http://192.168.31.135:50070" target="_blank" rel="noopener">http://192.168.31.135:50070</a> </p>
+<p><img src="/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop6.png" alt=""></p>
+<p>本地打开 <a href="http://192.168.31.135:8088/cluster" target="_blank" rel="noopener">http://192.168.31.135:8088/cluster</a> </p>
+<p><img src="/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop7.png" alt=""></p>
+<p>至此，Hadoop集群搭建完毕，并且成功启动。</p>
 
       
 
@@ -281,7 +574,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
         		</li>
       		
 		</ul>
@@ -337,7 +634,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://qr.liantu.com/api.php?text=https://lushunjian.github.io/blog/2018/06/16/虚拟机的类文件结构/" alt="微信分享二维码">
+      <img src="http://qr.liantu.com/api.php?text=https://lushunjian.github.io/blog/2018/08/11/CentOS搭建Hadoop集群/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -351,18 +648,9 @@
   
 <nav id="article-nav">
   
-    <a href="/blog/2018/06/20/CAP理论/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          CAP理论
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/2018/06/10/虚拟机指令集/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">虚拟机指令集</div>
+    <a href="/blog/2018/08/05/CentOS搭建zookeeper集群/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CentOS搭建zookeeper集群</div>
       <i class="icon-circle-right"></i>
     </a>
   

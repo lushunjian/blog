@@ -9,7 +9,7 @@
   <title>CentOS搭建zookeeper集群 | 一叶知秋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，也是Hadoop和Hbase的重要组件 。ZooKeeper的选主过程是以Fast Paxos算法为基础的。前面我有文章写过Paxos算法，Paxos 算法存在活锁的问题，即当有多个proposer交错提交时，有可能互相排斥导致没有一个proposer能提交成功，而Fast Paxos对">
-<meta name="keywords" content="zookeeper,实践">
+<meta name="keywords" content="实践,zookeeper">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS搭建zookeeper集群">
 <meta property="og:url" content="https://lushunjian.github.io/blog/2018/08/05/CentOS搭建zookeeper集群/index.html">
@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/05/CentOS搭建zookeeper集群/zookeeper3.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/05/CentOS搭建zookeeper集群/zookeeper4.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/05/CentOS搭建zookeeper集群/zookeeper5.png">
-<meta property="og:updated_time" content="2018-08-05T05:41:45.086Z">
+<meta property="og:updated_time" content="2018-08-05T05:54:41.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS搭建zookeeper集群">
 <meta name="twitter:description" content="ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，也是Hadoop和Hbase的重要组件 。ZooKeeper的选主过程是以Fast Paxos算法为基础的。前面我有文章写过Paxos算法，Paxos 算法存在活锁的问题，即当有多个proposer交错提交时，有可能互相排斥导致没有一个proposer能提交成功，而Fast Paxos对">
@@ -379,11 +379,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
         		</li>
       		
 		</ul>
@@ -452,6 +452,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/blog/2018/08/11/CentOS搭建Hadoop集群/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          CentOS搭建Hadoop集群
+        
+      </div>
+    </a>
   
   
     <a href="/blog/2018/08/04/VMware中安装Centos7/" id="article-nav-older" class="article-nav-link-wrap">
@@ -619,7 +628,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,7 +640,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -643,11 +656,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -715,7 +728,7 @@ MathJax.Hub.Queue(function() {
             </li>
           
             <li class="search-li">
-              <a href="http://spark.apache.org/docs/latest" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Spark</a>
+              <a href="http://spark.apache.org" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>Spark</a>
             </li>
           
             <li class="search-li">
@@ -746,7 +759,7 @@ MathJax.Hub.Queue(function() {
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">爱装逼&lt;br&gt;爱斗图&lt;br&gt;爱吃辣条&lt;br&gt;有梦想的小码农&lt;br&gt;</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">相信奇迹的人&lt;br&gt;本身就和奇迹一样了不起&lt;br&gt;</div>
   	  	
     	</section>
     
