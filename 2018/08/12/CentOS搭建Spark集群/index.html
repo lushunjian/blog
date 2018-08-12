@@ -6,23 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lushunjian.github.io/blog">
-  <title>虚拟机指令集 | 一叶知秋</title>
+  <title>CentOS搭建Spark集群 | 一叶知秋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="​    Java虚拟机既然是一台虚拟的计算机，那必有一套完善指令集，指令由一个字节长度，代表某种特定操作含义的操作码构成。这里在最初接触计算机的时候，我是有一些疑问的。例如为什么计算机都有它的指令集，这些指令是怎么被CPU执行的。由于我当初学的是电子科学，包含模电数电，单片机等内容，其中单片机就是一个小型的片上系统，随着学习的深入这些疑问自然就迎刃而解了。我谈一下自己的理解，也顺便做一下记录。">
-<meta name="keywords" content="jvm">
+  <meta name="description" content="Apache Spark 是专为大规模数据处理而设计的快速通用的计算引擎。 是 加州大学伯克利分校的AMP实验室所开发的类似Hadoop MapReduce的通用并行框架 。拥有Hadoop MapReduce所具有的优点；但不同于MapReduce的是——Job中间输出结果可以保存在内存中，从而不再需要读写HDFS，因此Spark能更好地适用于数据挖掘与机器学习等需要迭代的MapReduce的算">
+<meta name="keywords" content="实践,Spark">
 <meta property="og:type" content="article">
-<meta property="og:title" content="虚拟机指令集">
-<meta property="og:url" content="https://lushunjian.github.io/blog/2018/06/10/虚拟机指令集/index.html">
+<meta property="og:title" content="CentOS搭建Spark集群">
+<meta property="og:url" content="https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/index.html">
 <meta property="og:site_name" content="一叶知秋">
-<meta property="og:description" content="​    Java虚拟机既然是一台虚拟的计算机，那必有一套完善指令集，指令由一个字节长度，代表某种特定操作含义的操作码构成。这里在最初接触计算机的时候，我是有一些疑问的。例如为什么计算机都有它的指令集，这些指令是怎么被CPU执行的。由于我当初学的是电子科学，包含模电数电，单片机等内容，其中单片机就是一个小型的片上系统，随着学习的深入这些疑问自然就迎刃而解了。我谈一下自己的理解，也顺便做一下记录。">
+<meta property="og:description" content="Apache Spark 是专为大规模数据处理而设计的快速通用的计算引擎。 是 加州大学伯克利分校的AMP实验室所开发的类似Hadoop MapReduce的通用并行框架 。拥有Hadoop MapReduce所具有的优点；但不同于MapReduce的是——Job中间输出结果可以保存在内存中，从而不再需要读写HDFS，因此Spark能更好地适用于数据挖掘与机器学习等需要迭代的MapReduce的算">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/10/虚拟机指令集/heike.jpg">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/10/虚拟机指令集/jvmcode1.png">
-<meta property="og:updated_time" content="2018-06-10T23:51:19.535Z">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/spark.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/scala.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/scala1.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/spark1.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/spark2.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/spark3.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/spark5.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/spark4.png">
+<meta property="og:updated_time" content="2018-08-12T07:21:30.425Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="虚拟机指令集">
-<meta name="twitter:description" content="​    Java虚拟机既然是一台虚拟的计算机，那必有一套完善指令集，指令由一个字节长度，代表某种特定操作含义的操作码构成。这里在最初接触计算机的时候，我是有一些疑问的。例如为什么计算机都有它的指令集，这些指令是怎么被CPU执行的。由于我当初学的是电子科学，包含模电数电，单片机等内容，其中单片机就是一个小型的片上系统，随着学习的深入这些疑问自然就迎刃而解了。我谈一下自己的理解，也顺便做一下记录。">
-<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/06/10/虚拟机指令集/heike.jpg">
+<meta name="twitter:title" content="CentOS搭建Spark集群">
+<meta name="twitter:description" content="Apache Spark 是专为大规模数据处理而设计的快速通用的计算引擎。 是 加州大学伯克利分校的AMP实验室所开发的类似Hadoop MapReduce的通用并行框架 。拥有Hadoop MapReduce所具有的优点；但不同于MapReduce的是——Job中间输出结果可以保存在内存中，从而不再需要读写HDFS，因此Spark能更好地适用于数据挖掘与机器学习等需要迭代的MapReduce的算">
+<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/spark.png">
   
     <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
   
@@ -167,20 +173,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-虚拟机指令集" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-CentOS搭建Spark集群" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      虚拟机指令集
+      CentOS搭建Spark集群
     </h1>
   
 
         
-        <a href="/blog/2018/06/10/虚拟机指令集/" class="archive-article-date">
-  	<time datetime="2018-06-10T01:52:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-10</time>
+        <a href="/blog/2018/08/12/CentOS搭建Spark集群/" class="archive-article-date">
+  	<time datetime="2018-08-12T00:42:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-12</time>
 </a>
         
 		
@@ -193,1017 +199,125 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​    Java虚拟机既然是一台虚拟的计算机，那必有一套完善指令集，指令由一个字节长度，代表某种特定操作含义的操作码构成。这里在最初接触计算机的时候，我是有一些疑问的。例如为什么计算机都有它的指令集，这些指令是怎么被CPU执行的。由于我当初学的是电子科学，包含模电数电，单片机等内容，其中单片机就是一个小型的片上系统，随着学习的深入这些疑问自然就迎刃而解了。我谈一下自己的理解，也顺便做一下记录。</p>
-<p>​    对于CPU而言它只认识0和1，对应的是数字电路中的高低电平，实现原理是把MOS管当做开关使用，MOS管是一种半导体晶体管，主要成分硅（这也是美国硅谷这个名字的由来吧）。通过MOS管可以实现各种寄存器，累加器，计数器，与非门，或非门等逻辑门电路。每一条指令都是特定的门电路组成的，门电路是CPU的基本工作单元，数以亿计的门电路才造就了CPU的强大运算能力，这些门电路输入是一位或多位二进制数，输出也是一位或多位二进制数。在最早的计算机上，程序员需要将0101这种二进制代码给CPU计算，这里的二进制代码会控制CPU进行加减乘除或者逻辑运算，对应于在MOS管上的状态就是开和关，这种二进制代码也叫机器语言，是计算机能直接读懂的语言。但是这对于程序员来说简直是噩梦，一个小小的计算功能，用机器语言来编写需要写一大串0和1。最关键的是这些0和1代码代表什么意思也非常难以记忆，开发成本很大。于是科学家们用了一种高级的语言来代替它 ，然后汇编语言诞生了，汇编语言更接近人类自然语言的习惯。然后再做一个编译器工具帮我们把汇编语言翻译成机器语言就行了。    </p>
-<p><img src="/blog/2018/06/10/虚拟机指令集/heike.jpg" alt=""></p>
+        <p>Apache Spark 是专为大规模数据处理而设计的快速通用的计算引擎。 是 加州大学伯克利分校的AMP实验室所开发的类似Hadoop MapReduce的通用并行框架 。拥有Hadoop MapReduce所具有的优点；但不同于MapReduce的是——Job中间输出结果可以保存在内存中，从而不再需要读写HDFS，因此Spark能更好地适用于数据挖掘与机器学习等需要迭代的MapReduce的算法。 Spark 是在 Scala 语言中实现的，它将 Scala 用作其应用程序框架。与 Hadoop 不同，Spark 和 Scala 能够紧密集成，其中的 Scala 可以像操作本地集合对象一样轻松地操作分布式数据集。 尽管创建 Spark 是为了支持分布式数据集上的迭代作业，但是实际上它是对 Hadoop 的补充，Spark 是一个通用引擎，可用它来完成各种各样的运算，包括 SQL 查询、文本处理、机器学习等 。本文主要记录使用CentOS搭建Spark集群。</p>
+<p><img src="/blog/2018/08/12/CentOS搭建Spark集群/spark.png" alt=""></p>
 <a id="more"></a> 
-<p>​    那么问题来了，编译器按照什么规则来翻译汇编代码呢？答案就是指令集，指令集是由设计CPU的生产厂商给出。CPU指令集是描述CPU能实现什么功能的一个集合, 就是描述”CPU能使用哪些机器码”的集合。指令集的作用, 就是告诉程序员或者说编译器, 汇编一定要有什么格式. 支持什么指令, 指令带什么限制条件, 用什么操作数, 用什么地址, 都是指令集规范的内容, 要是写错了, 就无法翻译成机器码。不同的CPU生产厂商产生了不同的指令集，Intel阵营的8086指令集，ARM阵营的RISC指令集。不同阵营，其对应的汇编语言也是不一样的。 </p>
-<h3 id="1-JVM的指令集"><a href="#1-JVM的指令集" class="headerlink" title="1 . JVM的指令集"></a>1 . JVM的指令集</h3><p>​    前面说了那么多，都是为这里做铺垫。作为一个Java程序员怎么能不认识虚拟机的指令集，指令集不仅可以帮我们看懂字节码文件，同时也有助于理解JVM的运行原理。我总结了一下JVM的指令集，主要分为以下几种类型的指令。</p>
-<h4 id="1-空指令"><a href="#1-空指令" class="headerlink" title="(1) . 空指令"></a>(1) . 空指令</h4><div class="table-container">
+<h3 id="1-准备"><a href="#1-准备" class="headerlink" title="1 . 准备"></a>1 . 准备</h3><p>1.准备三台Centos虚拟机，信息如下</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th>字节码</th>
-<th>指令助记符</th>
-<th>指令含义</th>
+<th>ip</th>
+<th>OS</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>0x00</td>
-<td>nop</td>
-<td>什么都不做</td>
+<td>192.168.31.135</td>
+<td>CentOS 7</td>
+<td>Master</td>
+</tr>
+<tr>
+<td>192.168.31.136</td>
+<td>CentOS 7</td>
+<td>Worker</td>
+</tr>
+<tr>
+<td>192.168.31.137</td>
+<td>CentOS 7</td>
+<td>Worker</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>nop指令相信接触过汇编语言的都知道，它什么都不做但是占用一个指令周期的时间。指令周期的时间不是固定的，不同的指令其指令周期时间不同，一个指令周期由如干个机器周期组成，每个机器周期能完成一项基本操作，比如取指令、存储器读、存储器写等。而机器周期又由如干个时钟周期组成，在一个时钟周期内，CPU只能完成一个最基本的动作，一个时钟周期的时间计算也比较简单，例如CPU的频率是2.7GHz，这里要注意换算单位，频率单位1GHz =1000MHz，1MHz就是1百万赫兹，所以频率为2.7GHz的CPU。一个时钟周期为 1/2700000000 秒 。 显然，时钟频率越高，CPU的工作速度就越快，这也是我们购买CPU时的一个重要指标。 </p>
-<h4 id="2-基本数据类型的取值和存储指令"><a href="#2-基本数据类型的取值和存储指令" class="headerlink" title="(2) . 基本数据类型的取值和存储指令"></a>(2) . 基本数据类型的取值和存储指令</h4><div class="table-container">
+<p>2 . Java，去Oracle下载，注意Hadoop所要求的JAVA版本（java环境配置可参考之前zookeper集群搭建博客，这里不赘述）</p>
+<p>3 . Hadoop，参考上一篇Hadoop集群搭建博文</p>
+<p>4 . Scala ，去官网下载。下载地址：<a href="https://www.scala-lang.org/download/" target="_blank" rel="noopener">scala官网</a></p>
+<p>5 . Spark，去官网下载。下载地址：</p>
+<h3 id="2-安装scala"><a href="#2-安装scala" class="headerlink" title="2 . 安装scala"></a>2 . 安装scala</h3><p>进入官网来到下载页面</p>
+<p><img src="/blog/2018/08/12/CentOS搭建Spark集群/scala.png" alt=""></p>
+<p>注意scala是运行于java虚拟机之上的，因此安装scala之前必须先配置好java环境。同时下载时注意对java的版本要求，例如上图中可得scala.2.12.6版本必须要求 java 8以上的版本。到此页面后拉至底部</p>
+<p><img src="/blog/2018/08/12/CentOS搭建Spark集群/scala1.png" alt=""></p>
+<p>我们需要的是Linux版本，所以选择第一个支持Unix系统的下载即可。在服务器创建好文件夹</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 ~]# cd /user</span><br><span class="line">[root@centos1 user]# ll</span><br><span class="line">drwxr-xr-x. 6 root root 59 8月   8 22:54 hadoop</span><br><span class="line">drwxr-xr-x. 3 root root 25 4月  12 08:00 java</span><br><span class="line">drwxr-xr-x. 3 root root 26 8月   7 22:21 scala</span><br><span class="line">drwxr-xr-x. 3 root root 39 8月  10 23:15 spark</span><br><span class="line">drwxr-xr-x. 5 root root 60 4月  12 20:50 zookeeper</span><br></pre></td></tr></table></figure>
+<p>将压缩包上传至 /user/scala目录下，使用解压命令解压。待解压完成后需要配置环境变量，使用如下命令编辑系统配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br></pre></td></tr></table></figure>
+<p>在最后加入scala的环境变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export SCALA_HOME=/user/scala/scala-2.12.6</span><br><span class="line">export PATH=$PATH:$SCALA_HOME/bin</span><br></pre></td></tr></table></figure>
+<p>配置完成后，使用下面的命令使配置生效</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<p>然后能通过命令查看的scala版本，能进入scala shell表示配置成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 user]# scala -version</span><br><span class="line">Scala code runner version 2.12.6 -- Copyright 2002-2018, LAMP/EPFL and Lightbend, Inc.</span><br><span class="line">[root@centos1 user]# scala</span><br><span class="line">Welcome to Scala 2.12.6 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_45).</span><br><span class="line">Type in expressions for evaluation. Or try :help.</span><br><span class="line"></span><br><span class="line"><span class="meta">scala&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-下载Spark"><a href="#3-下载Spark" class="headerlink" title="3 . 下载Spark"></a>3 . 下载Spark</h3><p>进入官网来到下载页面</p>
+<p><img src="/blog/2018/08/12/CentOS搭建Spark集群/spark1.png" alt=""></p>
+<p>注意Spark依赖Hadoop，在选择Spark版本时，要注意它对Hadoop的版本要求。例如上图中Spark-2.3.1对Hadoop的版本要求是2.7以上。选择完合适的版本后即可下载压缩包。下载完成把压缩包上传至服务器目录解压。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf spark-2.3.1-bin-hadoop2.7.tgz</span><br></pre></td></tr></table></figure>
+<h3 id="4-配置环境变量"><a href="#4-配置环境变量" class="headerlink" title="4 . 配置环境变量"></a>4 . 配置环境变量</h3><p>编辑系统配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/profile</span><br></pre></td></tr></table></figure>
+<p>在底部加入spark的安装目录，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export SPARK_HOME=/user/spark/spark-2.3.1-bin-hadoop2.7</span><br><span class="line">export PATH=$PATH:$SPARK_HOME/bin</span><br></pre></td></tr></table></figure>
+<p>保存退出后使用source命令使配置生效，同时通过spark-shell查看是否配置成功。如果出现如下界面表示已配置成功</p>
+<p><img src="/blog/2018/08/12/CentOS搭建Spark集群/spark2.png" alt=""></p>
+<h3 id="5-配置Spark环境"><a href="#5-配置Spark环境" class="headerlink" title="5 . 配置Spark环境"></a>5 . 配置Spark环境</h3><p>进入spark安装目录，编辑spark-env.sh文件。没有该文件则新建一份</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@node1 ~]# cd /user/spark/spark-2.3.1-bin-hadoop2.7/conf</span><br><span class="line">[root@node1 ~]# cp spark-env.sh.template spark-env.sh</span><br><span class="line">[root@node1 ~]# vim spark-env.sh</span><br><span class="line">export JAVA_HOME=/user/java/jdk1.8.0_45</span><br><span class="line"></span><br><span class="line">export SCALA_HOME=/user/scala/scala-2.12.6</span><br><span class="line"></span><br><span class="line">export HADOOP_HOME=/user/hadoop/hadoop-2.8.4</span><br><span class="line"></span><br><span class="line">export HADOOP_CONF_DIR=/user/hadoop/hadoop-2.8.4/etc/hadoop</span><br><span class="line"></span><br><span class="line">export SPARK_MASTER_IP=192.168.31.135</span><br><span class="line"></span><br><span class="line">export SPARK_WORKER_MEMORY=1g</span><br><span class="line"></span><br><span class="line">export SPARK_WORKER_CORES=2</span><br><span class="line"></span><br><span class="line">export SPARK_WORKER_INSTANCES=1</span><br></pre></td></tr></table></figure>
+<p>属性解释</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th>字节码</th>
-<th>指令助记符</th>
-<th>指令含义</th>
+<th>属性名</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>0x01</td>
-<td>aconst_null</td>
-<td>将null推送至栈顶</td>
+<td>JAVA_HOME</td>
+<td>Java安装目录</td>
 </tr>
 <tr>
-<td>0x02</td>
-<td>iconst_m1</td>
-<td>将int型-1推送至栈顶</td>
+<td>SCALA_HOME</td>
+<td>Scala安装目录</td>
 </tr>
 <tr>
-<td>0x0i（i=3,4,5,6,7,8）</td>
-<td>iconst_j（j=0,1,2,3,4,5）</td>
-<td>将int型 j 推送至栈顶</td>
+<td>HADOOP_HOME</td>
+<td>hadoop安装目录</td>
 </tr>
 <tr>
-<td>0x0i（i=9,a）</td>
-<td>lconst_j（j=0,1）</td>
-<td>将long型 j 推送至栈顶</td>
+<td>HADOOP_CONF_DIR</td>
+<td>hadoop集群的配置文件的目录</td>
 </tr>
 <tr>
-<td>0x0i（i=b,c,d）</td>
-<td>fconst_j（j=0,1,2）</td>
-<td>将float型 j 推送至栈顶</td>
+<td>SPARK_MASTER_IP</td>
+<td>spark集群的Master节点的ip地址</td>
 </tr>
 <tr>
-<td>0x0i（ie,f）</td>
-<td>dconst_j（j=0,1）</td>
-<td>将double型 j 推送至栈顶</td>
+<td>SPARK_WORKER_MEMORY</td>
+<td>每个worker节点能够最大分配给exectors的内存大小</td>
 </tr>
 <tr>
-<td>0x10</td>
-<td>bipush</td>
-<td>将单字节常量(-127~128)推送至栈顶</td>
+<td>SPARK_WORKER_CORES</td>
+<td>每个worker节点所占有的CPU核数目</td>
 </tr>
 <tr>
-<td>0x11</td>
-<td>sipush</td>
-<td>将短整型常量(-32768~32767)推至栈顶</td>
-</tr>
-<tr>
-<td>0x12</td>
-<td>ldc</td>
-<td>将int,float,String常量从常量池中推至栈顶</td>
-</tr>
-<tr>
-<td>0x13</td>
-<td>ldc_w</td>
-<td>将int,float,String常量从常量池中推至栈顶(宽索引)</td>
-</tr>
-<tr>
-<td>0x14</td>
-<td>ldc2_w</td>
-<td>将long,double常量从常量池中推至栈顶(宽索引)</td>
-</tr>
-<tr>
-<td>0x15</td>
-<td>iload</td>
-<td>将指定的int型局部变量推至栈顶</td>
-</tr>
-<tr>
-<td>0x16</td>
-<td>lload</td>
-<td>将指定的long型局部变量推至栈顶</td>
-</tr>
-<tr>
-<td>0x17</td>
-<td>fload</td>
-<td>将指定的float型局部变量推至栈顶</td>
-</tr>
-<tr>
-<td>0x18</td>
-<td>dload</td>
-<td>将指定的double型局部变量推至栈顶</td>
-</tr>
-<tr>
-<td>0x1i（i=a,b,c,d）</td>
-<td>iload_j（j=0,1,2,3）</td>
-<td>将第 j 个int型的局部变量推至栈顶</td>
-</tr>
-<tr>
-<td>0x1i（i=e,f）</td>
-<td>lload_j（j=0,1）</td>
-<td>将第 j 个long 型局部变量推至栈顶</td>
-</tr>
-<tr>
-<td>0x2i（i=0,1）</td>
-<td>lload_j（j=3,4）</td>
-<td>将第 j 个long 型局部变量推至栈顶</td>
-</tr>
-<tr>
-<td>0x2i（i=2,3,4,5）</td>
-<td>fload_j（j=0,1,2,3）</td>
-<td>将第 j 个float 型局部变量推至栈顶</td>
-</tr>
-<tr>
-<td>0x2i（i=6,7,8,9）</td>
-<td>dload_j（j=0,1,2,3）</td>
-<td>将第 j 个double 型局部变量推至栈顶</td>
-</tr>
-<tr>
-<td>0x36</td>
-<td>istore</td>
-<td>将栈顶 int 型数值存入指定的本地变量</td>
-</tr>
-<tr>
-<td>0x37</td>
-<td>lstore</td>
-<td>将栈顶 long 型数值存入指定的本地变量</td>
-</tr>
-<tr>
-<td>0x39</td>
-<td>dstore</td>
-<td>将栈顶 dloat 型数值存入指定的本地变量</td>
-</tr>
-<tr>
-<td>0x38</td>
-<td>fstore</td>
-<td>将栈顶 float 型数值存入指定的本地变量</td>
-</tr>
-<tr>
-<td>0x3i（i=b,c,d,e）</td>
-<td>istore_j（j=0,1,2,3）</td>
-<td>将栈顶 int 型数值存入第 j 个本地变量</td>
-</tr>
-<tr>
-<td>0x3f</td>
-<td>lstore_0</td>
-<td>将栈顶 long 型数值存入第 0 个本地变量</td>
-</tr>
-<tr>
-<td>0x4i（i=0,1,2）</td>
-<td>lstore_j（j=1,2,3）</td>
-<td>将栈顶 long 型数值存入第 j 个本地变量</td>
-</tr>
-<tr>
-<td>0x4i（i=3,4,5,6）</td>
-<td>fstore_j（j=0,1,2,3）</td>
-<td>将栈顶 float 型数值存入第 j 个本地变量</td>
-</tr>
-<tr>
-<td>0x4i（i=7,8,9,a）</td>
-<td>dstore_j（j=0,1,2,3）</td>
-<td>将栈顶 double 型数值存入第 j 个本地变量</td>
-</tr>
-<tr>
-<td>0xc4</td>
-<td>wide</td>
-<td>扩展本地变量的宽度</td>
+<td>SPARK_WORKER_INSTANCES</td>
+<td>每台机器上开启的worker节点的数目</td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>总的概括来说就是  </p>
-<p>将一个本地变量加载到操作数栈的指令有 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iload、iload_&lt;n&gt;、lload、lload_&lt;n&gt;、fload、fload_&lt;n&gt;、dload、dload_&lt;n&gt;、aload、aload_&lt;n&gt;</span><br></pre></td></tr></table></figure>
-<p>将一个数值从操作数栈存储到本地变量表的指令由</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">istore、istore_&lt;n&gt;、lstore、lstore_&lt;n&gt;、fstore、fstore_&lt;n&gt;、dstore、dstore_&lt;n&gt;、astore、astore_&lt;n&gt;</span><br></pre></td></tr></table></figure>
-<p>将一个常量加载到操作数栈的指令有  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bipush、sipush、ldc、ldc_w、ldc2_w、aconst_null、iconst_m1、iconst_&lt;i&gt;、lconst_&lt;l&gt;、fconst_&lt;f&gt;、dconst_&lt;d&gt;</span><br></pre></td></tr></table></figure>
-<p>扩充局部变量表的访问索引的指令 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wide</span><br></pre></td></tr></table></figure>
-<p>这里要注意的是随着数值取值范围的改变，指令会随之改变。例如当int取值<strong>-1~5</strong>采用iconst指令，取值<strong>-128~127</strong>采用bipush指令，取值<strong>-32768~32767</strong>采用sipush指令，取值<strong>-2147483648~2147483647</strong>采用 ldc 指令 </p>
-<h4 id="3-引用数据类型的取值与存储操作"><a href="#3-引用数据类型的取值与存储操作" class="headerlink" title="(3) . 引用数据类型的取值与存储操作"></a>(3) . 引用数据类型的取值与存储操作</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>字节码</th>
-<th>指令助记符</th>
-<th>指令含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0x19</td>
-<td>aload</td>
-<td>将指定的引用数据类型本地变量推至栈顶</td>
-</tr>
-<tr>
-<td>0x2i（i=a,b,c,d）</td>
-<td>aload_j（j=0,1,2,3）</td>
-<td>将第 j 个引用类型本地变量推至栈顶</td>
-</tr>
-<tr>
-<td>0x2e</td>
-<td>iaload</td>
-<td>将int型数组指定的索引的值推至栈顶</td>
-</tr>
-<tr>
-<td>0x2f</td>
-<td>laload</td>
-<td>将long型数组指定的索引的值推至栈顶</td>
-</tr>
-<tr>
-<td>0x30</td>
-<td>faload</td>
-<td>将float型数组指定的索引的值推至栈顶</td>
-</tr>
-<tr>
-<td>0x31</td>
-<td>daload</td>
-<td>将double型数组指定的索引的值推至栈顶</td>
-</tr>
-<tr>
-<td>0x32</td>
-<td>aaload</td>
-<td>将引用数据类型数组指定的索引的值推至栈顶</td>
-</tr>
-<tr>
-<td>0x33</td>
-<td>baload</td>
-<td>将boolean或byte型数组指定的索引的值推至栈顶</td>
-</tr>
-<tr>
-<td>0x34</td>
-<td>caload</td>
-<td>将char型数组指定的索引的值推至栈顶</td>
-</tr>
-<tr>
-<td>0x35</td>
-<td>saload</td>
-<td>将short型数组指定的索引的值推至栈顶</td>
-</tr>
-<tr>
-<td>0x3a</td>
-<td>astore</td>
-<td>将栈顶的引用型数值存入指定的本地变量</td>
-</tr>
-<tr>
-<td>0x4i（i=b,c,d,e）</td>
-<td>astore_j（j=0,1,2,3）</td>
-<td>将栈顶引用型数值存入第 j 个本地变量</td>
-</tr>
-<tr>
-<td>0x4f</td>
-<td>iastore</td>
-<td>将栈顶 int 型数值存入指定数组的指定索引位置</td>
-</tr>
-<tr>
-<td>0x50</td>
-<td>lastore</td>
-<td>将栈顶 long 型数值存入指定数组的指定索引位置</td>
-</tr>
-<tr>
-<td>0x51</td>
-<td>fastore</td>
-<td>将栈顶 float 型数值存入指定数组的指定索引位置</td>
-</tr>
-<tr>
-<td>0x52</td>
-<td>dastore</td>
-<td>将栈顶 double 型数值存入指定数组的指定索引位置</td>
-</tr>
-<tr>
-<td>0x53</td>
-<td>aastore</td>
-<td>将栈顶引用型数值存入指定数组的指定索引位置</td>
-</tr>
-<tr>
-<td>0x54</td>
-<td>bastore</td>
-<td>将栈顶boolean或byte型数值存入指定数组的指定索引位置</td>
-</tr>
-<tr>
-<td>0x55</td>
-<td>castore</td>
-<td>将栈顶 char 型数值存入指定数组的指定索引位置</td>
-</tr>
-<tr>
-<td>0x56</td>
-<td>sastore</td>
-<td>将栈顶 short 型数值存入指定数组的指定索引位置</td>
-</tr>
-<tr>
-<td>0x57</td>
-<td>pop</td>
-<td>将栈顶弹出（数值不能是 long 或 double类型）</td>
-</tr>
-<tr>
-<td>0xbb</td>
-<td>new</td>
-<td>创建一个对象，并将其压入栈顶</td>
-</tr>
-<tr>
-<td>0xbc</td>
-<td>newarray</td>
-<td>创建一个基本数据类型（如int,char）的数组，并将其引用的值压入栈顶</td>
-</tr>
-<tr>
-<td>0xbd</td>
-<td>anewarray</td>
-<td>创建一个引用型数组（如类，接口，数组），并将其引用的值压入栈顶</td>
-</tr>
-<tr>
-<td>0xc5</td>
-<td>multianewarray</td>
-<td>创建指定类型和指定维度的多维数组，并将其引用值压入栈顶</td>
-</tr>
-<tr>
-<td>0xbe</td>
-<td>arraylength</td>
-<td>获取数组长度值并压入栈顶</td>
-</tr>
-<tr>
-<td>0xc0</td>
-<td>checkcast</td>
-<td>校验类型转换，校验未通过抛出ClassCastException</td>
-</tr>
-<tr>
-<td>0xc1</td>
-<td>instanceof</td>
-<td>校验对象是否是指定的类的实例，如果是，则将1压入栈顶，否则将0压入栈顶</td>
-</tr>
-<tr>
-<td>0xb2</td>
-<td>getstatic</td>
-<td>获取指定类的静态域，并将其值压人栈顶</td>
-</tr>
-<tr>
-<td>0xb3</td>
-<td>putstatic</td>
-<td>为指定的类的静态域赋值</td>
-</tr>
-<tr>
-<td>0xb4</td>
-<td>getfield</td>
-<td>获取指定类的实例域，并将其压入栈顶</td>
-</tr>
-<tr>
-<td>0xb5</td>
-<td>putfield</td>
-<td>为指定类的实例域赋值</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>这里总结概括一下，创建实例的指令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new</span><br></pre></td></tr></table></figure>
-<p>创建数组对象以及获取数组长度的指令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newarray、anewarray、multianewarray、arraylength</span><br></pre></td></tr></table></figure>
-<p>访问类字段（static字段就是类变量）和实例字段（非static字段就是实例变量）指令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getfield、putfield、getstatic、putstatic</span><br></pre></td></tr></table></figure>
-<p>把一个数组中指定索引处的值加载到操作数栈的指令 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">baload、caload、saload、iaload、laload、faload、daload、aaload</span><br></pre></td></tr></table></figure>
-<p>将一个操作数栈的值储存到数组中指定索引处的指令 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bastore、castore、sastore、iastore、fastore、dastore、aastore</span><br></pre></td></tr></table></figure>
-<p>检查类实例类型的指令 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">instanceof、checkcast</span><br></pre></td></tr></table></figure>
-<p>虽然实例和数组都是对象，但是虚拟机对实例和数组实例的创建与操作使用了不同的字节码指令 </p>
-<h4 id="4-操作数栈管理指令"><a href="#4-操作数栈管理指令" class="headerlink" title="(4) . 操作数栈管理指令"></a>(4) . 操作数栈管理指令</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>字节码</th>
-<th>指令助记符</th>
-<th>指令含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0x57</td>
-<td>pop</td>
-<td>将栈顶弹出（数值不能是 long 或 double类型）</td>
-</tr>
-<tr>
-<td>0x58</td>
-<td>pop2</td>
-<td>将栈顶一个（对于 long 或double类型）或两个（非 long 或double类型）数值弹出</td>
-</tr>
-<tr>
-<td>0x59</td>
-<td>dup</td>
-<td>复制栈顶数值并将复制值压入栈顶</td>
-</tr>
-<tr>
-<td>0x5a</td>
-<td>dup_x1</td>
-<td>复制栈顶数值并将两个复制值压入栈顶</td>
-</tr>
-<tr>
-<td>0x5f</td>
-<td>swap</td>
-<td>将栈最顶端的两数值互换（数值不能是 long 或 double类型）</td>
-</tr>
-<tr>
-<td>0x5b</td>
-<td>dup_x2</td>
-<td>复制栈顶数值并将三个（或两个）复制值压入栈顶</td>
-</tr>
-<tr>
-<td>0x5c</td>
-<td>dup2</td>
-<td>复制栈顶一个(对于 long 或double类型)或两个(非 long 或double类型)值并压栈</td>
-</tr>
-<tr>
-<td>0x5d</td>
-<td>dup2_x1</td>
-<td>dup_x1 指令的双倍版本</td>
-</tr>
-<tr>
-<td>x05e</td>
-<td>dup2_x2</td>
-<td>dup_x2 指令的双倍版本</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h4 id="5-控制转移指令"><a href="#5-控制转移指令" class="headerlink" title="(5) . 控制转移指令"></a>(5) . 控制转移指令</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>字节码</th>
-<th>指令助记符</th>
-<th>指令含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0x99</td>
-<td>ifeq</td>
-<td>当栈顶int型数值等于0时跳转</td>
-</tr>
-<tr>
-<td>0x9a</td>
-<td>ifnq</td>
-<td>当栈顶int型数值不等于0时跳转</td>
-</tr>
-<tr>
-<td>0x9b</td>
-<td>iflt</td>
-<td>当栈顶int型数值小于0时跳转</td>
-</tr>
-<tr>
-<td>0x9c</td>
-<td>ifge</td>
-<td>当栈顶int型数值小于或等于0时跳转</td>
-</tr>
-<tr>
-<td>0x9d</td>
-<td>ifgt</td>
-<td>当栈顶int型数值大于0时跳转</td>
-</tr>
-<tr>
-<td>0x9e</td>
-<td>ifle</td>
-<td>当栈顶int型数值小于或等于0时跳转</td>
-</tr>
-<tr>
-<td>0x9f</td>
-<td>if_icmpeq</td>
-<td>比较栈顶两个int型数值的大小，结果等于0时跳转</td>
-</tr>
-<tr>
-<td>0xa0</td>
-<td>if_icmpne</td>
-<td>比较栈顶两个int型数值的大小，结果不等于0时跳转</td>
-</tr>
-<tr>
-<td>0xa1</td>
-<td>if_icmplt</td>
-<td>比较栈顶两个int型数值的大小，结果小于0时跳转</td>
-</tr>
-<tr>
-<td>0xa2</td>
-<td>if_icmpge</td>
-<td>比较栈顶两个int型数值的大小，结果大于或等于0时跳转</td>
-</tr>
-<tr>
-<td>0xa3</td>
-<td>if_icmpgt</td>
-<td>比较栈顶两个int型数值的大小，结果大于0时跳转</td>
-</tr>
-<tr>
-<td>0xa4</td>
-<td>if_icmple</td>
-<td>比较栈顶两个int型数值的大小，结果小于或等于0时跳转</td>
-</tr>
-<tr>
-<td>x0a5</td>
-<td>if_acmpeq</td>
-<td>比较栈顶两个引用型数值，结果相等时跳转</td>
-</tr>
-<tr>
-<td>0xa6</td>
-<td>if_acmpne</td>
-<td>比较栈顶两个引用型数值，结果不相等时跳转</td>
-</tr>
-<tr>
-<td>0xa7</td>
-<td>goto</td>
-<td>无条件跳转</td>
-</tr>
-<tr>
-<td>0xa8</td>
-<td>jsr</td>
-<td>跳转至指定的16位offset位置，并将jsr的下一条指令地址压入栈顶</td>
-</tr>
-<tr>
-<td>0xa9</td>
-<td>ret</td>
-<td>返回至本地变量指定的index的指令位置（一般与 jsr 或 jsr_w联合使用）</td>
-</tr>
-<tr>
-<td>0xaa</td>
-<td>tableswitch</td>
-<td>用于switch条件跳转，case值连续（可变长度指令）</td>
-</tr>
-<tr>
-<td>0xab</td>
-<td>lookupswitch</td>
-<td>用于switch条件跳转，case值不连续（可变长度指令）</td>
-</tr>
-<tr>
-<td>0xc6</td>
-<td>ifnull</td>
-<td>为null时跳转</td>
-</tr>
-<tr>
-<td>0xc7</td>
-<td>ifnonull</td>
-<td>不为null时跳转</td>
-</tr>
-<tr>
-<td>oxc8</td>
-<td>goto_w</td>
-<td>无条件跳转（宽索引）</td>
-</tr>
-<tr>
-<td>0xc9</td>
-<td>jsr_w</td>
-<td>跳转至指定32位offset位置，并将jsr_w的下一条指令地址压入栈顶</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>条件分支 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifeq、iflt、ifle、ifne、ifgt、ifge、ifnull、ifnonnull、if_icmpeq、if_icmpne、if_icmplt、 if_icmpgt、if_icmple、if_icmpge、if_acmpeq、if_acmpne</span><br></pre></td></tr></table></figure>
-<p>复合条件分支 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tableswitch、lookupswitch</span><br></pre></td></tr></table></figure>
-<p>无条件分支 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">goto、goto_w、jsr、jsr_w、ret</span><br></pre></td></tr></table></figure>
-<p>Java条件分支比较包括三种类型值的比较，int类型，reference 类型，null 值。而其它boolean 类型、byte 类型、char 类型和 short 类型的条件分支比较操作，都使用 int 类型的比较指令来完成，而对于 long 类型、float 类型和 double 类型的条件分支比较操作，则会先执行相应类型的比较运算指令，运算指令会返回一个整型值到操作数栈中，随后再执行 int 类型的条件分支比较操作来完成整个分支跳转。由于各种类型的比较最终都会转化为 int 类型的比较操作，所以Java 虚拟机提供了非常丰富的 int类型的条件分支指令。另外所有 int 类型的条件分支转移指令进行的都是有符号的比较操作。</p>
-<h4 id="6-线程同步"><a href="#6-线程同步" class="headerlink" title="(6) . 线程同步"></a>(6) . 线程同步</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>字节码</th>
-<th>指令助记符</th>
-<th>指令含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0xc2</td>
-<td>monitorenter</td>
-<td>获得对象的锁，用于同步方法或同步代码块</td>
-</tr>
-<tr>
-<td>0xc3</td>
-<td>monitorexit</td>
-<td>释放对象的锁，用于同步方法或同步代码块</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>Java 虚拟机可以支持方法级的同步和方法内一段代码块的同步，这两种同步结构都是使用监视器 （monitor）来支持实现的。</p>
-<p>方法级的同步是隐式，即无需通过字节码指令来控制的，它实现在方法调用和返回操作之中。虚拟机可以从方法常量池中的方法表结构（method_info Structure）中的 ACC_SYNCHRONIZED 访问标志区分一个方法是否同步方法。当方法调用时，调用指令将会检查方法的 ACC_SYNCHRONIZED 访问标志是否被设置，如果设置了，执行线程将先持有管程，然后再执行方法，最后再方法完成（无论是正常完成还是非正常完成）时释放管程。在方法执行期间，执行线程持有了管程，其他任何线程都无法再获得同一个管程。如果一个同步方法执行期间抛出了异常，并且在方法内部无法处理此异常，那这个同步方法所持有的管程将在异常抛到同步方法之外时自动释放</p>
-<h4 id="7-运算指令"><a href="#7-运算指令" class="headerlink" title="(7) . 运算指令"></a>(7) . 运算指令</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>字节码</th>
-<th>助记符</th>
-<th>指令含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0x60</td>
-<td>iadd</td>
-<td>将栈顶两个 int 型数值相加并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x61</td>
-<td>ladd</td>
-<td>将栈顶两个 long 型数值相加并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x62</td>
-<td>fadd</td>
-<td>将栈顶两个 float 型数值相加并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x63</td>
-<td>dadd</td>
-<td>将栈顶两个 double 型数值相加并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x64</td>
-<td>isub</td>
-<td>将栈顶两个 int 型数值相减并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x65</td>
-<td>lsub</td>
-<td>将栈顶两个 long 型数值相减并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x66</td>
-<td>fsub</td>
-<td>将栈顶两个 float 型数值相减并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x67</td>
-<td>dsub</td>
-<td>将栈顶两个 double 型数值相减并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x68</td>
-<td>imul</td>
-<td>将栈顶两个 int 型数值相乘并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>x069</td>
-<td>lmul</td>
-<td>将栈顶两个 long 型数值相乘并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x6a</td>
-<td>fmul</td>
-<td>将栈顶两个 float 型数值相乘并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x6b</td>
-<td>dmul</td>
-<td>将栈顶两个 double 型数值相乘并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x6c</td>
-<td>idiv</td>
-<td>将栈顶两个 int 型数值相除并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x6d</td>
-<td>ldiv</td>
-<td>将栈顶两个 long 型数值相除并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x6e</td>
-<td>fdiv</td>
-<td>将栈顶两个 float 型数值相除并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x6f</td>
-<td>ddiv</td>
-<td>将栈顶两个 double 型数值相除并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x70</td>
-<td>irem</td>
-<td>将栈顶两个int 型数值作取模运算并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x71</td>
-<td>lrem</td>
-<td>将栈顶两个long 型数值作取模运算并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x72</td>
-<td>frem</td>
-<td>将栈顶两个float 型数值作取模运算并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x73</td>
-<td>drem</td>
-<td>将栈顶两个double 型数值作取模运算并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x74</td>
-<td>ineg</td>
-<td>将栈顶两个int 型数值取负并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x75</td>
-<td>lneg</td>
-<td>将栈顶两个long 型数值取负并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x76</td>
-<td>fneg</td>
-<td>将栈顶两个float 型数值取负并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x77</td>
-<td>dneg</td>
-<td>将栈顶两个double 型数值取负并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x78</td>
-<td>ishl</td>
-<td>将 int 型数值取左移指定位数并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x79</td>
-<td>lshl</td>
-<td>将 long 型数值取左移指定位数并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x7a</td>
-<td>ishr</td>
-<td>将 int 型数值（带符号）取右移指定位数并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x7b</td>
-<td>lshr</td>
-<td>将 long 型数值（带符号）取右移指定位数并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x7c</td>
-<td>iushr</td>
-<td>将 int 型数值（无符号）取右移指定位数并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x7d</td>
-<td>lushr</td>
-<td>将 long 型数值（无符号）取右移指定位数并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x7e</td>
-<td>iand</td>
-<td>将栈顶两 int 型数值作 按位与 并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x7f</td>
-<td>land</td>
-<td>将栈顶两 long 型数值作 按位与 并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x80</td>
-<td>ior</td>
-<td>将栈顶两 int 型数值作 按位或 并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x81</td>
-<td>lor</td>
-<td>将栈顶两 long 型数值作 按位或 并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x82</td>
-<td>ixor</td>
-<td>将栈顶两 int 型数值作 按位异或 并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x83</td>
-<td>lxor</td>
-<td>将栈顶两 long 型数值作 按位异或 并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x84</td>
-<td>iinc</td>
-<td>将指定int 型数值增加指定值（如 i++，i—，j += 1等）</td>
-</tr>
-<tr>
-<td>0x94</td>
-<td>lcmp</td>
-<td>比较栈顶两long型数值大小，并将结果（1，0，-1）压入栈顶</td>
-</tr>
-<tr>
-<td>0x95</td>
-<td>fcmpl</td>
-<td>比较栈顶两float型数值大小，并将结果（1，0，-1）压入栈顶；当其中一个数值为NaN时，将-1压入栈顶</td>
-</tr>
-<tr>
-<td>0x96</td>
-<td>fcmpg</td>
-<td>比较栈顶两 float 型数值大小，并将结果（1，0，-1）压入栈顶；当其中一个数值为NaN时，将1压入栈顶</td>
-</tr>
-<tr>
-<td>0x97</td>
-<td>dcmpl</td>
-<td>比较栈顶两double 型数值大小，并将结果（1，0，-1）压入栈顶；当其中一个数值为NaN时，将-1压入栈顶</td>
-</tr>
-<tr>
-<td>0x98</td>
-<td>dcmpg</td>
-<td>比较栈顶两 double 型数值大小，并将结果（1，0，-1）压入栈顶；当其中一个数值为NaN时，将1压入栈顶</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>概括来说就是下面这几种分类</p>
-<p>加法指令：iadd、ladd、fadd、dadd<br>减法指令：isub、lsub、fsub、dsub<br>乘法指令：imul、lmul、fmul、dmul<br>除法指令：idiv、ldiv、fdiv、ddiv<br>求余指令：irem、lrem、frem、drem<br>取反指令：ineg、lneg、fneg、dneg<br>位移指令：ishl、ishr、iushr、lshl、lshr、lushr<br>按位或指令：ior、lor<br>按位与指令：iand、land<br>按位异或指令：ixor、lxor<br>局部变量自增指令：iinc<br>比较指令：dcmpg、dcmpl、fcmpg、fcmpl、lcmp </p>
-<p>Java 虚拟机没有明确规定整型数据溢出的情况，但是规定了在处理整型数据时，只有除法指令（idiv 和 ldiv）以及求余指令（irem 和 lrem）出现除数为零时会导致虚拟机抛出异常，如果发生了这种情况，虚拟机将会抛出 ArithmeitcException 异常。 例如下面的代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> num = Integer.MAX_VALUE ;		<span class="comment">//获得int的最大值</span></span><br><span class="line">        System.out.println(<span class="string">"num = "</span>+num);</span><br><span class="line">        System.out.println(<span class="string">"num+1 = "</span>+(num+<span class="number">1</span>));</span><br><span class="line">        System.out.println(<span class="string">"num+2 = "</span>+(num+<span class="number">2</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>得到的结果</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num = 2147483647</span><br><span class="line">num+1 = -2147483648</span><br><span class="line">num+2 = -2147483647</span><br></pre></td></tr></table></figure>
-<p>这段代码获取了int型数据的最大值，并在最大值的基础上进行了加法运算，程序不会报错，但结果和预期却截然相反，其原因就是整型数据出现了溢出。</p>
-<p>Java 虚拟机在处理浮点数运算时，不会抛出任何运行时异常，当一个操作产生溢出时，将会使用有符号的无穷大来表示，如果某个操作结果没有明确的数学定义的话，将会时候 NaN 值来表示。所有使用 NaN 值作为操作数的算术操作，结果都会返回 NaN 。</p>
-<h4 id="8-类型转换指令"><a href="#8-类型转换指令" class="headerlink" title="(8) . 类型转换指令"></a>(8) . 类型转换指令</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>字节码</th>
-<th>指令助记符</th>
-<th>指令含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0x85</td>
-<td>i2l</td>
-<td>将栈顶 int 型数值强制转换成 long 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x86</td>
-<td>i2f</td>
-<td>将栈顶 int 型数值强制转换成 float 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x87</td>
-<td>i2d</td>
-<td>将栈顶 int 型数值强制转换成 double 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x88</td>
-<td>l2i</td>
-<td>将栈顶 long 型数值强制转换成 int 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x89</td>
-<td>l2f</td>
-<td>将栈顶 long 型数值强制转换成 float 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x8a</td>
-<td>l2d</td>
-<td>将栈顶 long 型数值强制转换成 double 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x8b</td>
-<td>f2i</td>
-<td>将栈顶 float 型数值强制转换成 int 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x8c</td>
-<td>f2l</td>
-<td>将栈顶 float 型数值强制转换成 long 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x8d</td>
-<td>f2d</td>
-<td>将栈顶 float 型数值强制转换成 double 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x8e</td>
-<td>d2i</td>
-<td>将栈顶 double 型数值强制转换成 int 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x8f</td>
-<td>d2l</td>
-<td>将栈顶 double 型数值强制转换成 long 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x90</td>
-<td>d2f</td>
-<td>将栈顶 double 型数值强制转换成 float 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x91</td>
-<td>i2b</td>
-<td>将栈顶 int 型数值强制转换成 byte 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x92</td>
-<td>i2c</td>
-<td>将栈顶 int 型数值强制转换成 char 型数值并将结果压入栈顶</td>
-</tr>
-<tr>
-<td>0x93</td>
-<td>i2s</td>
-<td>将栈顶 int 型数值强制转换成 short 型数值并将结果压入栈顶</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>这里需要注意的是强制转换可能会丢失精度的问题</p>
-<h4 id="9-方法调用与返回指令"><a href="#9-方法调用与返回指令" class="headerlink" title="(9) . 方法调用与返回指令"></a>(9) . 方法调用与返回指令</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>字节码</th>
-<th>指令助记符</th>
-<th>指令含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0xb6</td>
-<td>invokevirtual</td>
-<td>调用实例方法</td>
-</tr>
-<tr>
-<td>0xb7</td>
-<td>invokespecial</td>
-<td>调用超类构造方法，实例初始化方法，私有方法</td>
-</tr>
-<tr>
-<td>0xb8</td>
-<td>invokestatic</td>
-<td>调用静态方法</td>
-</tr>
-<tr>
-<td>0xb9</td>
-<td>invokeinterface</td>
-<td>调用接口方法</td>
-</tr>
-<tr>
-<td>0xba</td>
-<td>invokedynamic</td>
-<td>调用动态方法</td>
-</tr>
-<tr>
-<td>0xac</td>
-<td>ireturn</td>
-<td>从当前方法返回 int</td>
-</tr>
-<tr>
-<td>0xad</td>
-<td>lreturn</td>
-<td>从当前方法返回 long</td>
-</tr>
-<tr>
-<td>0xae</td>
-<td>freturn</td>
-<td>从当前方法返回 float</td>
-</tr>
-<tr>
-<td>0xaf</td>
-<td>dreturn</td>
-<td>从当前方法返回 double</td>
-</tr>
-<tr>
-<td>0xb1</td>
-<td>areturn</td>
-<td>从当前方法返回对象引用</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>invokevirtual 指令用于调用对象的实例方法，根据对象的实际类型进行分派（虚方法分派），这也是 Java 语言中最常见的方法分派方式。 返回类型中 ，返回类型为boolean、byte、char、short 和 int 类型时都通过ireturn指令实现。</p>
-<h4 id="10-异常"><a href="#10-异常" class="headerlink" title="(10) . 异常"></a>(10) . 异常</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>字节码</th>
-<th>指令助记符</th>
-<th>指令含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0xbf</td>
-<td>athrow</td>
-<td>将栈顶的异常抛出</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="2-如何通过class文件查看指令代码"><a href="#2-如何通过class文件查看指令代码" class="headerlink" title="2 . 如何通过class文件查看指令代码"></a>2 . 如何通过class文件查看指令代码</h3><p>这个方法通过一个指令即可，以windows系统为例，首先打开windows的终端，然后进入到.class文件所在的目录，通过 javap -c 文件名 即可查看指令代码。例如下面的代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m2 = -<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> m0 =<span class="number">5</span>;</span><br><span class="line">        <span class="keyword">int</span> n = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> m = <span class="number">6</span>;</span><br><span class="line">        <span class="keyword">int</span> a1 = <span class="number">128</span>;</span><br><span class="line">        <span class="keyword">int</span> a2 = <span class="number">32768</span>;</span><br><span class="line">        <span class="keyword">long</span> k1 = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">long</span> k2 = <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">double</span> d = <span class="number">1</span>;</span><br><span class="line">        Integer ii = <span class="keyword">new</span> Integer(<span class="number">8</span>);</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (Test.class)&#123;</span><br><span class="line">                <span class="keyword">int</span> x = m/n;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (NullPointerException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后通过打开终端</p>
-<p><img src="/blog/2018/06/10/虚拟机指令集/jvmcode1.png" alt=""></p>
-<p>回车之后就可以看到指令代码了，具体结果如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">F:\workSpace\ideaSpace\busted\out\production\busted\com\lsj\test&gt;javap -c Test</span><br><span class="line">Compiled from &quot;Test.java&quot;</span><br><span class="line">public class com.lsj.test.Test &#123;</span><br><span class="line">  public com.lsj.test.Test();</span><br><span class="line">    Code:</span><br><span class="line">       0: aload_0</span><br><span class="line">       1: invokespecial #1                  // Method java/lang/Object.&quot;&lt;init&gt;&quot;:()V</span><br><span class="line">       4: return</span><br><span class="line"></span><br><span class="line">  public static void main(java.lang.String[]);</span><br><span class="line">    Code:</span><br><span class="line">       0: iconst_m1</span><br><span class="line">       1: istore_1</span><br><span class="line">       2: iconst_5</span><br><span class="line">       3: istore_2</span><br><span class="line">       4: iconst_2</span><br><span class="line">       5: istore_3</span><br><span class="line">       6: bipush        6</span><br><span class="line">       8: istore        4</span><br><span class="line">      10: sipush        128</span><br><span class="line">      13: istore        5</span><br><span class="line">      15: ldc           #2                  // int 32768</span><br><span class="line">      17: istore        6</span><br><span class="line">      19: lconst_1</span><br><span class="line">      20: lstore        7</span><br><span class="line">      22: ldc2_w        #3                  // long 5l</span><br><span class="line">      25: lstore        9</span><br><span class="line">      27: dconst_1</span><br><span class="line">      28: dstore        11</span><br><span class="line">      30: new           #5                  // class java/lang/Integer</span><br><span class="line">      33: dup</span><br><span class="line">      34: bipush        8</span><br><span class="line">      36: invokespecial #6                  // Method java/lang/Integer.&quot;&lt;init&gt;&quot;:(I)V</span><br><span class="line">      39: astore        13</span><br><span class="line">      41: ldc           #7                  // class com/lsj/test/Test</span><br><span class="line">      43: dup</span><br><span class="line">      44: astore        14</span><br><span class="line">      46: monitorenter</span><br><span class="line">      47: iload         4</span><br><span class="line">      49: iload_3</span><br><span class="line">      50: idiv</span><br><span class="line">      51: istore        15</span><br><span class="line">      53: aload         14</span><br><span class="line">      55: monitorexit</span><br><span class="line">      56: goto          67</span><br><span class="line">      59: astore        16</span><br><span class="line">      61: aload         14</span><br><span class="line">      63: monitorexit</span><br><span class="line">      64: aload         16</span><br><span class="line">      66: athrow</span><br><span class="line">      67: goto          87</span><br><span class="line">      70: astore        14</span><br><span class="line">      72: aload         14</span><br><span class="line">      74: invokevirtual #9                  // Method java/lang/NullPointerException.printStackTrace:()V</span><br><span class="line">      77: goto          87</span><br><span class="line">      80: astore        14</span><br><span class="line">      82: aload         14</span><br><span class="line">      84: invokevirtual #11                 // Method java/lang/Exception.printStackTrace:()V</span><br><span class="line">      87: return</span><br><span class="line">    Exception table:</span><br><span class="line">       from    to  target type</span><br><span class="line">          47    56    59   any</span><br><span class="line">          59    64    59   any</span><br><span class="line">          41    67    70   Class java/lang/NullPointerException</span><br><span class="line">          41    67    80   Class java/lang/Exception</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>通过指令代码就能看到java代码编译之后每一步究竟做了什么事情了，也方便我们去解决问题。</p>
+<p>配置slaves文件，在文件底部加入work节点的Ip吗，内容如下</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># A Spark Worker will be started on each of the machines listed below.</span></span><br><span class="line"><span class="comment"># localhost</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">31.136</span></span><br><span class="line"><span class="number">192.168</span>.<span class="number">31.137</span></span><br></pre></td></tr></table></figure>
+<p>上述SCALA_HOME，SPARK_HOME，spark-env.sh，slaves文件的配置，可复制一份发送给所有Worker节点。不需更改，与Master节点保持完全一致。</p>
+<h3 id="6-启动Spark"><a href="#6-启动Spark" class="headerlink" title="6  . 启动Spark"></a>6  . 启动Spark</h3><p>先启动Hadoop，进入 /user/hadoop/hadoop-2.8.4/sbin 目录执行 start-all.sh 脚本</p>
+<p><img src="/blog/2018/08/12/CentOS搭建Spark集群/spark3.png" alt=""></p>
+<p>再启动Spark，进入 /user/spark/spark/spark-2.3.1-bin-hadoop2.7/sbin 目录执行 start-all.sh 脚本</p>
+<p><img src="/blog/2018/08/12/CentOS搭建Spark集群/spark5.png" alt=""></p>
+<p>spark已经成功启动完成，可通过jps命令查看状态</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@centos1 sbin]# jps</span><br><span class="line">1632 ResourceManager</span><br><span class="line">1321 NameNode</span><br><span class="line">1916 Master</span><br><span class="line">1996 Jps</span><br></pre></td></tr></table></figure>
+<p>可看到有Master进程，同时可访问Web UI网址：<a href="http://192.168.31.135:8080/" target="_blank" rel="noopener">http://192.168.31.135:8080/</a> </p>
+<p><img src="/blog/2018/08/12/CentOS搭建Spark集群/spark4.png" alt=""></p>
+<p>至此Spark集群搭建已经全部完成，下篇博客，将使用官方的单词计数例子，在自己搭建的集群上跑一跑</p>
 
       
 
@@ -1289,7 +403,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
         		</li>
       		
 		</ul>
@@ -1345,7 +463,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://qr.liantu.com/api.php?text=https://lushunjian.github.io/blog/2018/06/10/虚拟机指令集/" alt="微信分享二维码">
+      <img src="http://qr.liantu.com/api.php?text=https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -1359,18 +477,9 @@
   
 <nav id="article-nav">
   
-    <a href="/blog/2018/06/16/虚拟机的类文件结构/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          虚拟机的类文件结构
-        
-      </div>
-    </a>
   
-  
-    <a href="/blog/2018/06/03/Hexo-github搭建个人博客/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hexo和Github搭建个人博客</div>
+    <a href="/blog/2018/08/11/CentOS搭建Hadoop集群/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">CentOS搭建Hadoop集群</div>
       <i class="icon-circle-right"></i>
     </a>
   
