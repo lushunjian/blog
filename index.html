@@ -208,11 +208,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
         		</li>
       		
 		</ul>
@@ -305,11 +305,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
         		</li>
       		
 		</ul>
@@ -378,7 +378,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，也是Hadoop和Hbase的重要组件 。ZooKeeper的选主过程是以Fast Paxos算法为基础的。前面我有文章写过Paxos算法，Paxos 算法存在活锁的问题，即当有多个proposer交错提交时，有可能互相排斥导致没有一个proposer能提交成功，而Fast Paxos对Paxos进行了优化。通过选举产生一个leader (领导者)，只有leader才能提交proposer，具体算法可见Fast Paxos 。因此，要想弄懂ZooKeeper首先得对Fast Paxos有所了解 。因为此算法的特性，所以要求Zookeeper集群的节点数最好为奇数个，而且算法保证如果集群中Leader宕机，只要剩余节点在总节点数的半数以上，就会重新选主，继续对外提供服务。也正是由于这个原因，使得Zookeeper是一个高效的分布式协调服务，可以提供配置信息管理、命名、分布式同步、集群管理、数据库切换等服务，被广泛应用于分布式应用场景中。本人在工作中也使用了很久，故此记录一下。</p>
-<p><img src="/blog/2018/08/05/CentOS搭建zookeeper集群/zookeeper.jpg" alt=""></p>
         
           <a class="article-more-a" href="/blog/2018/08/05/CentOS搭建zookeeper集群/#more">more >></a>
         
@@ -475,7 +474,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Linux是一个诞生于网络、成长于网络且成熟于网络的奇特的免费的操作系统，用户可以通过网络或其他途径免费获得 并可以任意修改其源代码，是一个基于POSIX和UNIX的多用户、多任务、支持多线程和多CPU的操作系统。它能运行主要的UNIX工具软件、应用程序和网络协议。它支持32位和64位硬件。Linux支持多用户，各个用户对于自己的文件设备有自己特殊的权利，保证了各用户之间互不影响。 Linux继承了Unix以网络为核心的设计思想，是一个性能稳定的多用户网络操作系统。 正是由于它开放源代码，因此来自全世界的大批知名的、不知名的电脑黑客、编程人员参与了Linux的修改、编写工作，程序员可以根据自己的兴趣和灵感对其进行改变，这让Linux吸收了无数程序员的精华，不断壮大 。因此出现了很多Linux的发行版本，主要的几个发行版本有Fedora  ，Debian ，Ubuntu ，Red Hat ，Centos 。其中人气最高的就是Ubuntu 和Red Hat系列了，Ubuntu是一个以桌面应用为主的Linux操作系统，中文译作乌班图 。而Red Hat Linux是公共环境中表现上佳的服务器。它拥有自己的公司，能向用户提供一套完整的服务，这使得它特别适合在公共网络中使用 。而Centos则是<a href="https://baike.baidu.com/item/RHEL" target="_blank" rel="noopener">RHEL</a>（Red Hat Enterprise Linux）源代码再编译的产物，而且在RHEL的基础上修正了不少已知的 Bug ，相对于其他 Linux 发行版，其稳定性值得信赖。 </p>
-<p><img src="/blog/2018/08/04/VMware中安装Centos7/centos.png" alt=""></p>
         
           <a class="article-more-a" href="/blog/2018/08/04/VMware中安装Centos7/#more">more >></a>
         
@@ -1074,7 +1072,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1082,7 +1080,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1090,7 +1088,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1280,5 +1278,26 @@ MathJax.Hub.Queue(function() {
 </div>
   </div>
   <img style="display:none" src="/blog/backyasuo.jpg"></img>
+  <script type="text/javascript">
+  //滚动样式
+		var $overlay = $("#mobile-nav .overlay");
+		var $header = $(".js-mobile-header");
+		window.onscroll = function(){
+		    var scrollTop = document.documentElement.scrollTop + document.body.scrollTop;
+		    if(scrollTop >= 69){
+		    	$overlay.addClass("fixed");
+		    }else{
+		    	$overlay.removeClass("fixed");
+		    }
+		    if(scrollTop >= 160){
+		    	$header.removeClass("hide").addClass("fixed");
+		    }else{
+		    	$header.addClass("hide").removeClass("fixed");
+		    }
+		};
+		$header[0].addEventListener("touchstart", function(){
+			$('html, body').animate({scrollTop:0}, 'slow');
+		}, false);
+	</script>
 </body>
 </html>
