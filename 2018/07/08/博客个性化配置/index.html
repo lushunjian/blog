@@ -17,7 +17,12 @@
 <meta property="og:description" content="博客搭建好后，总会有一些个性化的想法。比如做网站的访问量统计，文章评论系统，文章分享功能，或是在博客主页放一个音乐播放器，让别人进来浏览博客的同时，还伴随着动听的音乐。大部分博客主题都兼容这些功能，只不过需要自己去配置。下面是我做个性化博客配置时踩的坑，供大家参考参考。 1 . 访问量统计访问量统计功能可以用百度的站长统计、leancloud，还有不蒜子，这里我用的不蒜子，主要原因是它很简单易用，">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/fangke.png">
-<meta property="og:updated_time" content="2018-08-01T15:14:50.445Z">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/Hexo-github搭建个人博客/blogtalk.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/Hexo-github搭建个人博客/blogtalk1.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/Hexo-github搭建个人博客/blogtalk3.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/Hexo-github搭建个人博客/blogtalk2.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/Hexo-github搭建个人博客/blogtalk4.png">
+<meta property="og:updated_time" content="2018-08-18T00:03:33.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客个性化配置">
 <meta name="twitter:description" content="博客搭建好后，总会有一些个性化的想法。比如做网站的访问量统计，文章评论系统，文章分享功能，或是在博客主页放一个音乐播放器，让别人进来浏览博客的同时，还伴随着动听的音乐。大部分博客主题都兼容这些功能，只不过需要自己去配置。下面是我做个性化博客配置时踩的坑，供大家参考参考。 1 . 访问量统计访问量统计功能可以用百度的站长统计、leancloud，还有不蒜子，这里我用的不蒜子，主要原因是它很简单易用，">
@@ -223,7 +228,43 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">title: </span><br><span class="line">date: 2018-07-28 08:11:02</span><br><span class="line">mathjax: true</span><br><span class="line">tags:</span><br></pre></td></tr></table></figure>
 <p>这里设置是只有在用到公式的页面才会有，没用到公式就不需要设置。这样不需要渲染数学公式的页面的访问速度就不会受到影响了。 </p>
 <p>更多关于在Markdown中使用数学公式的用法参考链接：<a href="https://www.zybuluo.com/codeep/note/163962" target="_blank" rel="noopener">https://www.zybuluo.com/codeep/note/163962</a></p>
-<h3 id="4-评论系统"><a href="#4-评论系统" class="headerlink" title="4 . 评论系统"></a>4 . 评论系统</h3>
+<h3 id="4-评论系统"><a href="#4-评论系统" class="headerlink" title="4 . 评论系统"></a>4 . 评论系统</h3><p>第三方评论系统很多，例如多说，畅言等。多说，网易云跟贴都已经下线 ，目前可用的评论系统大概有 ：</p>
+<p><a href="https://www.hypercomments.com/" target="_blank" rel="noopener">HyperComments </a>：来自俄罗斯的评论系统，目前只支持谷歌账号登录，国内有万里长城阻隔，翻墙注意安全 ！</p>
+<p><a href="https://livere.com/" target="_blank" rel="noopener">来必力 </a>：来自韩国，使用邮箱注册 。这个还可以，本来打算用这个的</p>
+<p><a href="https://github.com/xCss/Valine" target="_blank" rel="noopener">Valine </a>：基于Leancloud的极简风评论系统 </p>
+<p><a href="http://changyan.kuaizhan.com/" target="_blank" rel="noopener">畅言 </a>：国产，符合大部分国人的风格和需求，但是安装需要备案号 ，比较麻烦</p>
+<p><a href="https://gitalk.github.io/" target="_blank" rel="noopener">gitalk</a>：一个基于 Github Issue 和 Preact 开发的评论插件，博客的评论就是github上对应repository的Issue</p>
+<p>最后经过对比，最终选择了gitalk。样式美观，功能也比较实用，评论支持Markdown 语法。</p>
+<p><strong>引用</strong></p>
+<p>官方提供了两种方式的引用</p>
+<ul>
+<li>links</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- or --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://unpkg.com/gitalk/dist/gitalk.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/gitalk/dist/gitalk.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>npm install</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm i --save gitalk</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">'gitalk/dist/gitalk.css'</span></span><br><span class="line"><span class="keyword">import</span> Gitalk <span class="keyword">from</span> <span class="string">'gitalk'</span></span><br></pre></td></tr></table></figure>
+<p><strong>注册OAuth application</strong></p>
+<p>既然使用github的issue，那么肯定要得到github的授权，这步操作就是做这个事情。如果没有需先去注册，注册地址：<a href="https://github.com/settings/applications/new" target="_blank" rel="noopener">Register a new OAuth application</a>  。</p>
+<p><img src="/blog/2018/07/08/博客个性化配置/Hexo-github搭建个人博客/blogtalk.png" alt=""></p>
+<p>注册后来到如下界面</p>
+<p><img src="/blog/2018/07/08/博客个性化配置/Hexo-github搭建个人博客/blogtalk1.png" alt=""></p>
+<p>在这里会得到Client ID和Client Secret两个值，这两个值是后面需要用到的。</p>
+<p><strong>配置</strong></p>
+<p>进入yilia主题的文件路径，打开 /yilia/layout_partial/目录下的article.ejs文件。拉至底部，可以发现原作者已经为我们集成了很多评论系统，如下</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments)&#123; %&gt;</span><br><span class="line"></span><br><span class="line">  &lt;% <span class="keyword">if</span> (theme.duoshuo)&#123; %&gt;</span><br><span class="line">  &lt;%- partial(<span class="string">'post/duoshuo'</span>, &#123;</span><br><span class="line">      key: post.slug,</span><br><span class="line">      title: post.title,</span><br><span class="line">      url: config.url+url_for(post.path)</span><br><span class="line">    &#125;) %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;% <span class="keyword">if</span> (theme.wangyiyun)&#123; %&gt;</span><br><span class="line">  &lt;%- partial(<span class="string">'post/wangyiyun'</span>, &#123;</span><br><span class="line">      key: post.slug,</span><br><span class="line">      title: post.title,</span><br><span class="line">      url: config.url+url_for(post.path)</span><br><span class="line">    &#125;) %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+<p>在 &lt;% if (!index &amp;&amp; post.comments){ %&gt; 的下一行加入gitalk的初始化代码，如下所示</p>
+<figure class="highlight jsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments)&#123; %&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!--  评论插件 --&gt;</span><br><span class="line">  &lt;% <span class="keyword">if</span> (theme.gitalk.enable)&#123; %&gt;</span><br><span class="line">	&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"gitalk"</span> style=<span class="string">"padding: 0 40px;"</span>&gt;</span><br><span class="line">	  &lt;div id="gitalk-container"&gt;&lt;/div&gt;   </span><br><span class="line">	  &lt;link rel=<span class="string">'stylesheet'</span> href=<span class="string">"/blog/gitalk/gitalk.css"</span>&gt;</span><br><span class="line">	  &lt;script src="/blog/gitalk/gitalk.min.js"&gt;&lt;/script&gt;</span><br><span class="line">	   &lt;script src="/blog/gitalk/md5.min.js"&gt;&lt;/script&gt;</span><br><span class="line">	  &lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">		  var gitalk = <span class="keyword">new</span> Gitalk(&#123;</span><br><span class="line">			clientID:  <span class="string">'&lt;%=theme.gitalk.clientID%&gt;'</span>, </span><br><span class="line">			clientSecret: <span class="string">'&lt;%=theme.gitalk.clientSecret%&gt;'</span>,</span><br><span class="line">			repo: <span class="string">'&lt;%=theme.gitalk.repo%&gt;'</span>, </span><br><span class="line">			id: md5(location.pathname),</span><br><span class="line">			owner: <span class="string">'&lt;%=theme.gitalk.owner%&gt;'</span>, </span><br><span class="line">			admin: <span class="string">'&lt;%=theme.gitalk.admin%&gt;'</span>, </span><br><span class="line">			distractionFreeMode: &lt;%=theme.gitalk.distractionFreeMode%&gt;,</span><br><span class="line">		  &#125;)</span><br><span class="line">		  gitalk.render(<span class="string">'gitalk-container'</span>)</span><br><span class="line">	  &lt;/script&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">  &lt;% <span class="keyword">if</span> (theme.duoshuo)&#123; %&gt;</span><br><span class="line">  &lt;%- partial(<span class="string">'post/duoshuo'</span>, &#123;</span><br><span class="line">      key: post.slug,</span><br><span class="line">      title: post.title,</span><br><span class="line">      url: config.url+url_for(post.path)</span><br><span class="line">    &#125;) %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;% <span class="keyword">if</span> (theme.wangyiyun)&#123; %&gt;</span><br><span class="line">  &lt;%- partial(<span class="string">'post/wangyiyun'</span>, &#123;</span><br><span class="line">      key: post.slug,</span><br><span class="line">      title: post.title,</span><br><span class="line">      url: config.url+url_for(post.path)</span><br><span class="line">    &#125;) %&gt;</span><br><span class="line">  &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+<p>这里我为了简单，直接把代码放这里了。实际可以像作者一样，在post文件夹下新建一个gitalk.ejs文件，把这段代码，然后通过引用的方式引入进来。然后就是最后一步了，还需要在主题的 _config.xml 文件下加入gitalk的配置属性。如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#6 Gitalk</span><br><span class="line">gitalk: </span><br><span class="line">  #用来做启用判断可以不用</span><br><span class="line">  enable: <span class="literal">true</span>   </span><br><span class="line">  #your clientID，在github注册得到</span><br><span class="line">  clientID: <span class="number">848</span>f5278f2459aaa9a50  </span><br><span class="line">  #your clientSecret 在github注册得到</span><br><span class="line">  clientSecret: <span class="string">'db9688596567c9ba2786f5ba635395562e0df353'</span>  </span><br><span class="line">  #存储你评论 issue 的 Github 仓库名（建议直接用 GitHub Page 的仓库名）</span><br><span class="line">  repo: <span class="string">'blog'</span></span><br><span class="line">  #github用户名</span><br><span class="line">  owner: <span class="string">'lushunjian'</span>  </span><br><span class="line">  #这个仓库的管理员，可以有多个，用数组表示，一般写自己</span><br><span class="line">  admin: [<span class="string">'lushunjian'</span>]</span><br><span class="line">  #无干扰模式开启</span><br><span class="line">  distractionFreeMode: <span class="literal">true</span></span><br><span class="line">  #页面的唯一标识，gitalk 会根据这个标识自动创建的issue的标签,我们使用页面的相对路径作为标识</span><br><span class="line">  id: <span class="string">'window.location.pathname'</span></span><br></pre></td></tr></table></figure>
+<p>更多属性设置，可进入官方查看。至此评论系统配置完毕，启动看一下效果</p>
+<p><img src="/blog/2018/07/08/博客个性化配置/Hexo-github搭建个人博客/blogtalk3.png" alt=""></p>
+<p>这里需要登录一下，对gitalk进行初始化，每篇文章都需如此。初始化完成后，会在github对应的仓库中创建队应的issues</p>
+<p><img src="/blog/2018/07/08/博客个性化配置/Hexo-github搭建个人博客/blogtalk2.png" alt=""></p>
+<p>此时再看博客效果如下图</p>
+<p><img src="/blog/2018/07/08/博客个性化配置/Hexo-github搭建个人博客/blogtalk4.png" alt=""></p>
+
       
 
 	  <!-- 博客主题自带打赏样式注释 -->
@@ -587,11 +628,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">实践</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,10 +645,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
