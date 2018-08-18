@@ -305,11 +305,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
         		</li>
       		
 		</ul>
@@ -572,7 +572,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>​    最近公司培训，讲到了有关于长连接的负载均衡解决方案，确有体会，故此记录一下。在之前做负载均衡一般针对的是短连接，短连接的场景在实际应用中非常普遍。浏览器中大部分的请求都是短连接，例如用户登录，注册。商城的订单，付款等功能都属于短连接。短连接的特点就是无状态，连接时间短，长则三四秒，短则几毫秒。短连接的负载均衡很容易解决，开源中间件也比较多,例如nginx，F5等。而长连接的负载均衡解决方案则比较少了，主要原因是长连接相对于短连接来说应用面比较窄。一般是定制化需求会使用长连接。而生活中长连接作为普遍的应用就是直播系统了，近几年直播这种娱乐方式也越来越受到年轻人的喜爱，虎牙，斗鱼等直播平台如雨后春笋般涌现。我所在的公司主要从事安防行业，其中最为普遍的业务是摄像头的录像，在城市中每个街头，小区，公交地铁上的摄像头都会接入到公安体系中，其中录像不但能实时播放而且还会保存到服务器中，方便公安人员破案时可以随时查看录像。由于摄像机是24小时录像的，所以在这种场景下摄像机是使用长连接，而且一旦摄像机和某个服务器节点建立连接，就会长期和这个服务器保持着连接。一个城市的摄像头成千上万，后台不但需要考虑并发，还要考虑负载均衡。传统的负载均衡算法如轮询，哈希，随机等算法并不适用于长连接的一些业务场景。这里长连接可比作一个持续进行的任务，那么长连接的负载均衡就是每个任务的资源调度，最终使每个节点上的资源，均匀的分布在这些任务上。</p>
-<p><img src="/blog/2018/07/28/长连接的负载均衡/fzjh.jpg" alt=""></p>
         
           <a class="article-more-a" href="/blog/2018/07/28/长连接的负载均衡/#more">more >></a>
         
@@ -670,7 +669,6 @@
       
         <p>现今的社会是一个高速发展的社会，科技发达，信息流通，人们之间的交流越来越密切，生活也越来越方便，大数据就是这个高科技时代的产物。创办人马云来台演讲中就提到，未来的时代将不是IT时代，而是DT的时代，DT就是Data Technology数据科技，显示大数据对于阿里巴巴集团来说举足轻重。 有人把数据比喻为蕴藏能量的煤矿。煤炭按照性质有焦煤、无烟煤、肥煤、贫煤等分类，而露天煤矿、深山煤矿的挖掘成本又不一样。与此类似，大数据并不在“大”，而在于“有用”。价值含量、挖掘成本比数量更为重要。对于很多行业而言，如何利用这些大规模数据是赢得竞争的关键。 大数据包括结构化、半结构化和非结构化数据，非结构化数据越来越成为数据的主要部分。 其主要来源是人们多样化的社交方式，由于生活水平的提高，人们也越来越在乎精神层面的享受。例如抖音短视频，QQ微信的视频通话。语音通话，网易云音乐，各色各样的直播平台，这些终端产生的用户数据大都是非结构化数据。在这些数据中蕴含着巨大的财富，现在的中国有10多亿人口，超一半的网民。这样巨大的市场，可以说是得用户者得天下。很多APP都会有推荐功能，这其实就是大数据的一个应用场景，由于用户的历史数据就代表着用户的喜好习惯行为。所以如果获得用户的数据，并通过大数据的分析就可以把APP打造出一款很懂用户的APP，牢牢的抓住用户的心，从而抓住整个市场。</p>
 <p>大数据本身是个很宽泛的概念，就数据而言，大数据是指数据量已经大到单机处理不了的尺度。大数据一般是指处理PB级别以上的数据。PB是个什么概念的单位呢？1 TB= 1,024 GB ；1 PB = 1,024 TB ；1 EB = 1,024 PB  由这个单位换算可以看出PB级的数据是很大的，对个人而言，数据量基本就在GB级别。处理这些海量数据当然也不能使用传统的手段。在大数据领域，有一系列组件专门用来处理大数据，例如Spark，Hadoop等。下面就来认识一下大数据组件的生态圈吧</p>
-<p><img src="/blog/2018/07/15/大数据生态圈/bigdata.png" alt=""></p>
         
           <a class="article-more-a" href="/blog/2018/07/15/大数据生态圈/#more">more >></a>
         
@@ -1072,11 +1070,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1084,11 +1078,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1096,11 +1090,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">

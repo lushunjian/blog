@@ -16,15 +16,14 @@
 <meta property="og:site_name" content="一叶知秋">
 <meta property="og:description" content="​    最近公司培训，讲到了有关于长连接的负载均衡解决方案，确有体会，故此记录一下。在之前做负载均衡一般针对的是短连接，短连接的场景在实际应用中非常普遍。浏览器中大部分的请求都是短连接，例如用户登录，注册。商城的订单，付款等功能都属于短连接。短连接的特点就是无状态，连接时间短，长则三四秒，短则几毫秒。短连接的负载均衡很容易解决，开源中间件也比较多,例如nginx，F5等。而长连接的负载均衡解决方">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/28/长连接的负载均衡/fzjh.jpg">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/28/长连接的负载均衡/clj1.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/28/长连接的负载均衡/clj2.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/28/长连接的负载均衡/clj3.png">
-<meta property="og:updated_time" content="2018-08-01T14:16:05.138Z">
+<meta property="og:updated_time" content="2018-08-18T00:19:07.112Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="长连接的负载均衡">
 <meta name="twitter:description" content="​    最近公司培训，讲到了有关于长连接的负载均衡解决方案，确有体会，故此记录一下。在之前做负载均衡一般针对的是短连接，短连接的场景在实际应用中非常普遍。浏览器中大部分的请求都是短连接，例如用户登录，注册。商城的订单，付款等功能都属于短连接。短连接的特点就是无状态，连接时间短，长则三四秒，短则几毫秒。短连接的负载均衡很容易解决，开源中间件也比较多,例如nginx，F5等。而长连接的负载均衡解决方">
-<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/07/28/长连接的负载均衡/fzjh.jpg">
+<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/07/28/长连接的负载均衡/clj1.png">
   
     <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
   
@@ -196,7 +195,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>​    最近公司培训，讲到了有关于长连接的负载均衡解决方案，确有体会，故此记录一下。在之前做负载均衡一般针对的是短连接，短连接的场景在实际应用中非常普遍。浏览器中大部分的请求都是短连接，例如用户登录，注册。商城的订单，付款等功能都属于短连接。短连接的特点就是无状态，连接时间短，长则三四秒，短则几毫秒。短连接的负载均衡很容易解决，开源中间件也比较多,例如nginx，F5等。而长连接的负载均衡解决方案则比较少了，主要原因是长连接相对于短连接来说应用面比较窄。一般是定制化需求会使用长连接。而生活中长连接作为普遍的应用就是直播系统了，近几年直播这种娱乐方式也越来越受到年轻人的喜爱，虎牙，斗鱼等直播平台如雨后春笋般涌现。我所在的公司主要从事安防行业，其中最为普遍的业务是摄像头的录像，在城市中每个街头，小区，公交地铁上的摄像头都会接入到公安体系中，其中录像不但能实时播放而且还会保存到服务器中，方便公安人员破案时可以随时查看录像。由于摄像机是24小时录像的，所以在这种场景下摄像机是使用长连接，而且一旦摄像机和某个服务器节点建立连接，就会长期和这个服务器保持着连接。一个城市的摄像头成千上万，后台不但需要考虑并发，还要考虑负载均衡。传统的负载均衡算法如轮询，哈希，随机等算法并不适用于长连接的一些业务场景。这里长连接可比作一个持续进行的任务，那么长连接的负载均衡就是每个任务的资源调度，最终使每个节点上的资源，均匀的分布在这些任务上。</p>
-<p><img src="/blog/2018/07/28/长连接的负载均衡/fzjh.jpg" alt=""></p>
 <a id="more"></a> 
 <h3 id="1-长连接的特点"><a href="#1-长连接的特点" class="headerlink" title="1.长连接的特点"></a>1.长连接的特点</h3><p>由于业务场景不同，长连接的特点也不一样。不同的业务场景会有各种各样的特点，需要做定制化需求的开发，这里例举的摄像机长连接特点：</p>
 <p>1.每个长连接任务的时间长，短则几天，长则几个月。并且长期占用服务器的资源。<br>2.每个长连接任务消耗的资源不一样。以摄像机为例，不同规格的摄像机像素不一样。有标清，高清，超清之分。对应的就是流量带宽的区别，有2M，4M，8M之分。因此每个长连接任务占用的资源大小不一样的。<br>3.长连接任务启动时，初始化较慢，例如需要做认证，或是请求一些接口来获取数据。这样会导致做负载均衡时，并不能实时获取到节点的负载情况，出现几秒钟的延时。</p>
@@ -628,11 +626,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -640,11 +634,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -652,11 +646,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">

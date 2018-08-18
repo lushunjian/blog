@@ -16,15 +16,14 @@
 <meta property="og:site_name" content="一叶知秋">
 <meta property="og:description" content="​    Java是一门面向对象的编程语言，在编程语言排行榜中常年排行前三，由于语言的优势和特点如今已经成为开发中最流行最受欢迎的编程语言，特别是在后台服务器开发领域，由于其跨平台性和庞大的生态圈，几乎没有其他语言能够撼动它的霸主地位。Java发展也是相当迅速，如今已经到Java 10 了，吸收了其他语言的一些优势和特点，融入了很多新的特性 。Java主要分为三个方向： Java SE：Java">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/03/java虚拟机/java1.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/03/java虚拟机/jvm.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/03/java虚拟机/openJDK_home.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/03/java虚拟机/jvmStart.png">
-<meta property="og:updated_time" content="2018-06-17T03:03:14.378Z">
+<meta property="og:updated_time" content="2018-08-18T00:20:53.734Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一杯Java 不加糖">
 <meta name="twitter:description" content="​    Java是一门面向对象的编程语言，在编程语言排行榜中常年排行前三，由于语言的优势和特点如今已经成为开发中最流行最受欢迎的编程语言，特别是在后台服务器开发领域，由于其跨平台性和庞大的生态圈，几乎没有其他语言能够撼动它的霸主地位。Java发展也是相当迅速，如今已经到Java 10 了，吸收了其他语言的一些优势和特点，融入了很多新的特性 。Java主要分为三个方向： Java SE：Java">
-<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/06/03/java虚拟机/java1.png">
+<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/06/03/java虚拟机/jvm.png">
   
     <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
   
@@ -200,7 +199,6 @@
 <p><strong>Java EE</strong>：Java Enterprise Edition，即Java企业版，Java EE 是在 Java SE 的基础上构建的，它提供Web 服务、管理和通信 API ，是java技术应用最广泛的领域。主要用于B/S架构开发。</p>
 <p><strong>Java ME</strong>：Java Mirco Edition，即Java微型版，Java ME是对 Java SE 进行了精简，以提高运行效率，主要针对小型设备，移动设备以及嵌入式设备而构建，不过在移动设备上，现在基本已经被安卓代替了。</p>
 <p>Java虚拟机是整个java平台的基石，是java技术实现硬件无关和操作系统无关的关键环节，是java语言生成极小体积的编译代码的运行平台，是保护用户机器免受恶意代码侵袭的保护屏障。可以说JVM就是整个java体系的核心，在java中碰到的绝大部分问题都可以在JVM中找到答案。</p>
-<p><img src="/blog/2018/06/03/java虚拟机/java1.png" alt=""></p>
 <a id="more"></a> 
 <h2 id="一-什么是JVM"><a href="#一-什么是JVM" class="headerlink" title="一 . 什么是JVM"></a>一 . 什么是JVM</h2><p>​    想要弄清楚什么是java虚拟机，首先就得搞清楚计算机的虚拟化技术。虚拟化是将计算机的各种实体资源，CPU、网络、内存及磁盘等，予以抽象，然后使用软件的方式重新定义划分资源。相信做IT的都玩过VMware，在VMware中可以装多个虚拟机，多个虚拟机共享一台物理机硬件资源。实际上，软硬件资源并没有增加，只是提高了硬件的利用率，并且各个应用程序可以在各个独立的空间（客户机操作系统）内运行而互不影响。有了虚拟化之后，由于的应用程序由相应的客户机操作系统管理，且多个客户操作系统可以独立于主机的操作系统，运行在同一个硬件上，不需要适配硬件的特定体系结构。这通常通过增加一个虚拟化层来实现，该虚拟化层称为hypervisor或VMM(Virtual Machine Monitor 虚拟机监视器)</p>
 <p>虚拟化层可以在不同层面对硬件资源进行抽象，如下图所示：</p>
@@ -725,11 +723,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -737,11 +731,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -749,11 +743,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">

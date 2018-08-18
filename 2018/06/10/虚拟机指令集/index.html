@@ -16,13 +16,12 @@
 <meta property="og:site_name" content="一叶知秋">
 <meta property="og:description" content="​    Java虚拟机既然是一台虚拟的计算机，那必有一套完善指令集，指令由一个字节长度，代表某种特定操作含义的操作码构成。这里在最初接触计算机的时候，我是有一些疑问的。例如为什么计算机都有它的指令集，这些指令是怎么被CPU执行的。由于我当初学的是电子科学，包含模电数电，单片机等内容，其中单片机就是一个小型的片上系统，随着学习的深入这些疑问自然就迎刃而解了。我谈一下自己的理解，也顺便做一下记录。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/10/虚拟机指令集/heike.jpg">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/10/虚拟机指令集/jvmcode1.png">
-<meta property="og:updated_time" content="2018-06-10T23:51:19.535Z">
+<meta property="og:updated_time" content="2018-08-18T00:21:18.286Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟机指令集">
 <meta name="twitter:description" content="​    Java虚拟机既然是一台虚拟的计算机，那必有一套完善指令集，指令由一个字节长度，代表某种特定操作含义的操作码构成。这里在最初接触计算机的时候，我是有一些疑问的。例如为什么计算机都有它的指令集，这些指令是怎么被CPU执行的。由于我当初学的是电子科学，包含模电数电，单片机等内容，其中单片机就是一个小型的片上系统，随着学习的深入这些疑问自然就迎刃而解了。我谈一下自己的理解，也顺便做一下记录。">
-<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/06/10/虚拟机指令集/heike.jpg">
+<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/06/10/虚拟机指令集/jvmcode1.png">
   
     <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
   
@@ -195,7 +194,6 @@
       
         <p>​    Java虚拟机既然是一台虚拟的计算机，那必有一套完善指令集，指令由一个字节长度，代表某种特定操作含义的操作码构成。这里在最初接触计算机的时候，我是有一些疑问的。例如为什么计算机都有它的指令集，这些指令是怎么被CPU执行的。由于我当初学的是电子科学，包含模电数电，单片机等内容，其中单片机就是一个小型的片上系统，随着学习的深入这些疑问自然就迎刃而解了。我谈一下自己的理解，也顺便做一下记录。</p>
 <p>​    对于CPU而言它只认识0和1，对应的是数字电路中的高低电平，实现原理是把MOS管当做开关使用，MOS管是一种半导体晶体管，主要成分硅（这也是美国硅谷这个名字的由来吧）。通过MOS管可以实现各种寄存器，累加器，计数器，与非门，或非门等逻辑门电路。每一条指令都是特定的门电路组成的，门电路是CPU的基本工作单元，数以亿计的门电路才造就了CPU的强大运算能力，这些门电路输入是一位或多位二进制数，输出也是一位或多位二进制数。在最早的计算机上，程序员需要将0101这种二进制代码给CPU计算，这里的二进制代码会控制CPU进行加减乘除或者逻辑运算，对应于在MOS管上的状态就是开和关，这种二进制代码也叫机器语言，是计算机能直接读懂的语言。但是这对于程序员来说简直是噩梦，一个小小的计算功能，用机器语言来编写需要写一大串0和1。最关键的是这些0和1代码代表什么意思也非常难以记忆，开发成本很大。于是科学家们用了一种高级的语言来代替它 ，然后汇编语言诞生了，汇编语言更接近人类自然语言的习惯。然后再做一个编译器工具帮我们把汇编语言翻译成机器语言就行了。    </p>
-<p><img src="/blog/2018/06/10/虚拟机指令集/heike.jpg" alt=""></p>
 <a id="more"></a> 
 <p>​    那么问题来了，编译器按照什么规则来翻译汇编代码呢？答案就是指令集，指令集是由设计CPU的生产厂商给出。CPU指令集是描述CPU能实现什么功能的一个集合, 就是描述”CPU能使用哪些机器码”的集合。指令集的作用, 就是告诉程序员或者说编译器, 汇编一定要有什么格式. 支持什么指令, 指令带什么限制条件, 用什么操作数, 用什么地址, 都是指令集规范的内容, 要是写错了, 就无法翻译成机器码。不同的CPU生产厂商产生了不同的指令集，Intel阵营的8086指令集，ARM阵营的RISC指令集。不同阵营，其对应的汇编语言也是不一样的。 </p>
 <h3 id="1-JVM的指令集"><a href="#1-JVM的指令集" class="headerlink" title="1 . JVM的指令集"></a>1 . JVM的指令集</h3><p>​    前面说了那么多，都是为这里做铺垫。作为一个Java程序员怎么能不认识虚拟机的指令集，指令集不仅可以帮我们看懂字节码文件，同时也有助于理解JVM的运行原理。我总结了一下JVM的指令集，主要分为以下几种类型的指令。</p>
@@ -1564,11 +1562,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1576,11 +1570,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1588,11 +1582,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
