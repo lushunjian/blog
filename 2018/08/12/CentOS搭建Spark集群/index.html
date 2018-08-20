@@ -6,14 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lushunjian.github.io/blog">
-  <title>CentOS搭建Spark集群 | 一叶知秋</title>
+  <title>CentOS搭建Spark集群 | 含光君</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Apache Spark 是专为大规模数据处理而设计的快速通用的计算引擎。 是 加州大学伯克利分校的AMP实验室所开发的类似Hadoop MapReduce的通用并行框架 。拥有Hadoop MapReduce所具有的优点；但不同于MapReduce的是——Job中间输出结果可以保存在内存中，从而不再需要读写HDFS，因此Spark能更好地适用于数据挖掘与机器学习等需要迭代的MapReduce的算">
-<meta name="keywords" content="Spark,实践">
+<meta name="keywords" content="实践,Spark">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS搭建Spark集群">
 <meta property="og:url" content="https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/index.html">
-<meta property="og:site_name" content="一叶知秋">
+<meta property="og:site_name" content="含光君">
 <meta property="og:description" content="Apache Spark 是专为大规模数据处理而设计的快速通用的计算引擎。 是 加州大学伯克利分校的AMP实验室所开发的类似Hadoop MapReduce的通用并行框架 。拥有Hadoop MapReduce所具有的优点；但不同于MapReduce的是——Job中间输出结果可以保存在内存中，从而不再需要读写HDFS，因此Spark能更好地适用于数据挖掘与机器学习等需要迭代的MapReduce的算">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/spark.png">
@@ -30,7 +30,7 @@
 <meta name="twitter:description" content="Apache Spark 是专为大规模数据处理而设计的快速通用的计算引擎。 是 加州大学伯克利分校的AMP实验室所开发的类似Hadoop MapReduce的通用并行框架 。拥有Hadoop MapReduce所具有的优点；但不同于MapReduce的是——Job中间输出结果可以保存在内存中，从而不再需要读写HDFS，因此Spark能更好地适用于数据挖掘与机器学习等需要迭代的MapReduce的算">
 <meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/08/12/CentOS搭建Spark集群/spark.png">
   
-    <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="含光君" type="application/atom+xml">
   
   
   <link rel="stylesheet" type="text/css" href="/blog/./main.0cf68a.css">
@@ -62,7 +62,7 @@
 			<img src="/blog/avent.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/blog/">一叶知秋</a></h1>
+		  <h1 class="header-author"><a href="/blog/">含光君</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">天才在左，疯子在右</p>
@@ -123,7 +123,7 @@
 				<img src="/blog/avent.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">一叶知秋</h1>
+			  <h1 class="header-author js-header-author">含光君</h1>
 			</hgroup>
 			
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>天才在左，疯子在右<i class="icon icon-quo-right"></i></p>
@@ -403,11 +403,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Spark</a>
         		</li>
       		
 		</ul>
@@ -552,7 +552,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 一叶知秋
+    		&copy; 2018 含光君
 			<span style="padding:0 10px">|</span>
 			<span id="busuanzi_container_site_uv"> 
 				本站访客数:<span id="busuanzi_value_site_uv" style="padding-left:4px"></span>人次
@@ -677,7 +677,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -689,19 +689,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">

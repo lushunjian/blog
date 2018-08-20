@@ -6,14 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lushunjian.github.io/blog">
-  <title>CentOS搭建zookeeper集群 | 一叶知秋</title>
+  <title>CentOS搭建zookeeper集群 | 含光君</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，也是Hadoop和Hbase的重要组件 。ZooKeeper的选主过程是以Fast Paxos算法为基础的。前面我有文章写过Paxos算法，Paxos 算法存在活锁的问题，即当有多个proposer交错提交时，有可能互相排斥导致没有一个proposer能提交成功，而Fast Paxos对">
-<meta name="keywords" content="实践,zookeeper">
+<meta name="keywords" content="zookeeper,实践">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS搭建zookeeper集群">
 <meta property="og:url" content="https://lushunjian.github.io/blog/2018/08/05/CentOS搭建zookeeper集群/index.html">
-<meta property="og:site_name" content="一叶知秋">
+<meta property="og:site_name" content="含光君">
 <meta property="og:description" content="ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，也是Hadoop和Hbase的重要组件 。ZooKeeper的选主过程是以Fast Paxos算法为基础的。前面我有文章写过Paxos算法，Paxos 算法存在活锁的问题，即当有多个proposer交错提交时，有可能互相排斥导致没有一个proposer能提交成功，而Fast Paxos对">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/05/CentOS搭建zookeeper集群/jdk.png">
@@ -22,13 +22,13 @@
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/05/CentOS搭建zookeeper集群/zookeeper3.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/05/CentOS搭建zookeeper集群/zookeeper4.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/08/05/CentOS搭建zookeeper集群/zookeeper5.png">
-<meta property="og:updated_time" content="2018-08-18T06:09:49.218Z">
+<meta property="og:updated_time" content="2018-08-18T12:57:30.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS搭建zookeeper集群">
 <meta name="twitter:description" content="ZooKeeper是一个分布式的，开放源码的分布式应用程序协调服务，是Google的Chubby一个开源的实现，也是Hadoop和Hbase的重要组件 。ZooKeeper的选主过程是以Fast Paxos算法为基础的。前面我有文章写过Paxos算法，Paxos 算法存在活锁的问题，即当有多个proposer交错提交时，有可能互相排斥导致没有一个proposer能提交成功，而Fast Paxos对">
 <meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/08/05/CentOS搭建zookeeper集群/jdk.png">
   
-    <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="含光君" type="application/atom+xml">
   
   
   <link rel="stylesheet" type="text/css" href="/blog/./main.0cf68a.css">
@@ -60,7 +60,7 @@
 			<img src="/blog/avent.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/blog/">一叶知秋</a></h1>
+		  <h1 class="header-author"><a href="/blog/">含光君</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">天才在左，疯子在右</p>
@@ -121,7 +121,7 @@
 				<img src="/blog/avent.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">一叶知秋</h1>
+			  <h1 class="header-author js-header-author">含光君</h1>
 			</hgroup>
 			
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>天才在左，疯子在右<i class="icon icon-quo-right"></i></p>
@@ -377,11 +377,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">zookeeper</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
         		</li>
       		
 		</ul>
@@ -535,7 +535,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 一叶知秋
+    		&copy; 2018 含光君
 			<span style="padding:0 10px">|</span>
 			<span id="busuanzi_container_site_uv"> 
 				本站访客数:<span id="busuanzi_value_site_uv" style="padding-left:4px"></span>人次
@@ -660,7 +660,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,19 +672,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">

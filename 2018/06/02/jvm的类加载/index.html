@@ -6,14 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lushunjian.github.io/blog">
-  <title>JVM的类加载 | 一叶知秋</title>
+  <title>JVM的类加载 | 含光君</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="JVM的类加载机制 ​    整体来看，JVM体系分为三个部分：类加载器（Class Loader），运行时数据区（Runtime Data Area），和执行引擎（Execution Engine）,这里主要探讨一下 JVM 的类加载器 一 . 类的生命周期​    先通过一个图对类加载流程有个整体认识，如下图  类从被加载到虚拟机内存中开始，直到卸载出内存为止，它的整个生命周期包括了：加载、验">
 <meta name="keywords" content="jvm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM的类加载">
 <meta property="og:url" content="https://lushunjian.github.io/blog/2018/06/02/jvm的类加载/index.html">
-<meta property="og:site_name" content="一叶知秋">
+<meta property="og:site_name" content="含光君">
 <meta property="og:description" content="JVM的类加载机制 ​    整体来看，JVM体系分为三个部分：类加载器（Class Loader），运行时数据区（Runtime Data Area），和执行引擎（Execution Engine）,这里主要探讨一下 JVM 的类加载器 一 . 类的生命周期​    先通过一个图对类加载流程有个整体认识，如下图  类从被加载到虚拟机内存中开始，直到卸载出内存为止，它的整个生命周期包括了：加载、验">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/02/jvm的类加载/pic1.png">
@@ -26,7 +26,7 @@
 <meta name="twitter:description" content="JVM的类加载机制 ​    整体来看，JVM体系分为三个部分：类加载器（Class Loader），运行时数据区（Runtime Data Area），和执行引擎（Execution Engine）,这里主要探讨一下 JVM 的类加载器 一 . 类的生命周期​    先通过一个图对类加载流程有个整体认识，如下图  类从被加载到虚拟机内存中开始，直到卸载出内存为止，它的整个生命周期包括了：加载、验">
 <meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/06/02/jvm的类加载/pic1.png">
   
-    <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="含光君" type="application/atom+xml">
   
   
   <link rel="stylesheet" type="text/css" href="/blog/./main.0cf68a.css">
@@ -58,7 +58,7 @@
 			<img src="/blog/avent.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/blog/">一叶知秋</a></h1>
+		  <h1 class="header-author"><a href="/blog/">含光君</a></h1>
 		</hgroup>
 		
 		<p class="header-subtitle">天才在左，疯子在右</p>
@@ -119,7 +119,7 @@
 				<img src="/blog/avent.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">一叶知秋</h1>
+			  <h1 class="header-author js-header-author">含光君</h1>
 			</hgroup>
 			
 			<p class="header-subtitle"><i class="icon icon-quo-left"></i>天才在左，疯子在右<i class="icon icon-quo-right"></i></p>
@@ -548,7 +548,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 一叶知秋
+    		&copy; 2018 含光君
 			<span style="padding:0 10px">|</span>
 			<span id="busuanzi_container_site_uv"> 
 				本站访客数:<span id="busuanzi_value_site_uv" style="padding-left:4px"></span>人次
@@ -673,7 +673,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -685,19 +685,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
