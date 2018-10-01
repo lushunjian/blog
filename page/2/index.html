@@ -161,6 +161,102 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-博客个性化配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/07/08/博客个性化配置/">博客个性化配置</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2018/07/08/博客个性化配置/" class="archive-article-date">
+  	<time datetime="2018-07-08T01:13:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-08</time>
+</a>
+        
+		
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>博客搭建好后，总会有一些个性化的想法。比如做网站的访问量统计，文章评论系统，文章分享功能，或是在博客主页放一个音乐播放器，让别人进来浏览博客的同时，还伴随着动听的音乐。大部分博客主题都兼容这些功能，只不过需要自己去配置。下面是我做个性化博客配置时踩的坑，供大家参考参考。</p>
+<h3 id="1-访问量统计"><a href="#1-访问量统计" class="headerlink" title="1 . 访问量统计"></a>1 . 访问量统计</h3><p>访问量统计功能可以用<strong>百度的站长统计</strong>、<strong>leancloud</strong>，还有<strong>不蒜子</strong>，这里我用的不蒜子，主要原因是它很简单易用，不需要注册账号什么的。不蒜子官网：<a href="http://busuanzi.ibruce.info/" target="_blank" rel="noopener">http://busuanzi.ibruce.info/</a></p>
+<h4 id="1-引入不蒜子"><a href="#1-引入不蒜子" class="headerlink" title="(1) . 引入不蒜子"></a>(1) . 引入不蒜子</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这段代码可以写在footer.ejs里或者header.ejs里或者layout.ejs里，因为是 js 文件，所有推荐放在 html 文档的末尾处加载。这里我放在/themes/yilia/layout/_partial/footer.ejs中。</p>
+<h4 id="2-添加站点访问量"><a href="#2-添加站点访问量" class="headerlink" title="(2) . 添加站点访问量"></a>(2) . 添加站点访问量</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_container_site_uv"</span>&gt;</span> </span><br><span class="line">  本站访客数<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_uv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span>人次</span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/blog/2018/07/08/博客个性化配置/#more">more >></a>
+        
+      
+
+	  <!-- 博客主题自带打赏样式注释 -->
+	  <!--
+       -->
+	  
+	 <!-- 自定义打赏样式 -->
+	  
+    </div>
+	
+	
+	
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">other</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2018/07/08/博客个性化配置/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+  
     <article id="post-一致性哈希" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -833,103 +929,6 @@
 
 
   
-    <article id="post-jvm的类加载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2018/06/02/jvm的类加载/">JVM的类加载</a>
-    </h1>
-  
-
-        
-        <a href="/blog/2018/06/02/jvm的类加载/" class="archive-article-date">
-  	<time datetime="2018-06-02T06:47:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-02</time>
-</a>
-        
-		
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>JVM的类加载机制</p>
-<p>​    整体来看，JVM体系分为三个部分：类加载器（Class Loader），运行时数据区（Runtime Data Area），和执行引擎（Execution Engine）,这里主要探讨一下 JVM 的类加载器</p>
-<h2 id="一-类的生命周期"><a href="#一-类的生命周期" class="headerlink" title="一 . 类的生命周期"></a>一 . 类的生命周期</h2><p>​    先通过一个图对类加载流程有个整体认识，如下图</p>
-<p><img src="/blog/2018/06/02/jvm的类加载/pic1.png" alt=""></p>
-<p>类从被加载到虚拟机内存中开始，直到卸载出内存为止，它的整个生命周期包括了：<strong>加载、验证、准备、解析、初始化、使用和卸载</strong>这7个阶段。其中，<strong>验证、准备和解析这三个部分统称为连接（linking）</strong>。</p>
-<p>其中，加载、验证、准备、初始化和卸载这五个阶段的顺序是确定的，类的加载过程必须按照这种顺序按部就班的“开始”（仅仅指的是开始，而非执行或者结束，因为这些阶段通常都是互相交叉的混合进行，通常会在一个阶段执行的过程中调用或者激活另一个阶段），而解析阶段则不一定（它在某些情况下可以在初始化阶段之后再开始，这是为了支持Java语言的运行时绑定。</p>
-        
-          <a class="article-more-a" href="/blog/2018/06/02/jvm的类加载/#more">more >></a>
-        
-      
-
-	  <!-- 博客主题自带打赏样式注释 -->
-	  <!--
-       -->
-	  
-	 <!-- 自定义打赏样式 -->
-	  
-    </div>
-	
-	
-	
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2018/06/02/jvm的类加载/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/blog/">&laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/3/">Next &raquo;</a>
@@ -1069,7 +1068,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1077,11 +1076,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1089,11 +1088,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1102,6 +1101,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
