@@ -632,15 +632,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">实践</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -653,6 +653,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -672,19 +676,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -854,26 +854,5 @@ MathJax.Hub.Queue(function() {
 </div>
   </div>
   <img style="display:none" src="/blog/backyasuo.jpg"></img>
-  <script type="text/javascript">
-  //滚动样式
-		var $overlay = $("#mobile-nav .overlay");
-		var $header = $(".js-mobile-header");
-		window.onscroll = function(){
-		    var scrollTop = document.documentElement.scrollTop + document.body.scrollTop;
-		    if(scrollTop >= 69){
-		    	$overlay.addClass("fixed");
-		    }else{
-		    	$overlay.removeClass("fixed");
-		    }
-		    if(scrollTop >= 160){
-		    	$header.removeClass("hide").addClass("fixed");
-		    }else{
-		    	$header.addClass("hide").removeClass("fixed");
-		    }
-		};
-		$header[0].addEventListener("touchstart", function(){
-			$('html, body').animate({scrollTop:0}, 'slow');
-		}, false);
-	</script>
 </body>
 </html>
