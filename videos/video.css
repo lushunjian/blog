@@ -48,11 +48,11 @@ body{
 }
 
 .top-header {
-	position: fixed;
-   /* left: 0;
+	/*position: fixed;
+    left: 0;
 	top: 0;
-	z-index: 30;*/
-	text-indent: -300px;
+	z-index: 30;
+	text-indent: -300px;*/
 	width: 100%;
 	color: #fff;
 	height: 65px;
