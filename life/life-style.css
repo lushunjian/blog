@@ -9,10 +9,10 @@ body
 /*  display:flex;*/
 	text-align: center;
   align-items:space-around;
-  max-width:90vh;
+  max-width:120vh;
 }
 .life .tile{
-  width:42vh;
+  width:55vh;
   height:35vh;
   margin:10px;
   background-color:#99aeff;
