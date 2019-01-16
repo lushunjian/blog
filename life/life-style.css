@@ -6,8 +6,8 @@ body
 {
   margin:50px auto 60px auto;
   width:100%;
-/*  display:flex;*/
-	text-align: center;
+/*  display:flex;
+	text-align: center;*/
   align-items:space-around;
   max-width:120vh;
 }
