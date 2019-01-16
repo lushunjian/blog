@@ -6,22 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lushunjian.github.io/blog">
-  <title>Http请求中转 | 一叶知秋</title>
+  <title>我的电影 | 一叶知秋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="​    在工作中碰到需要在服务端中转Http请求的需求，一般的请求其实问题不大，用apache的HttpClient 提供的jar包即可解决问题，但是带文件上传的请求中转，遇到了一些小麻烦，在此记录一下。 业务场景是这样的，由于是做系统升级，升级的同时不影响老版本的使用，同时又不和新版本的代码耦合，所以做了一个适配模块，这个模块是个单独的项目。在前端请求新版本系统时会先进入新版本系统的拦截器中，">
-<meta name="keywords" content="网络编程">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Http请求中转">
-<meta property="og:url" content="https://lushunjian.github.io/blog/2018/06/30/Http请求中转/index.html">
+  <meta name="description" content="一部好电影能改变你的一生         .hexo-douban-tabs {     margin-bottom: 15px;     margin-top: 15px; }  .hexo-douban-tab {     padding: 5px; }  .hexo-douban-active {     background: #657b83;">
+<meta property="og:type" content="website">
+<meta property="og:title" content="我的电影">
+<meta property="og:url" content="https://lushunjian.github.io/blog/movies/index.html">
 <meta property="og:site_name" content="一叶知秋">
-<meta property="og:description" content="​    在工作中碰到需要在服务端中转Http请求的需求，一般的请求其实问题不大，用apache的HttpClient 提供的jar包即可解决问题，但是带文件上传的请求中转，遇到了一些小麻烦，在此记录一下。 业务场景是这样的，由于是做系统升级，升级的同时不影响老版本的使用，同时又不和新版本的代码耦合，所以做了一个适配模块，这个模块是个单独的项目。在前端请求新版本系统时会先进入新版本系统的拦截器中，">
+<meta property="og:description" content="一部好电影能改变你的一生         .hexo-douban-tabs {     margin-bottom: 15px;     margin-top: 15px; }  .hexo-douban-tab {     padding: 5px; }  .hexo-douban-active {     background: #657b83;">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2018/06/30/Http请求中转/work.png">
-<meta property="og:updated_time" content="2018-07-06T15:27:59.732Z">
+<meta property="og:image" content="https://lushunjian.github.io/blog/assets/douban-loading.gif">
+<meta property="og:image" content="https://lushunjian.github.io/blog/assets/douban-loading.gif">
+<meta property="og:image" content="https://lushunjian.github.io/blog/assets/douban-loading.gif">
+<meta property="og:image" content="https://lushunjian.github.io/blog/assets/douban-loading.gif">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Http请求中转">
-<meta name="twitter:description" content="​    在工作中碰到需要在服务端中转Http请求的需求，一般的请求其实问题不大，用apache的HttpClient 提供的jar包即可解决问题，但是带文件上传的请求中转，遇到了一些小麻烦，在此记录一下。 业务场景是这样的，由于是做系统升级，升级的同时不影响老版本的使用，同时又不和新版本的代码耦合，所以做了一个适配模块，这个模块是个单独的项目。在前端请求新版本系统时会先进入新版本系统的拦截器中，">
-<meta name="twitter:image" content="https://lushunjian.github.io/blog/2018/06/30/Http请求中转/work.png">
+<meta name="twitter:title" content="我的电影">
+<meta name="twitter:description" content="一部好电影能改变你的一生         .hexo-douban-tabs {     margin-bottom: 15px;     margin-top: 15px; }  .hexo-douban-tab {     padding: 5px; }  .hexo-douban-active {     background: #657b83;">
+<meta name="twitter:image" content="https://lushunjian.github.io/blog/assets/douban-loading.gif">
   
     <link rel="alternative" href="/atom.xml" title="一叶知秋" type="application/atom+xml">
   
@@ -172,20 +173,20 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Http请求中转" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="-movies" class="article article-type- " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Http请求中转
+      我的电影
     </h1>
   
 
         
-        <a href="/blog/2018/06/30/Http请求中转/" class="archive-article-date">
-  	<time datetime="2018-06-30T14:58:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-30</time>
+        <a href="/blog/movies/index.html" class="archive-article-date">
+  	<time datetime="2019-01-16T14:48:28.057Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-16</time>
 </a>
         
 		
@@ -198,28 +199,299 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​    在工作中碰到需要在服务端中转Http请求的需求，一般的请求其实问题不大，用apache的HttpClient 提供的jar包即可解决问题，但是带文件上传的请求中转，遇到了一些小麻烦，在此记录一下。</p>
-<p>业务场景是这样的，由于是做系统升级，升级的同时不影响老版本的使用，同时又不和新版本的代码耦合，所以做了一个适配模块，这个模块是个单独的项目。在前端请求新版本系统时会先进入新版本系统的拦截器中，在拦截器中判断该请求是调用新版本的系统接口还是老版本的系统接口，如果调用老版本系统接口，就会先走适配模块，在适配模块中调用老系统的接口。整个流程大致如下图：</p>
-<p><img src="/blog/2018/06/30/Http请求中转/work.png" alt=""></p>
-<p>在适配器中使用了apache的HttpClient包，而在拦截器中使用的是jdk自带的java.net.URL类。因此两种方式我都会提供，此外还可以通过java.net.socket类实现Http请求，这几种种方式大同小异，只是HttpClient做了一下封装。最重要的还是要对Http请求协议有比较全面的认识，然后模拟出一个符合协议标准的请求报文就可以像浏览器那样模拟Http请求了。</p>
-<a id="more"></a> 
-<h3 id="1-Http请求报文"><a href="#1-Http请求报文" class="headerlink" title="1 . Http请求报文"></a>1 . Http请求报文</h3><p>通过Fiddler抓包工具，可以抓取网络请求，查看请求信息，下面是我抓取的Get和Post请求的请求报文</p>
-<h4 id="1-Get请求"><a href="#1-Get请求" class="headerlink" title="(1) . Get请求"></a>(1) . Get请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GET http://localhost:8081/test?name=111 HTTP/1.1</span><br><span class="line">Host: localhost:8081</span><br><span class="line">Connection: keep-alive</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36</span><br><span class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8</span><br><span class="line">Accept-Encoding: gzip, deflate, br</span><br><span class="line">Accept-Language: zh-CN,zh;q=0.9</span><br></pre></td></tr></table></figure>
-<h4 id="2-Post请求"><a href="#2-Post请求" class="headerlink" title="(2) . Post请求"></a>(2) . Post请求</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">POST http://localhost:8081/upload HTTP/1.1</span><br><span class="line">cache-control: no-cache</span><br><span class="line">Postman-Token: 9316956c-b2a9-43a0-9a5c-87a4f5eead7d</span><br><span class="line">User-Agent: PostmanRuntime/6.3.2</span><br><span class="line">Accept: */*</span><br><span class="line">Host: localhost:8081</span><br><span class="line">accept-encoding: gzip, deflate</span><br><span class="line">content-type: multipart/form-data; boundary=--------------------------535635233106673687621220</span><br><span class="line">content-length: 355</span><br><span class="line">Connection: keep-alive</span><br><span class="line"></span><br><span class="line">----------------------------535635233106673687621220</span><br><span class="line">Content-Disposition: form-data; name=&quot;name&quot;</span><br><span class="line"></span><br><span class="line">lsj</span><br><span class="line">----------------------------535635233106673687621220</span><br><span class="line">Content-Disposition: form-data; name=&quot;file&quot;; filename=&quot;test.txt&quot;</span><br><span class="line">Content-Type: text/plain</span><br><span class="line"></span><br><span class="line">     ļ  ϴ      ݣ 2333333  </span><br><span class="line">   д 㶫  </span><br><span class="line">----------------------------535635233106673687621220--</span><br></pre></td></tr></table></figure>
-<p>大部分属性大致看一下也能明白它的含义，需要注意的是Post请求中content-type是multipart/form-data时，必须指定boundary，这是属性是参数的分隔符。明白请求报文的格式后，只需中拼凑出这样格式相同的报文头就可以了。</p>
-<h3 id="2-响应报文"><a href="#2-响应报文" class="headerlink" title="2 . 响应报文"></a>2 . 响应报文</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200</span><br><span class="line">X-Application-Context: application:8081</span><br><span class="line">Content-Type: text/html;charset=UTF-8</span><br><span class="line">Content-Length: 3</span><br><span class="line">Date: Sun, 01 Jul 2018 00:27:47 GMT</span><br><span class="line"></span><br><span class="line">111</span><br></pre></td></tr></table></figure>
-<h3 id="3-模拟客户端请求"><a href="#3-模拟客户端请求" class="headerlink" title="3 . 模拟客户端请求"></a>3 . 模拟客户端请求</h3><p>下面使用了3种方式模拟客户端请求</p>
-<h4 id="1-HttpCilent"><a href="#1-HttpCilent" class="headerlink" title="(1) . HttpCilent"></a>(1) . HttpCilent</h4><p>需要用到apache的两个jar包</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.httpcomponents<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>httpclient<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.5.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.httpcomponents<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>httpmime<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.5.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>客户端代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 模拟客户端表单提交</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fileUpload</span><span class="params">(File file,String url)</span></span>&#123;</span><br><span class="line">    CloseableHttpClient client = HttpClientBuilder.create().build();</span><br><span class="line">    HttpPost post = <span class="keyword">new</span> HttpPost(url);</span><br><span class="line">    <span class="comment">//设置请求头</span></span><br><span class="line">    post.setHeader(<span class="string">"Accept-Language"</span>,<span class="string">"zh-CN,zh;q=0.8"</span>);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//设置参数</span></span><br><span class="line">        <span class="comment">//文件附件</span></span><br><span class="line">        MultipartEntityBuilder mEntityBuilder = MultipartEntityBuilder.create();</span><br><span class="line">        mEntityBuilder.addBinaryBody(<span class="string">"file"</span>, file);</span><br><span class="line">        <span class="comment">//其他参数，类似表单的Input</span></span><br><span class="line">        mEntityBuilder.addTextBody(<span class="string">"name"</span>, <span class="string">"lsj"</span>);</span><br><span class="line">        mEntityBuilder.addTextBody(<span class="string">"age"</span>,<span class="string">"20"</span>);</span><br><span class="line"></span><br><span class="line">        post.setEntity(mEntityBuilder.build());</span><br><span class="line">        CloseableHttpResponse response = client.execute(post);</span><br><span class="line"></span><br><span class="line">        HttpEntity entity = response.getEntity();</span><br><span class="line">        String data = EntityUtils.toString(entity, StandardCharsets.UTF_8);</span><br><span class="line">        System.out.println(data);</span><br><span class="line">    &#125; <span class="keyword">catch</span>(Exception e1)&#123;</span><br><span class="line">        e1.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            client.close();</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception ex)&#123;</span><br><span class="line">            ex.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="2-URL"><a href="#2-URL" class="headerlink" title="(2) . URL"></a>(2) . URL</h4><p>URL的方式需要自己去拼接请求报文的格式</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 模拟在客户端表单提交</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fileUpload</span><span class="params">(File file, String urlPath)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 1.创建URL对象</span></span><br><span class="line">            URL url =  <span class="keyword">new</span> URL(urlPath);</span><br><span class="line">            <span class="comment">// 2.构建附件输入流</span></span><br><span class="line">            <span class="comment">// io文件对象转为输入流</span></span><br><span class="line">            InputStream fileInputStream = <span class="keyword">new</span> FileInputStream(file);</span><br><span class="line">            <span class="comment">// 3.模拟表单中普通input的数据</span></span><br><span class="line">            Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">            map.put(<span class="string">"name"</span>,<span class="string">"lsj"</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//核心方法------发送请求---------</span></span><br><span class="line">            InputStream responseStream = sendUrlRequest(url,fileInputStream,map);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//打印响应数据</span></span><br><span class="line">            <span class="keyword">if</span>(responseStream != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="comment">// 将字节流包装成字符流</span></span><br><span class="line">                InputStreamReader inputStreamReader = <span class="keyword">new</span> InputStreamReader(responseStream);</span><br><span class="line">                <span class="comment">// 创建一个输入缓冲区对象，将要输入的字符流对象传入</span></span><br><span class="line">                BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(inputStreamReader);</span><br><span class="line"></span><br><span class="line">                String line;</span><br><span class="line">                <span class="comment">// 创建缓冲字符对象</span></span><br><span class="line">                StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">                <span class="comment">//</span></span><br><span class="line">                <span class="keyword">while</span> ((line = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                    stringBuilder.append(line);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 打印响应数据</span></span><br><span class="line">                System.out.println(stringBuilder.toString());</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"请求异常 ! "</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 请求地址</span></span><br><span class="line"><span class="comment">     * url</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 请求中的附件</span></span><br><span class="line"><span class="comment">     * fileInputStream</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> InputStream <span class="title">sendUrlRequest</span><span class="params">(URL url,InputStream fileInputStream,Map&lt;String,String&gt; dataMap)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 获取连接对象</span></span><br><span class="line">            URLConnection connection = url.openConnection();</span><br><span class="line">            <span class="comment">// 设置请求类型 "GET", "POST", "HEAD", "OPTIONS", "PUT", "DELETE", "TRACE"</span></span><br><span class="line">            ((HttpURLConnection) connection).setRequestMethod(<span class="string">"POST"</span>);</span><br><span class="line">            <span class="comment">// 设置连接超时时间</span></span><br><span class="line">            connection.setConnectTimeout(<span class="number">1000</span>);</span><br><span class="line">            <span class="comment">//设置读取超时时间</span></span><br><span class="line">            connection.setReadTimeout(<span class="number">1000</span>);</span><br><span class="line">            <span class="comment">// 设置允许输入流输入数据到本机</span></span><br><span class="line">            connection.setDoOutput(<span class="keyword">true</span>);</span><br><span class="line">            <span class="comment">// 设置允许输出流输出数据到服务器</span></span><br><span class="line">            connection.setDoInput(<span class="keyword">true</span>);</span><br><span class="line">            <span class="comment">// 设置不使用缓存</span></span><br><span class="line">            connection.setUseCaches(<span class="keyword">false</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 设置请求头参数</span></span><br><span class="line">            connection.setRequestProperty(<span class="string">"Accept-Charset"</span>, <span class="string">"utf-8"</span>);</span><br><span class="line">            <span class="comment">// 设置请求参数中的内容类型为multipart/form-data,设置请求内容的分割线为******</span></span><br><span class="line">            connection.setRequestProperty(<span class="string">"Content-Type"</span>, <span class="string">"multipart/form-data;boundary="</span> + BOUNDARY);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 从连接对象中获取输出流</span></span><br><span class="line">            OutputStream outputStream = connection.getOutputStream();</span><br><span class="line">            <span class="comment">// 实例化数据输出流对象，将输出流传入</span></span><br><span class="line">            DataOutputStream dataOutputStream = <span class="keyword">new</span> DataOutputStream(outputStream);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 表单中的普通数据，写入到输出流对象-----------------------------开始</span></span><br><span class="line">            <span class="comment">// 获取表单中上传控件之外的控件数据，写入到输出流对象（根据抓包的内容格式拼凑字符串）；</span></span><br><span class="line">            <span class="keyword">if</span> (!dataMap.isEmpty()) &#123;</span><br><span class="line">                <span class="keyword">for</span> (Map.Entry&lt;String, String&gt; entry : dataMap.entrySet()) &#123;</span><br><span class="line">                    String key = entry.getKey(); <span class="comment">// 键，相当于表单提交中Input的name属性</span></span><br><span class="line">                    String value = dataMap.get(key); <span class="comment">// 值，相当于表单提交中Input的输入值</span></span><br><span class="line">                    dataOutputStream.writeBytes(PREFIX + BOUNDARY + NEWLINE); <span class="comment">// 像请求体中写分割线，就是前缀+分界线+换行</span></span><br><span class="line">                    dataOutputStream.writeBytes(<span class="string">"Content-Disposition: form-data;name="</span> + key + NEWLINE);</span><br><span class="line">                    dataOutputStream.writeBytes(NEWLINE); <span class="comment">// 空行，一定不能少，键和值之间有一个固定的换行</span></span><br><span class="line">                    dataOutputStream.writeBytes(URLEncoder.encode(value, <span class="string">"utf-8"</span>)); <span class="comment">// 将值写入,设置编码</span></span><br><span class="line">                    dataOutputStream.writeBytes(NEWLINE); <span class="comment">// 换行</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 表单中的普通数据，写入到输出流对象-----------------------------结束</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 表单中上传附件的数据，写入到输出流对象-----------------------------开始</span></span><br><span class="line">            <span class="comment">// 向数据输出流中写出分割符</span></span><br><span class="line">            dataOutputStream.writeBytes(PREFIX + BOUNDARY + NEWLINE);</span><br><span class="line">            <span class="comment">// 向数据输出流中写出文件参数名与文件名</span></span><br><span class="line">            dataOutputStream.writeBytes(<span class="string">"Content-Disposition:form-data;name=file;filename=abc.txt"</span>  + NEWLINE);</span><br><span class="line">            <span class="comment">// 向数据输出流中写出结束标志， 重要！！不要忘了</span></span><br><span class="line">            dataOutputStream.writeBytes(NEWLINE);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 定义缓冲区大小</span></span><br><span class="line">            <span class="keyword">int</span> bufferSize = <span class="number">1024</span>;</span><br><span class="line">            <span class="comment">// 定义字节数组对象，用来读取缓冲区数据</span></span><br><span class="line">            <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[bufferSize];</span><br><span class="line">            <span class="comment">// 定义一个整形变量，用来存放当前读取到的文件长度</span></span><br><span class="line">            <span class="keyword">int</span> length ;</span><br><span class="line">            <span class="comment">// 循环从文件输出流中读取1024字节的数据，将每次读取的长度赋值给length变量，直到文件读取完毕，值为-1结束循环</span></span><br><span class="line">            <span class="keyword">while</span> ((length = fileInputStream.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">                <span class="comment">// 向数据输出流中写出数据</span></span><br><span class="line">                dataOutputStream.write(buffer, <span class="number">0</span>, length);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 每写出完成一个完整的文件流后，需要向数据输出流中写出结束标志符</span></span><br><span class="line">            dataOutputStream.writeBytes(NEWLINE);</span><br><span class="line">            <span class="comment">// 关闭文件输入流</span></span><br><span class="line">            fileInputStream.close();</span><br><span class="line">            <span class="comment">// 表单中上传附件的数据，写入到输出流对象-----------------------------结束</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 向数据输出流中写出分隔符</span></span><br><span class="line">            dataOutputStream.writeBytes(PREFIX + BOUNDARY + PREFIX + NEWLINE);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 刷新数据输出流</span></span><br><span class="line">            dataOutputStream.flush();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 依次关流，先开后关原则</span></span><br><span class="line">            fileInputStream.close();</span><br><span class="line">            dataOutputStream.close();</span><br><span class="line">            outputStream.close();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 从连接对象中获取字节输入流，即response，response中的数据以流的形式返回</span></span><br><span class="line">            <span class="keyword">return</span> connection.getInputStream();</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="3-Socket"><a href="#3-Socket" class="headerlink" title="(3) . Socket"></a>(3) . Socket</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sendTest</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Socket socket;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">            String para = <span class="string">"name=abc&amp;age=22"</span>;</span><br><span class="line">            <span class="keyword">int</span> length = para.length();</span><br><span class="line">            socket = <span class="keyword">new</span> Socket(<span class="string">"localhost"</span>, <span class="number">8081</span>);</span><br><span class="line">            BufferedWriter wr = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> OutputStreamWriter(socket.getOutputStream(),</span><br><span class="line">                    <span class="string">"UTF8"</span>));</span><br><span class="line">            InputStream ins = socket.getInputStream();</span><br><span class="line">            StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">            sb.append(<span class="string">"POST /test  HTTP/1.1\r\n"</span>);<span class="comment">// 注意\r\n为回车换行</span></span><br><span class="line">            sb.append(<span class="string">"Accept-Language: zh-cn\r\n"</span>);</span><br><span class="line">            sb.append(<span class="string">"Connection: Keep-Alive\r\n"</span>);</span><br><span class="line">            sb.append(<span class="string">"Host:localhost\r\n"</span>);</span><br><span class="line">            sb.append(<span class="string">"Content-Length:"</span>+length+<span class="string">"\r\n"</span>);</span><br><span class="line">            sb.append(<span class="string">"Content-Type: application/x-www-form-urlencoded\r\n"</span>);</span><br><span class="line">            sb.append(<span class="string">"\r\n"</span>);</span><br><span class="line">            sb.append(para);</span><br><span class="line">            <span class="comment">// 接收Web服务器返回HTTP响应包</span></span><br><span class="line">            wr.write(sb.toString());</span><br><span class="line">            wr.flush();</span><br><span class="line"></span><br><span class="line">            BufferedReader rd = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(ins));</span><br><span class="line">            String line;</span><br><span class="line">            <span class="keyword">while</span> ((line = rd.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">                System.out.println(line);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<p>这里一定要注意的是Content-Length的计算，因为在HTTP协议中，如果你的长度计算错误，那么服务器就会一直在等待读取，导致请求超时。 </p>
-<h3 id="4-在服务端中转Http请求"><a href="#4-在服务端中转Http请求" class="headerlink" title="4 . 在服务端中转Http请求"></a>4 . 在服务端中转Http请求</h3><p>上面的代码只是模拟客户端发送http请求，而如果需要在服务端请求第三方的接口，并把接口返回的数据再返回到前台，方式就稍微有点区别。主要的区别就是对返回的输入流的处理，只要把返回的输入流复制到当前请求的response的输出流中即可，代码如下：</p>
-<h4 id="1-HttpCilent-1"><a href="#1-HttpCilent-1" class="headerlink" title="(1) . HttpCilent"></a>(1) . HttpCilent</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 模拟在服务端中转请求</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * request 当前请求的Request对象</span></span><br><span class="line"><span class="comment">     * response 当前请求的Response对象</span></span><br><span class="line"><span class="comment">     * forWardUrlPath 要请求的url</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fileUpload</span><span class="params">(MultipartFile multipartFile, String forWardUrlPath , HttpServletResponse response)</span></span>&#123;</span><br><span class="line">        CloseableHttpClient client = HttpClientBuilder.create().build();</span><br><span class="line">        HttpPost post = <span class="keyword">new</span> HttpPost(forWardUrlPath);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//文件附件</span></span><br><span class="line">            MultipartEntityBuilder mEntityBuilder = MultipartEntityBuilder.create();</span><br><span class="line">            <span class="comment">// 附件名称</span></span><br><span class="line">            String fileName = multipartFile.getOriginalFilename();</span><br><span class="line"></span><br><span class="line">            mEntityBuilder.addBinaryBody(<span class="string">"file"</span>,  multipartFile.getInputStream(), ContentType.APPLICATION_OCTET_STREAM,fileName);</span><br><span class="line">            <span class="comment">//其他参数，类似表单的Input</span></span><br><span class="line">            mEntityBuilder.addTextBody(<span class="string">"name"</span>, <span class="string">"lsj"</span>);</span><br><span class="line">            mEntityBuilder.addTextBody(<span class="string">"age"</span>,<span class="string">"20"</span>);</span><br><span class="line"></span><br><span class="line">            post.setEntity(mEntityBuilder.build());</span><br><span class="line">            CloseableHttpResponse forWardResponse = client.execute(post);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//获取返回的输入流</span></span><br><span class="line">            InputStream inputStream = forWardResponse.getEntity().getContent();</span><br><span class="line">            <span class="comment">//将返回的数据输入流，写到当请请求response的输出流中</span></span><br><span class="line">            forWardStream(inputStream,response.getOutputStream());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="2-URL-1"><a href="#2-URL-1" class="headerlink" title="(2) . URL"></a>(2) . URL</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 模拟在服务端中转请求</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * request 当前请求的Request对象</span></span><br><span class="line"><span class="comment">     * response 当前请求的Response对象</span></span><br><span class="line"><span class="comment">     * forWardUrlPath 要请求的url</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">fileUploadForWard</span><span class="params">(String forWardUrlPath, HttpServletRequest request, HttpServletResponse response, Map&lt;String, String&gt; dataMap)</span></span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// 1.创建URL对象</span></span><br><span class="line">            URL url =  URI.create(forWardUrlPath).toURL();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 2.通过HttpServletRequest 获取到上传的附件</span></span><br><span class="line">            Part part = request.getPart(<span class="string">"file"</span>);</span><br><span class="line">            <span class="comment">// 构建附件输入流</span></span><br><span class="line">            <span class="comment">// 也可通过 MultipartFile 对象，通过该对象的 getInputStream()方法获得附件的输入流</span></span><br><span class="line">            InputStream fileInputStream = part.getInputStream();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 3.模拟表单中普通input的数据,可通过request获取</span></span><br><span class="line">            dataMap.put(<span class="string">"name"</span>,<span class="string">"lsj"</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//核心方法------发送请求---------</span></span><br><span class="line">            InputStream responseStream = sendUrlRequest(url,fileInputStream,dataMap);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(responseStream != <span class="keyword">null</span>)&#123;</span><br><span class="line">                <span class="comment">// 这里把返回的inputStream写入到response输出流中</span></span><br><span class="line">                forWardStream(responseStream,response.getOutputStream());</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                System.out.println(<span class="string">"请求异常 !"</span>);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+        <blockquote>
+    <p>一部好电影能改变你的一生</p>
+</blockquote>
+
+<style>
+    
+.hexo-douban-tabs {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.hexo-douban-tab {
+    padding: 5px;
+}
+
+.hexo-douban-active {
+    background: #657b83;
+    color: #fff;
+}
+
+.hexo-douban-item {
+    padding-bottom: 10px;
+    position: relative;
+    clear: both;
+    min-height: 170px;
+    padding: 10px 0;
+    border-bottom: 1px #ddd solid;
+}
+
+@media screen and (max-width: 600px) {
+    .hexo-douban-item {
+        width: 100%;
+    }
+}
+
+.hexo-douban-picture {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 100px;
+}
+
+.hexo-douban-info {
+    padding-left: 120px;
+}
+
+.hexo-douban-meta {
+    font-size: 12px;
+    padding-right: 10px;
+}
+
+.hexo-douban-comments {
+    font-size: 12px;
+}
+
+.hexo-douban-pagination {
+    margin-top: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.hexo-douban-button {
+    padding: 5px;
+}
+
+.hexo-douban-button:hover {
+    background: #657b83;
+    color: #fff;
+}
+
+.hexo-douban-hide {
+    display: none;
+}
+
+.hexo-douban-show {
+    display: block;
+}
+
+
+</style>
+
+<div class="hexo-douban-tabs">
+    <a class="hexo-douban-tab" id="hexo-douban-tab1" href="javascript:;"
+       rel="external">
+        在看
+        (0)</a>
+    <a class="hexo-douban-tab" id="hexo-douban-tab2" href="javascript:;"
+       rel="external">
+        想看
+        (1)</a>
+    <a class="hexo-douban-tab" id="hexo-douban-tab3" href="javascript:;"
+       rel="external">
+        已看
+        (3)</a>
+</div>
+<div>
+    <div id="hexo-douban-item1">
+        
+        <div class="hexo-douban-pagination">
+    <a class="hexo-douban-button hexo-douban-firstpage" href="javascript:;"> 首页</a>
+    <a class="hexo-douban-button hexo-douban-previouspage" href="javascript:;">上一页</a>
+    <span class="hexo-douban-pagenum">2 / 3</span>
+    <a class="hexo-douban-button hexo-douban-nextpage" href="javascript:;">下一页</a>
+    <a class="hexo-douban-button hexo-douban-lastpage" href="javascript:;">尾页</a>
+</div>
+    </div>
+    <div id="hexo-douban-item2">
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/blog/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p2541662397.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/26394152/">大黄蜂 / Bumblebee</a>
+        </div>
+        <div class="hexo-douban-meta">2018-12-21(美国) / 2019-01-04(中国大陆) / 海莉·斯坦菲尔德 / 小豪尔赫·兰登伯格 / 约翰·塞纳 / 杰森·德鲁克 / 帕梅拉·阿德龙 / 斯蒂芬·施耐德 / 里卡多·霍约斯 / 约翰·奥提兹 / 格林·特鲁曼 / 兰·卡琉 / 格蕾丝·达斯恩妮 / 弗里德·杜莱尔 / 蓝尼·雅各布森  / 梅金·普莱斯 / 萨钦·巴特 / 蒂姆·马丁·格里森 / 安东尼奥·查丽蒂 / 艾德文·霍德吉 / 拉斯·斯兰德 / 迪伦·奥布莱恩 / 彼特·库伦 / 安吉拉·贝塞特 / 贾斯汀·塞洛克斯 / 大卫·索博洛夫 / 格蕾·德丽斯勒 / 史蒂夫·布卢姆 / 安德鲁·莫尔加多 / 威廉·W·巴伯 / 罗伯特·切斯纳特 / 米歇尔·方 / 克里斯蒂安·哈切森 / 里克·理查森 / 瓦内萨·罗斯 / 波士顿·拉什·弗里曼 / 托尼·托斯特 / 迪娜·特鲁迪 / 艾蒂安·维克 / 肯尼斯·崔 / 玛塞拉·布拉吉奥 / 蕾切尔·克劳 / 艾比·奎因 / 迈克尔·马西尼 / 盖尔·甘布尔 / 马丁·肖特 / 特里萨·纳瓦罗 / 杰斯·哈梅尔 / 尼娜·奇克 / 美国 / 特拉维斯·奈特 / 114分钟 / 大黄蜂 / 动作 / 科幻 / 冒险 / 克里斯蒂娜·霍德森 Christina Hodson / 英语</div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-pagination">
+    <a class="hexo-douban-button hexo-douban-firstpage" href="javascript:;"> 首页</a>
+    <a class="hexo-douban-button hexo-douban-previouspage" href="javascript:;">上一页</a>
+    <span class="hexo-douban-pagenum">2 / 3</span>
+    <a class="hexo-douban-button hexo-douban-nextpage" href="javascript:;">下一页</a>
+    <a class="hexo-douban-button hexo-douban-lastpage" href="javascript:;">尾页</a>
+</div>
+    </div>
+    <div id="hexo-douban-item3">
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/blog/assets/douban-loading.gif" data-src="https://img1.doubanio.com/view/photo/s_ratio_poster/public/p451926968.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/1291843/">黑客帝国 / The Matrix</a>
+        </div>
+        <div class="hexo-douban-meta">2019-01-16 /  人工智能 科幻 哲学 黑客帝国 / ★★★★★ 力荐 </div>
+        <div class="hexo-douban-comments"> 震撼，经典</div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/blog/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2517077652.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/26887174/">西部世界 第二季 / Westworld Season 2</a>
+        </div>
+        <div class="hexo-douban-meta">2019-01-16 /  人工智能 科幻 美剧 人性 HBO / ★★★★★ 力荐 </div>
+        <div class="hexo-douban-comments"> 第二步强势回归，人造人开始反攻人类</div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-item">
+    <div class="hexo-douban-picture"><img src="/blog/assets/douban-loading.gif" data-src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2403347953.jpg" referrerPolicy="no-referrer" /></div>
+    <div class="hexo-douban-info">
+        <div class="hexo-douban-title">
+            <a target="_blank" href="https://movie.douban.com/subject/2338055/">西部世界 第一季 / Westworld Season 1</a>
+        </div>
+        <div class="hexo-douban-meta">2019-01-16 /  科幻 人工智能 美剧 / ★★★★★ 力荐 </div>
+        <div class="hexo-douban-comments"> 探讨人工智能自我意识的起源，探索意识的本质</div>
+    </div>
+</div>
+
+
+        
+        <div class="hexo-douban-pagination">
+    <a class="hexo-douban-button hexo-douban-firstpage" href="javascript:;"> 首页</a>
+    <a class="hexo-douban-button hexo-douban-previouspage" href="javascript:;">上一页</a>
+    <span class="hexo-douban-pagenum">2 / 3</span>
+    <a class="hexo-douban-button hexo-douban-nextpage" href="javascript:;">下一页</a>
+    <a class="hexo-douban-button hexo-douban-lastpage" href="javascript:;">尾页</a>
+</div>
+    </div>
+</div>
+
+<script>
+    /**
+ * Created by myths on 18-2-8.
+ */
+
+Element.prototype.siblings = function () {
+    var siblingElement = [];
+    var sibs = this.parentNode.children;
+    for (var i = 0; i < sibs.length; i++) {
+        if (sibs[i] !== this) {
+            siblingElement.push(sibs[i]);
+        }
+    }
+    return siblingElement;
+};
+function tabClick() {
+    //修改标签样式
+    this.classList.add('hexo-douban-active');
+    var sibs = this.siblings();
+    for (var j = 0; j < sibs.length; j++) {
+        sibs[j].classList.remove('hexo-douban-active');
+    }
+    //显示对应板块
+    var itemId = this.id.replace('tab', 'item');
+    var target = document.getElementById(itemId);
+    target.classList.remove('hexo-douban-hide');
+    target.classList.add('hexo-douban-show');
+    sibs = document.getElementById(itemId).siblings();
+    for (var k = 0; k < sibs.length; k++) {
+        sibs[k].classList.remove('hexo-douban-show');
+        sibs[k].classList.add('hexo-douban-hide');
+    }
+}
+var tabs = document.getElementsByClassName("hexo-douban-tab");
+for (var i = 0; i < tabs.length; i++) {
+    tabs[i].onclick = tabClick;
+    tabs[i].onclick.apply(tabs[i]);
+}
+tabs[2].click();
+
+    var firstpages = document.getElementsByClassName("hexo-douban-firstpage");
+var previouspages = document.getElementsByClassName("hexo-douban-previouspage");
+var nextpages = document.getElementsByClassName("hexo-douban-nextpage");
+var lastpages = document.getElementsByClassName("hexo-douban-lastpage");
+var pagenums = document.getElementsByClassName("hexo-douban-pagenum");
+
+function makePageNum(num, arr) {
+    return (num + 1) + ' / ' + (Math.ceil(arr.length / 10 === 0 ? 1 : Math.ceil(arr.length / 10)));
+}
+
+function firstBtn() {
+    var sibs = this.parentNode.siblings();
+    displayPage(sibs, 0);
+    this.parentNode.getElementsByClassName('hexo-douban-pagenum')[0].innerText = makePageNum(0, sibs);
+}
+
+function previousBtn() {
+    var sibs = this.parentNode.siblings();
+    var currNum = this.parentNode.getElementsByClassName('hexo-douban-pagenum')[0].innerText;
+    currNum = currNum.substr(0, currNum.indexOf('/') - 1);
+    currNum = parseInt(currNum, 10) - 1;
+    if (currNum > 0) {
+        currNum--;
+    }
+    displayPage(sibs, currNum);
+    this.parentNode.getElementsByClassName('hexo-douban-pagenum')[0].innerText = makePageNum(currNum, sibs);
+}
+
+function nextBtn() {
+    var sibs = this.parentNode.siblings();
+    var currNum = this.parentNode.getElementsByClassName('hexo-douban-pagenum')[0].innerText;
+    currNum = currNum.substr(0, currNum.indexOf('/') - 1);
+    currNum = parseInt(currNum, 10) - 1;
+    if (currNum < Math.ceil(sibs.length / 10) - 1) {
+        currNum++;
+    }
+    displayPage(sibs, currNum);
+    this.parentNode.getElementsByClassName('hexo-douban-pagenum')[0].innerText = makePageNum(currNum, sibs);
+}
+
+function lastBtn() {
+    var sibs = this.parentNode.siblings();
+    displayPage(sibs, Math.ceil(sibs.length / 10) - 1);
+    this.parentNode.getElementsByClassName('hexo-douban-pagenum')[0].innerText = makePageNum(Math.ceil(sibs.length / 10) - 1 === -1 ? 0 : Math.ceil(sibs.length / 10) - 1, sibs);
+}
+
+function displayPage(arr, num) {
+    for (var i = 0; i < arr.length; i++) {
+        if (Math.floor(i / 10) === num) {
+            arr[i].classList.remove('hexo-douban-hide');
+            var img = arr[i].getElementsByTagName('img')[0];
+            img.src = img.getAttribute('data-src');
+        } else {
+            arr[i].classList.add('hexo-douban-hide');
+        }
+    }
+}
+
+for (var i = 0; i < firstpages.length; i++) {
+
+    //add listener
+    firstpages[i].onclick = firstBtn;
+    previouspages[i].onclick = previousBtn;
+    nextpages[i].onclick = nextBtn;
+    lastpages[i].onclick = lastBtn;
+
+    //set page num
+    var size = pagenums[i].parentNode.siblings().length;
+    pagenums[i].innerText = '1 / ' + (Math.ceil(size / 10) === 0 ? 1 : Math.ceil(size / 10));
+    firstpages[i].click();
+}
+
+</script>
+
 
       
 
@@ -300,17 +572,6 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
@@ -361,7 +622,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://qr.liantu.com/api.php?text=https://lushunjian.github.io/blog/2018/06/30/Http请求中转/" alt="微信分享二维码">
+      <img src="http://qr.liantu.com/api.php?text=https://lushunjian.github.io/blog/movies/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -376,25 +637,6 @@
 
 
   
-<nav id="article-nav">
-  
-    <a href="/blog/2018/07/07/一致性哈希/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          一致性哈希
-        
-      </div>
-    </a>
-  
-  
-    <a href="/blog/2018/06/20/CAP理论/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">CAP理论</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -416,40 +658,6 @@
 
 
 
-
-
-  <!--  评论插件 -->
-  
-	<div class="gitalk" style="padding: 0 40px;">
-	  <div id="gitalk-container"></div>   
-	  <link rel='stylesheet' href="/blog/gitalk/gitalk.css">
-	  <script src="/blog/gitalk/gitalk.min.js"></script>
-	   <script src="/blog/gitalk/md5.min.js"></script>
-	  <script type="text/javascript">
-		  var gitalk = new Gitalk({
-			clientID:  '848f5278f2459aaa9a50', 
-			clientSecret: 'db9688596567c9ba2786f5ba635395562e0df353',
-			repo: 'blog', 
-			id: md5(location.pathname),
-			owner: 'lushunjian', 
-			admin: 'lushunjian', 
-			distractionFreeMode: true,
-		  })
-		  gitalk.render('gitalk-container')
-	  </script>
-    </div>
-  
- 
-
-  
-  
-  
-
-  
-
-  
-
-  
 
 
           </div>
@@ -477,7 +685,7 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

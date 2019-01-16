@@ -9,7 +9,7 @@ body
 /*  display:flex;*/
 	text-align: center;
   align-items:space-around;
-  max-width:1200px;
+  max-width:90vh;
 }
 .life .tile{
   width:42vh;
