@@ -23,10 +23,11 @@
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/02/HashMap的底层实现/hashMap2.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/02/HashMap的底层实现/hashMap4.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/02/HashMap的底层实现/hashMap5.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/02/HashMap的底层实现/hashMap6.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/02/HashMap的底层实现/hashMap7.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/02/HashMap的底层实现/hashMap8.png">
-<meta property="og:updated_time" content="2019-01-07T15:47:21.563Z">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/02/HashMap的底层实现/hashMap9.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/02/HashMap的底层实现/hashMap10.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/02/HashMap的底层实现/hashMap12.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/02/HashMap的底层实现/hashMap13.png">
+<meta property="og:updated_time" content="2019-01-19T09:35:47.939Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HashMap的底层实现">
 <meta name="twitter:description" content="HashMap的底层实现相信是java开发者们面试都会碰到的问题。的确，它方便易用，在java开发中使用频率非常高。它的实现原理包含很多知识点，所以当面试官问到你HashMap的时候可就要当心了，因为如果基本功不够扎实的话，很容易被带到沟里哦，本文主要剖析HashMap的实现原理。首先搞清楚什么是HashMap，实际上从它的名字上就能明白大概。HashMap这个词可以分成两词，Hash和Map。其">
@@ -261,14 +262,19 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addEntry</span><span class="params">(<span class="keyword">int</span> hash, K key, V value, <span class="keyword">int</span> bucketIndex)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Entry&lt;K,V&gt; e = table[bucketIndex];</span><br><span class="line">    table[bucketIndex] = <span class="keyword">new</span> Entry&lt;K,V&gt;(hash, key, value, e);</span><br><span class="line">    <span class="comment">//查看当前的size是否超过了我们设定的阈值threshold，如果超过，需要resize</span></span><br><span class="line">    <span class="keyword">if</span> (size++ &gt;= threshold)   <span class="comment">// ② &lt;--线程挂起</span></span><br><span class="line">        resize(<span class="number">2</span> * table.length);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>上面两方法的源码中，我分别标注了①和②两个断点。这两个点就是环形链表的形成的原因，为了方便分析，再假设服务器cpu为单核。在②处代码是关于HashMap是否需要扩容的判断，由于此方法没有加synchronized修饰。于是当线程1运行到②处时，线程判断当前的HashMap需要扩容，就在此时线程1被挂起（线程是操作系统调度的最小单元，是否被挂起，什么时候被挂起，什么时候继续运行，都是由操作系统的线程调度说了算）。这时线程2也运行到了②处，这时由于线程1被挂起了，HashMap实际上还没有进行扩容操作。因此线程2也判断当前的HashMap需要扩容。于是两个线程都会执行resize方法。如果此时线程2一鼓作气，将扩容操作全执行完倒也好了，大不了线程1再执行一遍扩容操作，两个线程也会相安无事。可事与愿违，两个线程是交替运行的。在代码①处再出现线程被挂起的情况，就会出现环形链表。下面拿几个数据，举例说明一下，首先来看一下正常情况下的rehash过程。我假设HashMap的table初始长度为2，现在由于要rehash扩容到4。HashMap中有一个长度为3的链表。同样的为了简化分析，这里哈希算法，仅仅只是用key值除以table的长度取余来定位哈希桶的位置，哈希桶0有一个key为2的Entry，哈希桶1有3个key为3,5,7的Entry组成的链表，数据结构如下</p>
 <p><img src="/blog/2019/01/02/HashMap的底层实现/hashMap5.png" alt=""></p>
-<h5 id="正常的rehash过程"><a href="#正常的rehash过程" class="headerlink" title="正常的rehash过程"></a>正常的rehash过程</h5><p>1.table[]的第二次循环，遍历哈希桶1，链表的第一次循环，此时e指向Entry<3,b>，next指向Entry<5,c></5,c></3,b></p>
-<p><img src="/blog/2019/01/02/HashMap的底层实现/hashMap6.png" alt=""></p>
-<p>2.table[]的第二次循环，遍历哈希桶1，链表的第二次循环，此时e指向Entry<5,c>，next指向Entry<7,d></7,d></5,c></p>
-<p><img src="/blog/2019/01/02/HashMap的底层实现/hashMap7.png" alt=""></p>
-<p>3.table[]的第二次循环，遍历哈希桶1，链表的第三次循环，此时e指向Entry<7,d>，next指向null</7,d></p>
-<p><img src="/blog/2019/01/02/HashMap的底层实现/hashMap8.png" alt=""></p>
-<p>以上就是单线程先正常的rehash过程</p>
-<h5 id="并发的rehash过程"><a href="#并发的rehash过程" class="headerlink" title="并发的rehash过程"></a>并发的rehash过程</h5>
+<h5 id="正常的rehash过程"><a href="#正常的rehash过程" class="headerlink" title="正常的rehash过程"></a>正常的rehash过程</h5><p>1.table[]的第二次循环，遍历哈希桶1，链表的第一次循环，此时e指向Entry<3,b>，next指向Entry<5,c>；</5,c></3,b></p>
+<p>2.table[]的第二次循环，遍历哈希桶1，链表的第二次循环，此时e指向Entry<5,c>，next指向Entry<7,d>；</7,d></5,c></p>
+<p>3.table[]的第二次循环，遍历哈希桶1，链表的第三次循环，此时e指向Entry<7,d>，next指向null；为了便于理解，下图简单的描述了正常的rehash过程</7,d></p>
+<p><img src="/blog/2019/01/02/HashMap的底层实现/hashMap9.png" alt=""></p>
+<h5 id="并发的rehash过程"><a href="#并发的rehash过程" class="headerlink" title="并发的rehash过程"></a>并发的rehash过程</h5><p>假设线程2已经完成了对hashMap的扩容，那么线程1和线程2的状态分别如下（再强调一下出现环链的前置条件是两个线程同时读到了原HashMap的值，都准备扩容）</p>
+<p><img src="/blog/2019/01/02/HashMap的底层实现/hashMap10.png" alt=""></p>
+<p>这个时刻线程2完成rehash过程，有图不难看出，新的HashMap已经是由两条链表有值了，然后由于操作系统的调度，线程2挂起，线程1继续执行rehash过程。这时线程1拿到的新的HashMap已经是线程1rehash完成之后的HashMap，里面是有值的。我们来看线程1进行rehash的第一步</p>
+<p><img src="/blog/2019/01/02/HashMap的底层实现/hashMap12.png" alt=""></p>
+<p>在链表的第一次循环时，取下原链表的Entry<3,b>值，经过hash算法得到插入新HashMap的第三个下标，由于会采用头节点插入法，因此会得到Entry<3,b> 指向 Entry<7,d>，而此链表中原本就存在Entry<3,b>，且链表结构为Entry<7,d>指向Entry<3,b>。所以就出现了 Entry<3,b> 指向 Entry<7,d> 指向 Entry<3,b>。环形链表就这样出现了，上图实际上应该是这样子的</3,b></7,d></3,b></3,b></7,d></3,b></7,d></3,b></3,b></p>
+<p><img src="/blog/2019/01/02/HashMap的底层实现/hashMap13.png" alt=""></p>
+<p>我们知道正常rehash流程线程拿到是是一个新的全空的HashMap，而在并发情况下，线程1是在线程2进行了全部或者部分rehash基础上，对新的HashMap进行rehash，而且扩容时操作同一个链表导致了环形链表的出现。环形链表一旦出现将导致get方法出现问题，因为get方法时会遍历链表去找到对应的key。假设某个key经过hash需要去遍历3链表，而恰巧3链表中没有这个key，那么get方法就一直在遍历这个链表break不掉了。在jdk1.8中修复了这个问题，使用了两个局部链表进行扩容不会出现哈希环。但jdk1.8中HashMap仍然不可在并发场景下使用，因为HashMap的put方法在并发下会出现丢数据的问题。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>对于HashMap的并发问题，有几种解决办法。1. 使用HashTable，这个类是线程安全的。但HashTable源码好像只是在方法上加上了synchronize方法，而synchronize 属于重量级锁，对效率损耗是比较大的。2. 使用jdk1.8中的ConcurrentHashMap，这个类实现了更高级的线程安全，且使用分段锁，在并发下也可有很高的吞吐量，推荐使用。对于HashMap的原理解析就到这吧，如有纰漏，望指正。</p>
+
       
 
 	  <!-- 博客主题自带打赏样式注释 -->
@@ -618,11 +624,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">实践</a>
+                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -630,11 +632,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color3">实践</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -642,11 +648,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -655,10 +665,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -842,4 +848,6 @@ MathJax.Hub.Queue(function() {
   <img style="display:none" src="/blog/backyasuo.jpg"></img>
 </body>
    <script async src="/blog/busuanzi.pure.mini.js"></script>
+   <!-- life module 移除图片点击事件 -->
+   <!-- <script async src="/blog/life/life.js"></script> -->
 </html>
