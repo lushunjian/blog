@@ -167,6 +167,102 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-长连接的负载均衡" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/07/28/长连接的负载均衡/">长连接的负载均衡</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2018/07/28/长连接的负载均衡/" class="archive-article-date">
+  	<time datetime="2018-07-28T00:11:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-28</time>
+</a>
+        
+		
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​    最近公司培训，讲到了有关于长连接的负载均衡解决方案，确有体会，故此记录一下。在之前做负载均衡一般针对的是短连接，短连接的场景在实际应用中非常普遍。浏览器中大部分的请求都是短连接，例如用户登录，注册。商城的订单，付款等功能都属于短连接。短连接的特点就是无状态，连接时间短，长则三四秒，短则几毫秒。短连接的负载均衡很容易解决，开源中间件也比较多,例如nginx，F5等。而长连接的负载均衡解决方案则比较少了，主要原因是长连接相对于短连接来说应用面比较窄。一般是定制化需求会使用长连接。而生活中长连接作为普遍的应用就是直播系统了，近几年直播这种娱乐方式也越来越受到年轻人的喜爱，虎牙，斗鱼等直播平台如雨后春笋般涌现。我所在的公司主要从事安防行业，其中最为普遍的业务是摄像头的录像，在城市中每个街头，小区，公交地铁上的摄像头都会接入到公安体系中，其中录像不但能实时播放而且还会保存到服务器中，方便公安人员破案时可以随时查看录像。由于摄像机是24小时录像的，所以在这种场景下摄像机是使用长连接，而且一旦摄像机和某个服务器节点建立连接，就会长期和这个服务器保持着连接。一个城市的摄像头成千上万，后台不但需要考虑并发，还要考虑负载均衡。传统的负载均衡算法如轮询，哈希，随机等算法并不适用于长连接的一些业务场景。这里长连接可比作一个持续进行的任务，那么长连接的负载均衡就是每个任务的资源调度，最终使每个节点上的资源，均匀的分布在这些任务上。</p>
+        
+          <a class="article-more-a" href="/blog/2018/07/28/长连接的负载均衡/#more">more >></a>
+        
+      
+
+	  <!-- 博客主题自带打赏样式注释 -->
+	  <!--
+       -->
+	  
+	 <!-- 自定义打赏样式 -->
+	  
+    </div>
+	
+	
+	
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">负载均衡</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2018/07/28/长连接的负载均衡/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+  
     <article id="post-大数据生态圈" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -839,99 +935,6 @@
 
 
   
-    <article id="post-虚拟机指令集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2018/06/10/虚拟机指令集/">虚拟机指令集</a>
-    </h1>
-  
-
-        
-        <a href="/blog/2018/06/10/虚拟机指令集/" class="archive-article-date">
-  	<time datetime="2018-06-10T01:52:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-10</time>
-</a>
-        
-		
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    Java虚拟机既然是一台虚拟的计算机，那必有一套完善指令集，指令由一个字节长度，代表某种特定操作含义的操作码构成。这里在最初接触计算机的时候，我是有一些疑问的。例如为什么计算机都有它的指令集，这些指令是怎么被CPU执行的。由于我当初学的是电子科学，包含模电数电，单片机等内容，其中单片机就是一个小型的片上系统，随着学习的深入这些疑问自然就迎刃而解了。我谈一下自己的理解，也顺便做一下记录。</p>
-<p>​    对于CPU而言它只认识0和1，对应的是数字电路中的高低电平，实现原理是把MOS管当做开关使用，MOS管是一种半导体晶体管，主要成分硅（这也是美国硅谷这个名字的由来吧）。通过MOS管可以实现各种寄存器，累加器，计数器，与非门，或非门等逻辑门电路。每一条指令都是特定的门电路组成的，门电路是CPU的基本工作单元，数以亿计的门电路才造就了CPU的强大运算能力，这些门电路输入是一位或多位二进制数，输出也是一位或多位二进制数。在最早的计算机上，程序员需要将0101这种二进制代码给CPU计算，这里的二进制代码会控制CPU进行加减乘除或者逻辑运算，对应于在MOS管上的状态就是开和关，这种二进制代码也叫机器语言，是计算机能直接读懂的语言。但是这对于程序员来说简直是噩梦，一个小小的计算功能，用机器语言来编写需要写一大串0和1。最关键的是这些0和1代码代表什么意思也非常难以记忆，开发成本很大。于是科学家们用了一种高级的语言来代替它 ，然后汇编语言诞生了，汇编语言更接近人类自然语言的习惯。然后再做一个编译器工具帮我们把汇编语言翻译成机器语言就行了。    </p>
-        
-          <a class="article-more-a" href="/blog/2018/06/10/虚拟机指令集/#more">more >></a>
-        
-      
-
-	  <!-- 博客主题自带打赏样式注释 -->
-	  <!--
-       -->
-	  
-	 <!-- 自定义打赏样式 -->
-	  
-    </div>
-	
-	
-	
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2018/06/10/虚拟机指令集/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/blog/">&laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/3/">Next &raquo;</a>
@@ -1066,14 +1069,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">实践</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
               </li>
              
@@ -1082,7 +1077,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
+                <a href="javascript:void(0)" class="js-tag color3">实践</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1090,11 +1093,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1106,15 +1113,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
