@@ -190,9 +190,16 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Web开发指的是网页系统开发，一说到网页，我想大概大部分人都会熟悉www，每次在浏览器中输入网址时，总会先输入www，这里其实是World Wide Web的简称，现在也简称Web，中文译为万维网。“万维网”和我们经常说的“互联网”是两个联系极其紧密但却不尽相同的概念，互联网就是指通过TCP/IP协议族互相连接在一起的计算机网络。而万维网是运行在互联网上的一个超大规模的分布式系统。Web设计初衷是一个静态信息资源发布媒介，通过超文本标记语言（HTML）描述信息资源，通过统一资源标识符（URI）定位信息资源，通过超文本转移协议（HTTP）请求信息资源。HTML、URL和HTTP三个规范构成了Web的核心体系结构，是支撑着Web运行的基石。</p>
-<p><img src="/blog/2019/01/21/web开发技术的演变/web.jpg" alt=""></p>
-<p>这样说太过专业化了，用简单的话说，打个比方：假设有100台计算机，这100台计算机可以分布在世界任何一个地方，无所谓。如果我想让这100台计算机相互通信，怎么办。那把这100台计算机用光纤相互连接起来吧，组成一个网路。到这还不行，这只是硬件上连接起来了，通信是可以通信了，但计算机们都不知道对方发的消息是什么意思，而且寻址也是一个问题。这时就需要一个通信协议了，然后TCP/IP就诞生了。有了这个协议后，100台计算机算是真正可以发送消息了，而Web就是建立在这个基础上的。再设想一下，现在1号计算机想获取99号计算机上磁盘上的一张图片，怎么办？这时URI就诞生了，URI作为统一资源标识符，专做这个事情。那么拿到资源后怎么展示就是HTML做的事情了，而计算机通信的协议就是通过HTTP协议了（HTTP协议是基于TCP协议的一个上层协议）。因此，大家开发的Web应用本质上就是可以提供信息或者功能的Web资源，成为Web这个全球超大规模分布式系统中的一部分。</p>
-
+<p><img src="/blog/2019/01/21/web开发技术的演变/web.png" alt=""></p>
+<p>这样说太过专业化了，用简单的话说，打个比方：假设有100台计算机，这100台计算机可以分布在世界任何一个地方，无所谓。如果我想让这100台计算机相互通信，怎么办。那把这100台计算机用光纤相互连接起来吧，组成一个网路。到这还不行，这只是硬件上连接起来了，通信是可以通信了，但计算机们都不知道对方发的消息是什么意思，而且寻址也是一个问题。这时就需要一个通信协议了，然后TCP/IP就诞生了。有了这个协议后，100台计算机算是真正可以发送消息了，而Web就是建立在这个基础上的。再设想一下，现在1号计算机想获取99号计算机上磁盘上的一张图片，怎么办？这时URI就诞生了，URI作为统一资源标识符，专做这个事情。那么拿到资源后怎么展示就是HTML做的事情了，而计算机通信的协议就是通过HTTP协议了（HTTP协议是基于TCP协议的一个上层协议）。因此，大家开发的Web应用本质上就是将服务器中的资源提供的互联网中，成为Web这个全球超大规模分布式系统中的一部分。下面我就来扒一扒Web开发经历过哪些阶段。</p>
+<h3 id="1-静态网页时代"><a href="#1-静态网页时代" class="headerlink" title="1. 静态网页时代"></a>1. 静态网页时代</h3><p>1994年，网景公司（Netscape）发布了Navigator浏览器0.9版。这是历史上第一个比较成熟的网络浏览器，轰动一时。但是，这个版本的浏览器只能用来浏览，不具备与访问者互动的能力。最初在浏览器中主要展现的是静态的文本或图像信息，即将网页的HTML代码编写好，然后将他放在服务器上通过浏览器访问这个静态的HTML文件。这个时期的技术处于较为原始阶段，没有Javascript，没有CSS的年代，写出的HTML给人的感觉就是一些文字堆砌在一起，没有美感，也不存在动态交互。只有GIF图片则第一次为HTML页面引入了动态元素。那时的网页大致长这个样子</p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/web1.png" alt="">此时的网景公司（Netscape）也苦于浏览器没有动态效果，因此急需一种脚本语言，使得浏览器和网页进行交互，从而提升用户的体验。当时网景公司有两个方案：一个是采用现有的语言，如Perl、Python、Tcl、Scheme等等，允许它们直接嵌入网页；另一个是发明一种全新的语言。高层对于两个方案一时难以决定，就在这时，发生了另外一件大事：1995年Sun公司将Oak语言改名为Java，正式向市场推出。Sun公司大肆宣传，许诺这种语言可以”一次编写，到处运行”，它看上去很可能成为未来的主宰。网景公司动了心，决定与Sun公司结成联盟。它不仅允许Java程序以applet（小程序）的形式，直接在浏览器中运行；甚至还考虑直接将Java作为脚本语言嵌入网页，只是因为这样会使HTML网页过于复杂，后来才不得不放弃。此时，34岁的系统程序员Brendan Eich登场了。1995年4月，网景公司录用了他。公司决定指派他作为新语言的开发者，并要求这个语言必须与java足够相似，但比java简单。但是，他对Java一点兴趣也没有。为了应付公司安排的任务，他只用10天时间就把Javascript设计出来了。谁也想不到如今世界排名前5的Javascript竟是在10内被开发出来的，有了Javascript后用户就具备了与浏览器交互的能力。那时的网页大致如下</p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/web2.png" alt=""></p>
+<p>大概在同时期，另一门前端语言也诞生了，它就是CSS。1994年哈坤·利提出了CSS的最初建议。而当时伯特·波斯（<em>Bert Bos</em>）正在设计一个名为Argo的浏览器，于是他们决定一起设计CSS。哈坤于1994年在芝加哥的一次会议上第一次提出了CSS的建议，1995年的www网络会议上CSS又一次被提出，博斯演示了Argo浏览器支持CSS的例子，哈肯也展示了支持CSS的Arena浏览器。同年，W3C组织成立，CSS的创作成员全部成为了W3C的工作小组并且全力以赴负责研发CSS标准，层叠样式表的开发走上正轨。Javascript与CSS两大前端语言诞生后，静态页面也可以像桌面应用程序那样美观和动态交互了，下面是苹果公司早期的主页</p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/apple.jpg" alt=""></p>
+<p>那时Web的工作原理也相对简单，就是浏览器请求服务器的静态HTML文件，然后服务器将静态文件返回给浏览器渲染成文本展示，其工作流程大致如下图</p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/web4.png" alt=""></p>
+<h3 id="2-动态内容CGI时代"><a href="#2-动态内容CGI时代" class="headerlink" title="2. 动态内容CGI时代"></a>2. 动态内容CGI时代</h3>
       
 
 	  <!-- 博客主题自带打赏样式注释 -->
@@ -1070,6 +1077,10 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
@@ -1082,19 +1093,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1102,11 +1101,23 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1119,10 +1130,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">设计模式</a>
               </li>
              
               <li class="article-tag-list-item">
