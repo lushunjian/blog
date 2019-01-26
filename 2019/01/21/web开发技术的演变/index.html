@@ -25,9 +25,12 @@
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/J2EE.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/MVC.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/ajax.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/react.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/Angular.jpg">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/vue.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/Frontend-MVC.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/Node.png">
-<meta property="og:updated_time" content="2019-01-26T07:43:08.790Z">
+<meta property="og:updated_time" content="2019-01-26T08:16:58.805Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web开发技术的演变">
 <meta name="twitter:description" content="Web开发指的是网页系统开发，一说到网页，我想大概大部分人都会熟悉www，每次在浏览器中输入网址时，总会先输入www，这里其实是World Wide Web的简称，现在也简称Web，中文译为万维网。“万维网”和我们经常说的“互联网”是两个联系极其紧密但却不尽相同的概念，互联网就是指通过TCP/IP协议族互相连接在一起的计算机网络。而万维网是运行在互联网上的一个超大规模的分布式系统。Web设计初衷是">
@@ -233,14 +236,17 @@
 <h3 id="7-浏览器的魔术：AJAX"><a href="#7-浏览器的魔术：AJAX" class="headerlink" title="7. 浏览器的魔术：AJAX"></a>7. 浏览器的魔术：AJAX</h3><p>JavaScript最终被提交到欧洲计算机制造商协会(ECMA)，做为中立的ECMA开始了标准化脚本语言之路，并将其命名为ECMAScript。JavaScript可以响应浏览器端的用户事件，检测表单的正确性，动态修改DOM结构，因此可以减少与服务器端的通信开销，并且做出很酷的页面动态效果。2005年出现的AJAX这个概念使得JavaScript再次大放异彩。AJAX即“Asynchronous Javascript And XML”（异步的JavaScript和XML技术）。Ajax 不是一种新的编程语言，而是一种用于创建更好更快以及交互性更强的Web应用程序的技术。AJAX是一种已有技术的mashup，多种技术组合在一起形成了其特色和优势，早在1998年就已经开始有人使用。Google在地图和Gmail等产品中对这项技术的深入应用，以及AJAX这个吸引眼球的名字的提出，使其正式站在了聚光灯下，开始吸引无数人的目光。我们知道Web应用中用户提交表单时就向Web服务器发送一个请求，服务器接收并处理传来的表单，并返回一个新的网页。而前后两个页面中的往往大部分HTML代码是一样的，每次都返回整个页面内容是一种带宽资源的浪费。而AJAX应用仅向服务器发送并取回必须的数据，并在客户端采用JavaScript处理来自服务器响应，更新页面的局部信息。使用Ajax的最大优点，就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变的信息。对应用Ajax最主要的批评就是，它可能破坏浏览器的后退与加入收藏书签功能。在动态更新页面的情况下，用户无法回到前一个页面状态，这是因为浏览器仅能记下历史记录中的静态页面。一个被完整读入的页面与一个已经被动态修改过的页面之间的可能差别非常微妙；用户通常都希望单击后退按钮，就能够取消他们的前一次操作，但是在Ajax应用程序中，却无法这样做。不过开发者已想出了种种办法来解决这个问题。AJAX的出现，催生诸如EXTJS、EASYUI等一些基于JS的前端框架。大大提高了前端页面的开发效率。</p>
 <p><img src="/blog/2019/01/21/web开发技术的演变/ajax.png" alt=""></p>
 <h3 id="8-前端MVC：Angular-React-Vue"><a href="#8-前端MVC：Angular-React-Vue" class="headerlink" title="8. 前端MVC：Angular/React/Vue"></a>8. 前端MVC：Angular/React/Vue</h3><p>这种模式下，前后端的分工非常清晰，前后端的关键协作点是 Ajax 接口，规定好交互接口后，前后端工程师就可以根据约定，分头开工，开发环境中通过Mock等方式进行测试，同时在特定时间节点进行前后端集成测试。但是，随着业务功能的愈发复杂，这种模式本质上和JSP时代的Web开发并无本质区别，只不过是将复杂的业务逻辑从JSP文件转移到了JavaScript文件中而已。现在，对于一个前端功能、交互复杂的业务，大量的逻辑处理使得javascript的代码量激增。很自然地，像服务端从JSP向MVC框架转换的过程一样，前端开发也出现了大量的MVC框架。通过MVC框架又衍生出了许多其它的架构，统称MV<em> ，最常见的是MVP与MVVM。总的来说，MV</em> 框架的提出是为了解决前端开发的复杂度，提供一套规则组织代码、分层，通过合理的组织和分层，前端的代码职责明确、清晰，便于开发与测试。目前比较优秀的前端MVC框架就是Angular.js，Vue.js和React.js。被尊为前端三大框架，下面分别介绍一下这几个框架。</p>
-<h4 id="（1）-React"><a href="#（1）-React" class="headerlink" title="（1）. React"></a>（1）. React</h4><p>React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设 Instagram 的网站。做出来以后，发现这套东西很好用，就在2013年5月开源了。由于 React 的设计思想极其独特，属于革命性创新，性能出众，代码逻辑却非常简单。所以，越来越多的人开始关注和使用，认为它可能是将来 Web 开发的主流工具。支持虚拟DOM（Virtual DOM）和组件化的开发。React<a href="https://react.docschina.org/" target="_blank" rel="noopener">官网</a>和github<a href="https://github.com/facebook/react/" target="_blank" rel="noopener">地址</a></p>
-<h4 id="（2）-Angular"><a href="#（2）-Angular" class="headerlink" title="（2） . Angular"></a>（2） . Angular</h4><p>AngularJS 诞生于2009年，由Misko Hevery 等人创建，后为Google所收购。是一款优秀的前端JS框架，已经被用于Google的多款产品当中。AngularJS有着诸多特性，最为核心的是：MVC（Model–view–controller）、模块化、自动化双向数据绑定、语义化标签、依赖注入等等。AngularJS是协助搭建单页面工程（SPA）的开源前端框架。它通过MVC模式使得开发与测试变得更容易。并试图成为WEB应用中的一种端对端的解决方案。它将指导开发整个应用。Angular <a href="http://www.angularjs.net.cn/" target="_blank" rel="noopener">官网</a>和github<a href="https://github.com/angular/" target="_blank" rel="noopener">地址</a></p>
-<h4 id="（3）-Vue"><a href="#（3）-Vue" class="headerlink" title="（3） . Vue"></a>（3） . Vue</h4><p>vue同时具备angular和react的优点,轻量级,api简单,文档齐全,简单强大,麻雀虽小五脏俱全，目前在github上众多的前端开源MVVM框架中vue拥有star最多。Vue是一个构建数据驱动的 web 界面的渐进式框架。Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。Vue.js 自身不是一个全能框架——它只聚焦于视图层。因此它非常容易学习，易于上手，非常容易与其它库或已有项目整合。另一方面，在与相关工具和支持库一起使用时，Vue.js 也能完美地驱动复杂的单页应用，其作者是尤雨溪是中国人。Vue<a href="https://cn.vuejs.org/" target="_blank" rel="noopener">官网</a>和github<a href="https://github.com/vuejs" target="_blank" rel="noopener">地址</a></p>
+<h4 id="（1）React"><a href="#（1）React" class="headerlink" title="（1）React"></a>（1）React</h4><p>React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设 Instagram 的网站。做出来以后，发现这套东西很好用，就在2013年5月开源了。由于 React 的设计思想极其独特，属于革命性创新，性能出众，代码逻辑却非常简单。所以，越来越多的人开始关注和使用，认为它可能是将来 Web 开发的主流工具。支持虚拟DOM（Virtual DOM）和组件化的开发。React<a href="https://react.docschina.org/" target="_blank" rel="noopener">官网</a>和github<a href="https://github.com/facebook/react/" target="_blank" rel="noopener">地址</a></p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/react.png" alt=""></p>
+<h4 id="（2）-Angular"><a href="#（2）-Angular" class="headerlink" title="（2） Angular"></a>（2） Angular</h4><p>AngularJS 诞生于2009年，由Misko Hevery 等人创建，后为Google所收购。是一款优秀的前端JS框架，已经被用于Google的多款产品当中。AngularJS有着诸多特性，最为核心的是：MVC（Model–view–controller）、模块化、自动化双向数据绑定、语义化标签、依赖注入等等。AngularJS是协助搭建单页面工程（SPA）的开源前端框架。它通过MVC模式使得开发与测试变得更容易。并试图成为WEB应用中的一种端对端的解决方案。它将指导开发整个应用。Angular <a href="http://www.angularjs.net.cn/" target="_blank" rel="noopener">官网</a>和github<a href="https://github.com/angular/" target="_blank" rel="noopener">地址</a></p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/Angular.jpg" alt=""></p>
+<h4 id="（3）-Vue"><a href="#（3）-Vue" class="headerlink" title="（3）  Vue"></a>（3）  Vue</h4><p>vue同时具备angular和react的优点,轻量级,api简单,文档齐全,简单强大,麻雀虽小五脏俱全，目前在github上众多的前端开源MVVM框架中vue拥有star最多。Vue是一个构建数据驱动的 web 界面的渐进式框架。Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。Vue.js 自身不是一个全能框架——它只聚焦于视图层。因此它非常容易学习，易于上手，非常容易与其它库或已有项目整合。另一方面，在与相关工具和支持库一起使用时，Vue.js 也能完美地驱动复杂的单页应用，其作者是尤雨溪是中国人。Vue<a href="https://cn.vuejs.org/" target="_blank" rel="noopener">官网</a>和github<a href="https://github.com/vuejs" target="_blank" rel="noopener">地址</a></p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/vue.png" alt=""></p>
 <p>前端有了MVC框架后，web开发就真正实现了前后端解耦，分离开发。至此web开发的架构图大致如下图</p>
 <p><img src="/blog/2019/01/21/web开发技术的演变/Frontend-MVC.png" alt=""></p>
 <h3 id="9-JS在服务器端的逆袭：Node-JS"><a href="#9-JS在服务器端的逆袭：Node-JS" class="headerlink" title="9. JS在服务器端的逆袭：Node.JS"></a>9. JS在服务器端的逆袭：Node.JS</h3><p>各大浏览器的竞争，使其引擎的性能不断提升，至今Google V8引擎的性能已经足以运行大型Javascript程序。在V8之上加以网络、文件系统等内置模块，形成了如今的Node.js。随着Node.js的出现，JavaScript开始拥有在服务端运行的能力，它让 JavaScript 成为与PHP、Python、Perl、Ruby 等服务端语言平起平坐的脚本语言。 [1]  发布于2009年5月，由Ryan Dahl开发，实质是对Chrome V8引擎进行了封装。它的异步本质使得Node.js在处理I/O密集型业务中优势凸显，而大多Web业务中I/O性能都是瓶颈。eBay、Yahoo、甚至Microsoft Azure纷纷引入Node.js以提升性能。Node.js的package每天都有几千万的下载量。这对前端工程师来说可是一个好消息，精通JavaScript的他们也能够做服务端开发了！虽然现实中并不是这样美好（服务端开发涉及的不仅仅是语言层面），但一种新的开发模式也因此兴起：浏览器端处理展现层逻辑、而服务端Controller这一层以及相关的模板渲染、路由、数据接口以及Session/Cookie先关处理实际上交给了Nodejs来做。通过Nodejs, 意味着前后端很多代码可以复用（例如数据验证，业务逻辑）。但另一方面，JavaScript刚被引入到服务器端开发，其生态环境还未成熟，甚至大量的常用package主版本号都是0。长期用来实现页面逻辑，天生自由的JavaScript，在服务器端开发中，仍未形成统一的开发范型。不同开发原则和编码风格的应用，都将对Node.js项目的性能、可维护性产生重大影响。Node.js可以在不新增额外线程的情况下，依然可以对任务进行并发处理， Node.js是单线程的。它通过事件循环（event loop）来实现并发操作，对此，我们应该要充分利用这一点 ， 尽可能的避免阻塞操作，取而代之，多使用非阻塞操作。在几年的时间里，Node.JS逐渐发展成一个成熟的开发平台，吸引了许多开发者。有许多大型高流量网站都采用Node.JS进行开发，此外，开发人员还可以使用它来开发一些快速移动Web框架。</p>
 <p><img src="/blog/2019/01/21/web开发技术的演变/Node.png" alt=""></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>现在Web技术依然在快速发展，Web本身的基础规范也在不断完善，HTML5和CSS3引入了更多激动人心的特性。回顾Web的发展历史，从某个角度看，就是抽象层次不断提高的一个过程，更高的抽象层次屏蔽更低层的复杂性，从而提高开发效率。每当技术发展到一定程度，出现某些局限性的时候，就会有更优秀的技术出现来突破这些局限性。其实这是计算机技术发展的一个普遍规律，比如高级语言的出现屏蔽了汇编语言的复杂性，帮助我们更快速的编程，更多的关注代码和业务逻辑；数据库技术的出现使得我们无需关心物理存储和访问细节，简单的SQL语句就能搞定我们本来需要复杂且晦涩难懂的底层的代码才能完成的事情，更进一步，ORM框架使得我们通过一条语句调用一个类的一个方法就能方便就行数据操作。我们应该让自己的技术视野具备一定的高度和广度，看到一门技术的发展规律和发展历程，这是一种技术修养的体现，其实跟人文修养是一样的。同时也应该具有一定的深度，因为我们往往站在比较高的抽象层次，比如今天你写几行代码就能把数据库创建好，增删改查的功能也自动生成好了，现在很多程序员对重复造轮子的事嗤之以鼻，实现功能或是遇到难点也是百度直接照搬代码。重复造轮子确实降低了工作效率，在企业中当然会使用前人造好的轮子，但是作为技术人员如果只是知其然而不知其所以然，那么永远只是个勤劳的搬砖工。要成为高手需要你对底层的原理机制有更透彻的理解，真正遇到问题的时候才能抽丝剥茧迎刃而解。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>现在Web技术依然在快速发展，Web本身的基础规范也在不断完善，HTML5和CSS3引入了更多激动人心的特性。回顾Web的发展历史，从某个角度看，就是抽象层次不断提高的一个过程，更高的抽象层次屏蔽更低层的复杂性，从而提高开发效率。但任何技术框架都不是万能的，每当技术发展到一定程度，或是出现某些局限性的时候，就会有更优秀的技术出现来解决这些局限性。其实这是计算机技术发展的一个普遍规律，比如高级语言的出现屏蔽了汇编语言的复杂性，帮助我们更快速的编程，更多的关注代码和业务逻辑；数据库技术的出现使得我们无需关心物理存储和访问细节，简单的SQL语句就能搞定我们本来需要复杂且晦涩难懂的底层的代码才能完成的事情，更进一步，ORM框架使得我们通过一条语句调用一个类的一个方法就能方便就行数据操作。我们应该让自己的技术视野具备一定的高度和广度，看到一门技术的发展规律和发展历程，这是一种技术修养的体现，其实跟人文修养是一样的。同时也应该具有一定的深度，因为我们往往站在比较高的抽象层次，比如今天你写几行代码就能把数据库创建好，增删改查的功能也自动生成好了，现在很多程序员对重复造轮子的事嗤之以鼻，实现功能或是遇到难点也是百度直接照搬代码。重复造轮子确实降低了工作效率，在企业中当然会使用前人造好的轮子，但是作为技术人员如果只是知其然而不知其所以然，那么永远只是个勤劳的搬砖工。要成为高手需要你对底层的原理机制有更透彻的理解，真正遇到问题的时候才能抽丝剥茧迎刃而解。</p>
 
       
 
@@ -595,7 +601,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,7 +609,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,11 +645,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -647,11 +653,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
