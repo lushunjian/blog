@@ -18,10 +18,12 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/web.jpg">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/web1.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/web2.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/apple.jpg">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/web4.png">
-<meta property="og:updated_time" content="2019-01-23T15:17:40.335Z">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/web5.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/web6.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/web7.png">
+<meta property="og:updated_time" content="2019-01-26T00:02:15.261Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web开发技术的演变">
 <meta name="twitter:description" content="Web开发指的是网页系统开发，一说到网页，我想大概大部分人都会熟悉www，每次在浏览器中输入网址时，总会先输入www，这里其实是World Wide Web的简称，现在也简称Web，中文译为万维网。“万维网”和我们经常说的“互联网”是两个联系极其紧密但却不尽相同的概念，互联网就是指通过TCP/IP协议族互相连接在一起的计算机网络。而万维网是运行在互联网上的一个超大规模的分布式系统。Web设计初衷是">
@@ -207,13 +209,20 @@
 <a id="more"></a> 
 <p>这样说太过专业化了，用简单的话说，打个比方：假设有100台计算机，这100台计算机可以分布在世界任何一个地方，无所谓。如果我想让这100台计算机相互通信，怎么办。那把这100台计算机用光纤相互连接起来吧，组成一个网路。到这还不行，这只是硬件上连接起来了，通信是可以通信了，但计算机们都不知道对方发的消息是什么意思，而且寻址也是一个问题。这时就需要一个通信协议了，然后TCP/IP就诞生了。有了这个协议后，100台计算机算是真正可以发送消息了，而Web就是建立在这个基础上的。再设想一下，现在1号计算机想获取99号计算机上磁盘上的一张图片，怎么办？这时URI就诞生了，URI作为统一资源标识符，专做这个事情。那么拿到资源后怎么展示就是HTML做的事情了，而计算机通信的协议就是通过HTTP协议了（HTTP协议是基于TCP协议的一个上层协议）。因此，大家开发的Web应用本质上就是将服务器中的资源提供的互联网中，成为Web这个全球超大规模分布式系统中的一部分。下面我就来扒一扒Web开发经历过哪些阶段。</p>
 <h3 id="1-静态网页时代"><a href="#1-静态网页时代" class="headerlink" title="1. 静态网页时代"></a>1. 静态网页时代</h3><p>1994年，网景公司（Netscape）发布了Navigator浏览器0.9版。这是历史上第一个比较成熟的网络浏览器，轰动一时。但是，这个版本的浏览器只能用来浏览，不具备与访问者互动的能力。最初在浏览器中主要展现的是静态的文本或图像信息，即将网页的HTML代码编写好，然后将他放在服务器上通过浏览器访问这个静态的HTML文件。这个时期的技术处于较为原始阶段，没有Javascript，没有CSS的年代，写出的HTML给人的感觉就是一些文字堆砌在一起，没有美感，也不存在动态交互。只有GIF图片则第一次为HTML页面引入了动态元素。那时的网页大致长这个样子</p>
-<p><img src="/blog/2019/01/21/web开发技术的演变/web1.png" alt="">此时的网景公司（Netscape）也苦于浏览器没有动态效果，因此急需一种脚本语言，使得浏览器和网页进行交互，从而提升用户的体验。当时网景公司有两个方案：一个是采用现有的语言，如Perl、Python、Tcl、Scheme等等，允许它们直接嵌入网页；另一个是发明一种全新的语言。高层对于两个方案一时难以决定，就在这时，发生了另外一件大事：1995年Sun公司将Oak语言改名为Java，正式向市场推出。Sun公司大肆宣传，许诺这种语言可以”一次编写，到处运行”，它看上去很可能成为未来的主宰。网景公司动了心，决定与Sun公司结成联盟。它不仅允许Java程序以applet（小程序）的形式，直接在浏览器中运行；甚至还考虑直接将Java作为脚本语言嵌入网页，只是因为这样会使HTML网页过于复杂，后来才不得不放弃。此时，34岁的系统程序员Brendan Eich登场了。1995年4月，网景公司录用了他。公司决定指派他作为新语言的开发者，并要求这个语言必须与java足够相似，但比java简单。但是，他对Java一点兴趣也没有。为了应付公司安排的任务，他只用10天时间就把Javascript设计出来了。谁也想不到如今世界排名前5的Javascript竟是在10内被开发出来的，有了Javascript后用户就具备了与浏览器交互的能力。那时的网页大致如下</p>
-<p><img src="/blog/2019/01/21/web开发技术的演变/web2.png" alt=""></p>
-<p>大概在同时期，另一门前端语言也诞生了，它就是CSS。1994年哈坤·利提出了CSS的最初建议。而当时伯特·波斯（<em>Bert Bos</em>）正在设计一个名为Argo的浏览器，于是他们决定一起设计CSS。哈坤于1994年在芝加哥的一次会议上第一次提出了CSS的建议，1995年的www网络会议上CSS又一次被提出，博斯演示了Argo浏览器支持CSS的例子，哈肯也展示了支持CSS的Arena浏览器。同年，W3C组织成立，CSS的创作成员全部成为了W3C的工作小组并且全力以赴负责研发CSS标准，层叠样式表的开发走上正轨。Javascript与CSS两大前端语言诞生后，静态页面也可以像桌面应用程序那样美观和动态交互了，下面是苹果公司早期的主页</p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/web1.png" alt=""></p>
+<p>此时的网景公司（Netscape）也苦于浏览器没有动态效果，因此急需一种脚本语言，使得浏览器和网页进行交互，从而提升用户的体验。当时网景公司有两个方案：一个是采用现有的语言，如Perl、Python、Tcl、Scheme等等，允许它们直接嵌入网页；另一个是发明一种全新的语言。高层对于两个方案一时难以决定，就在这时，发生了另外一件大事：1995年Sun公司将Oak语言改名为Java，正式向市场推出。Sun公司大肆宣传，许诺这种语言可以”一次编写，到处运行”，它看上去很可能成为未来的主宰。网景公司动了心，决定与Sun公司结成联盟。它不仅允许Java程序以applet（小程序）的形式，直接在浏览器中运行；甚至还考虑直接将Java作为脚本语言嵌入网页，只是因为这样会使HTML网页过于复杂，后来才不得不放弃。此时，34岁的系统程序员Brendan Eich登场了。1995年4月，网景公司录用了他。公司决定指派他作为新语言的开发者，并要求这个语言必须与java足够相似，但比java简单。但是，他对Java一点兴趣也没有。为了应付公司安排的任务，他只用10天时间就把Javascript设计出来了。谁也想不到如今世界排名前5的Javascript竟是在10内被开发出来的，有了Javascript后用户就具备了与浏览器交互的能力。大概在同时期，另一门前端语言也诞生了，它就是CSS。1994年哈坤·利提出了CSS的最初建议。而当时伯特·波斯（<em>Bert Bos</em>）正在设计一个名为Argo的浏览器，于是他们决定一起设计CSS。哈坤于1994年在芝加哥的一次会议上第一次提出了CSS的建议，1995年的www网络会议上CSS又一次被提出，博斯演示了Argo浏览器支持CSS的例子，哈肯也展示了支持CSS的Arena浏览器。同年，W3C组织成立，CSS的创作成员全部成为了W3C的工作小组并且全力以赴负责研发CSS标准，层叠样式表的开发走上正轨。Javascript与CSS两大前端语言诞生后，静态页面也可以像桌面应用程序那样美观和动态交互了，下面是苹果公司早期的主页</p>
 <p><img src="/blog/2019/01/21/web开发技术的演变/apple.jpg" alt=""></p>
 <p>那时Web的工作原理也相对简单，就是浏览器请求服务器的静态HTML文件，然后服务器将静态文件返回给浏览器渲染成文本展示，其工作流程大致如下图</p>
 <p><img src="/blog/2019/01/21/web开发技术的演变/web4.png" alt=""></p>
-<h3 id="2-动态内容CGI时代"><a href="#2-动态内容CGI时代" class="headerlink" title="2. 动态内容CGI时代"></a>2. 动态内容CGI时代</h3>
+<h3 id="2-动态内容CGI时代"><a href="#2-动态内容CGI时代" class="headerlink" title="2. 动态内容CGI时代"></a>2. 动态内容CGI时代</h3><p> 随着业务发展，人们已经不仅仅满足于访问放在Web服务器上的静态文件，比如你想让访问者看到有多少其他访问者访问了这个网站呢，或者想让客户去填写这样一个表单，包含有姓名和邮件地址呢？要实现这样的功能，意味着客户端与服务端要进行数据交互，而且服务端还需要把用户数据永久的保存起来，这些功能是静态页面无法实现的。于是1993年CGI（Common Gateway Interface）出现了，Web上的动态信息服务开始蓬勃兴起。CGI定义了Web服务器与外部应用程序之间的通信接口标准，因此Web服务器可以通过CGI执行外部程序，让外部程序根据Web请求内容生成动态的内容。Perl因为跨操作系统和易于修改的特性成为CGI的主要编写语言。当然，CGI可以用任何支持标准输入输出和环境变量的语言编写，比如Shell脚本,C/C++语言，只要符合接口标准即可。比如你用C语言编写CGI程序，你把希望返回的HTML内容通过printf输出就可以发送给Web服务器，进而返回给用户。CGI应用程序运行在浏览器可以请求的服务器系统上，此时Web开发的架构大致如下图</p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/web5.png" alt=""></p>
+<p>由于CGI执行时需要使用服务器CPU时间和内存。如果有成千上万的这种程序会同时运行，那会对服务器系统提出极高的要求。你要慎重考虑这个问题，以防止服务器系统崩溃。当时组织CGI/Perl这样的脚本代码太混乱了。CGI伸缩性不是太好(经常是为每个请求分配一个新的进程)，也不太安全(直接使用文件系统或者环境变量)，同时也没提供一种结构化的方式去构造动态应用程序。如果一个CGI脚本可以在每台计算机上做同样的事情；编写脚本就会变的很容易。不幸的是，CGI脚本依赖于服务器的操作系统，因此，对于非UNIX服务器来说，Prl（UNIX下编写脚本的一个常用工具）脚本毫无用处。这也是开发人员最痛苦的事情，这意味着同一个应用服务，需要根据不同的操作系统各自开发一套。所以，你必须定制安装你的CGI脚本。这也是后来基于 JVM 平台的语言流行的主要因素。</p>
+<h3 id="3-模板引擎时代"><a href="#3-模板引擎时代" class="headerlink" title="3. 模板引擎时代"></a>3. 模板引擎时代</h3><h4 id="（1）PHP-ASP时代"><a href="#（1）PHP-ASP时代" class="headerlink" title="（1）PHP/ASP时代"></a>（1）PHP/ASP时代</h4><p>尽管CGI解决了网页动态数据的问题，但它的弊端也是越来越明显，依赖于操作系统，移植性差，HTML代码与服务端代码杂糅在一起不便于维护。为了处理更复杂的应用，人们在想能不能把HTML返回中固定的部分存起来（我们称之为模版），把动态的部分标记出来， Web请求处理的时候，程序先获取动态数据，再把模版读入进来，把动态数据填充进去，形成最终返回。举个例子，你通过页面搜索框搜索一个关键词，请求到达Web服务器，后台从数据库或是文件里拿到数据，然后把这些数据填充到返回结果的HTML模版中，返回给浏览器。但是这件事情自己来做显然太繁琐而且是重复劳动，于是1994年的时候，PHP诞生了，PHP可以把程序（动态内容）嵌入到HTML（模版）中去执行，不仅能更好的组织Web应用的内容，而且执行效率比CGI还更高。之后96年出现的ASP上也都可以看成是一种支持某种脚本语言编程，ASP使用VB语言的模版引擎。更重要的是，模板引擎的出现使得HTML代码和服务端代码分离开来，使得开发流程更加规范，逻辑更加清晰。而CSS允许开发者用外联的样式表来取代难以维护的内嵌样式，而不需要逐个去修改HTML元素，这让HTML页面更加容易创建和维护。此时，有了这些脚本语言，搭配上后端的数据库技术，Web更是开始大杀四方了，像电子商务这样的应用系统也可以通过Web技术来构建。Web已经从一个静态资源分享媒介真正变为了一个分布式的计算平台了。反过来看，你也应该知道，不是只有当今这些流行脚本语言可以写Web应用，C语言一样可以做这件事情。通过C语言来获取数据和渲染Web页面的例子在追求极致访问速度的互联网公司是非常常见的，但是脚本语言在开发效率上更胜一筹。</p>
+<h4 id="（2）JSP-Servlet时代"><a href="#（2）JSP-Servlet时代" class="headerlink" title="（2）JSP/Servlet时代"></a>（2）JSP/Servlet时代</h4><p>Servlet是一个优秀的Web技术规范，Servlet 看起来像是通常的 Java 程序。Servlet 导入特定的属于 Java Servlet API 的包。因为是对象字节码，可动态地从网络加载，可以说 Servlet 对 Server 就如同 Applet对 Client 一样，但是，由于 Servlet 运行于 Server 中，它们并不需要一个图形用户界面。从这个角度讲，Servlet 也被称为 FacelessObject。由于前后端交互的问题，sun公司又发布了JSP，JSP全称是Java Server Pages，它和Servlet技术一样，都是sun公司定义的一种用于开发动态web资源的技术。JSP最大的特点在于，写jsp就像在写html，但它相比html而言，html只能为用户提供静态数据，而Jsp技术允许在页面中嵌套java代码，为用户提供动态数据。它的出现一改以前java开发人员需要在Servlet中自己将html代码 out.write 返回给前端的工作方式，而是直接在jsp中编写html代码，极大的方便了开发人员的使用。这时已经初见前端分离的雏形了。jsp出现后，美工可以把页面原型图画好，再交给前端工程师按照原型图将静态页面写出来，待静态页面写好后，再交给java开发工程师把html代码复制到jsp中，这时只需要把后端处理的值填到对应的jsp中即可。对于一个系统开发，人员可以明确分工，前端后端开发部分可以同时进行。这个时期后端架构图大致如下</p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/web6.png" alt=""></p>
+<h3 id="4-JavaEE时代"><a href="#4-JavaEE时代" class="headerlink" title="4. JavaEE时代"></a>4. JavaEE时代</h3><p>Web开始广泛用于构建大型应用时，在分布式、安全性、事务性等方面的要求催生了J2EE(现在已更名为Java EE)平台在1999年的诞生，从那时开始为企业应用提供支撑平台的各种应用服务器也开始大行其道。Java Servlet、Java Server Pages (JSP)和Enterprise Java Bean (EJB )是Java EE中的核心规范，Servlet和JSP是运行在服务器端的Web组件。2000年随之而来的.net平台，其ASP.net构件化的Web开发方式以及Visual Stidio.net开发环境的强大支持，大大降低了开发企业应用的复杂度。ASP.Net第一次让程序员可以像拖拽组件来创建Windows Form程序那样来组件化地创建Web页面，Java平台后来出现的JSF也承袭了这一思想。两大平台在相互竞争和模仿中不断向前发展。EJB运行在服务器端的业务组件，是一种分布式组件技术J2EE里，除了Servlet外另一个重量级的规范就是EJB。EJB设计的来源是Corba技术，分布式对象技术在EJB规范中有完整的体现。Rod在著作中对EJB规范粗重庞大难用提出各种质疑，尤其是针对其强制分布的要求。我的观念是分布式支持没有错，现在EJB规范中对于Local和Remote的划分定义是正确的。开发人员应该一开始就需要了解接口粒度的划分，本地和远程接口是不同的。对于一般的小型应用，Servlet和EJB容器都在一个虚拟机中，本地接口是合理的，但对于大型企业应用和互联网级别应用，势必需要服务的远程划分和调用。所以早期的EJB，可以说一方面设计不完备，另一方面又过度设计。但EJB自从3以后完全脱胎换骨，成为设计良好的规范。大家有没有想过所谓企业应用和普通应用之间最大的差别是什么？我认为是用户数量级别的差异，导致前端设计方式，软件体系，后台数据库，缓存技术应用，有不同的设计理念和方式。用更技术化来说，就是可扩展性，高可用性，容灾能力以及数据的一致性。实际上这样的思维方式很好，因为企业应用追求的是稳定，所以在架构设计时一是要求效率，二是面向失败编程，即开发时首先不是想正常情况下应该怎么样，而是把所以有能异常的情况都考虑在里面，并为异常情况做好解决措施。从软件层面考虑，一个企业应用软件可能用户数并不太多，就企业中百来号人，但前后台的交互是长时间，多次会话交互的。JSF技术其实是借鉴了微软ASP.net，它们继承了传统IDE快速开发的思路，希望通过拖拽连接可以快速开发一个应用。页面上的组件，对应后台服务器的业务组件，在得到服务器请求之后，组件需要做一系列动作来完成解析，校验，模型重建，业务方法调用，页面渲染等步骤，这些必然有个较长的过程。复杂性，效率，和其他技术的融合，JSF技术从诞生起就被质疑不断，而且面对每个明星技术，都有些格格不入，比如Ajax出现了，而JSF要求的Post方式还需要重刷页面。但JSF一直在改进，越来越科学完善。如今，配合CDI，JSF是企业应用开发的首选技术之一，大家可以研究一下Oracle的应用产品和ADF开发框架。</p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/web7.png" alt=""></p>
+
       
 
 	  <!-- 博客主题自带打赏样式注释 -->
@@ -587,11 +596,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,19 +616,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
