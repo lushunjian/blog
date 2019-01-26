@@ -19,11 +19,15 @@
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/web.jpg">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/web1.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/apple.jpg">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/web4.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/web5.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/web6.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/web7.png">
-<meta property="og:updated_time" content="2019-01-26T00:02:15.261Z">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/static.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/CGI.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/JSP.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/J2EE.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/MVC.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/ajax.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/Frontend-MVC.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/21/web开发技术的演变/Node.png">
+<meta property="og:updated_time" content="2019-01-26T07:43:08.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="web开发技术的演变">
 <meta name="twitter:description" content="Web开发指的是网页系统开发，一说到网页，我想大概大部分人都会熟悉www，每次在浏览器中输入网址时，总会先输入www，这里其实是World Wide Web的简称，现在也简称Web，中文译为万维网。“万维网”和我们经常说的“互联网”是两个联系极其紧密但却不尽相同的概念，互联网就是指通过TCP/IP协议族互相连接在一起的计算机网络。而万维网是运行在互联网上的一个超大规模的分布式系统。Web设计初衷是">
@@ -210,18 +214,33 @@
 <p>这样说太过专业化了，用简单的话说，打个比方：假设有100台计算机，这100台计算机可以分布在世界任何一个地方，无所谓。如果我想让这100台计算机相互通信，怎么办。那把这100台计算机用光纤相互连接起来吧，组成一个网路。到这还不行，这只是硬件上连接起来了，通信是可以通信了，但计算机们都不知道对方发的消息是什么意思，而且寻址也是一个问题。这时就需要一个通信协议了，然后TCP/IP就诞生了。有了这个协议后，100台计算机算是真正可以发送消息了，而Web就是建立在这个基础上的。再设想一下，现在1号计算机想获取99号计算机上磁盘上的一张图片，怎么办？这时URI就诞生了，URI作为统一资源标识符，专做这个事情。那么拿到资源后怎么展示就是HTML做的事情了，而计算机通信的协议就是通过HTTP协议了（HTTP协议是基于TCP协议的一个上层协议）。因此，大家开发的Web应用本质上就是将服务器中的资源提供的互联网中，成为Web这个全球超大规模分布式系统中的一部分。下面我就来扒一扒Web开发经历过哪些阶段。</p>
 <h3 id="1-静态网页时代"><a href="#1-静态网页时代" class="headerlink" title="1. 静态网页时代"></a>1. 静态网页时代</h3><p>1994年，网景公司（Netscape）发布了Navigator浏览器0.9版。这是历史上第一个比较成熟的网络浏览器，轰动一时。但是，这个版本的浏览器只能用来浏览，不具备与访问者互动的能力。最初在浏览器中主要展现的是静态的文本或图像信息，即将网页的HTML代码编写好，然后将他放在服务器上通过浏览器访问这个静态的HTML文件。这个时期的技术处于较为原始阶段，没有Javascript，没有CSS的年代，写出的HTML给人的感觉就是一些文字堆砌在一起，没有美感，也不存在动态交互。只有GIF图片则第一次为HTML页面引入了动态元素。那时的网页大致长这个样子</p>
 <p><img src="/blog/2019/01/21/web开发技术的演变/web1.png" alt=""></p>
-<p>此时的网景公司（Netscape）也苦于浏览器没有动态效果，因此急需一种脚本语言，使得浏览器和网页进行交互，从而提升用户的体验。当时网景公司有两个方案：一个是采用现有的语言，如Perl、Python、Tcl、Scheme等等，允许它们直接嵌入网页；另一个是发明一种全新的语言。高层对于两个方案一时难以决定，就在这时，发生了另外一件大事：1995年Sun公司将Oak语言改名为Java，正式向市场推出。Sun公司大肆宣传，许诺这种语言可以”一次编写，到处运行”，它看上去很可能成为未来的主宰。网景公司动了心，决定与Sun公司结成联盟。它不仅允许Java程序以applet（小程序）的形式，直接在浏览器中运行；甚至还考虑直接将Java作为脚本语言嵌入网页，只是因为这样会使HTML网页过于复杂，后来才不得不放弃。此时，34岁的系统程序员Brendan Eich登场了。1995年4月，网景公司录用了他。公司决定指派他作为新语言的开发者，并要求这个语言必须与java足够相似，但比java简单。但是，他对Java一点兴趣也没有。为了应付公司安排的任务，他只用10天时间就把Javascript设计出来了。谁也想不到如今世界排名前5的Javascript竟是在10内被开发出来的，有了Javascript后用户就具备了与浏览器交互的能力。大概在同时期，另一门前端语言也诞生了，它就是CSS。1994年哈坤·利提出了CSS的最初建议。而当时伯特·波斯（<em>Bert Bos</em>）正在设计一个名为Argo的浏览器，于是他们决定一起设计CSS。哈坤于1994年在芝加哥的一次会议上第一次提出了CSS的建议，1995年的www网络会议上CSS又一次被提出，博斯演示了Argo浏览器支持CSS的例子，哈肯也展示了支持CSS的Arena浏览器。同年，W3C组织成立，CSS的创作成员全部成为了W3C的工作小组并且全力以赴负责研发CSS标准，层叠样式表的开发走上正轨。Javascript与CSS两大前端语言诞生后，静态页面也可以像桌面应用程序那样美观和动态交互了，下面是苹果公司早期的主页</p>
+<p>此时的网景公司（Netscape）也苦于浏览器没有动态效果，因此急需一种脚本语言，后来网景公司开发出了一门新语言javascript，有了Javascript后用户就具备了与浏览器交互的能力。但是页面的画风太丑，一直被人们吐槽，因此大概在同时期又诞生了另一名语言CSS，专门负责定义HTMML的标签样式。1994年，W3C组织（<em>World WideWeb Consortium</em>）成立，CSS的创作成员全部成为了W3C的工作小组并且全力以赴负责研发CSS标准，层叠样式表的开发终于走上正轨，有越来越多的成员参与其中。Javascript与CSS两大前端语言诞生后，静态页面也可以像桌面应用程序那样美观和动态交互了，下面是苹果公司早期的主页</p>
 <p><img src="/blog/2019/01/21/web开发技术的演变/apple.jpg" alt=""></p>
 <p>那时Web的工作原理也相对简单，就是浏览器请求服务器的静态HTML文件，然后服务器将静态文件返回给浏览器渲染成文本展示，其工作流程大致如下图</p>
-<p><img src="/blog/2019/01/21/web开发技术的演变/web4.png" alt=""></p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/static.png" alt=""></p>
 <h3 id="2-动态内容CGI时代"><a href="#2-动态内容CGI时代" class="headerlink" title="2. 动态内容CGI时代"></a>2. 动态内容CGI时代</h3><p> 随着业务发展，人们已经不仅仅满足于访问放在Web服务器上的静态文件，比如你想让访问者看到有多少其他访问者访问了这个网站呢，或者想让客户去填写这样一个表单，包含有姓名和邮件地址呢？要实现这样的功能，意味着客户端与服务端要进行数据交互，而且服务端还需要把用户数据永久的保存起来，这些功能是静态页面无法实现的。于是1993年CGI（Common Gateway Interface）出现了，Web上的动态信息服务开始蓬勃兴起。CGI定义了Web服务器与外部应用程序之间的通信接口标准，因此Web服务器可以通过CGI执行外部程序，让外部程序根据Web请求内容生成动态的内容。Perl因为跨操作系统和易于修改的特性成为CGI的主要编写语言。当然，CGI可以用任何支持标准输入输出和环境变量的语言编写，比如Shell脚本,C/C++语言，只要符合接口标准即可。比如你用C语言编写CGI程序，你把希望返回的HTML内容通过printf输出就可以发送给Web服务器，进而返回给用户。CGI应用程序运行在浏览器可以请求的服务器系统上，此时Web开发的架构大致如下图</p>
-<p><img src="/blog/2019/01/21/web开发技术的演变/web5.png" alt=""></p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/CGI.png" alt=""></p>
 <p>由于CGI执行时需要使用服务器CPU时间和内存。如果有成千上万的这种程序会同时运行，那会对服务器系统提出极高的要求。你要慎重考虑这个问题，以防止服务器系统崩溃。当时组织CGI/Perl这样的脚本代码太混乱了。CGI伸缩性不是太好(经常是为每个请求分配一个新的进程)，也不太安全(直接使用文件系统或者环境变量)，同时也没提供一种结构化的方式去构造动态应用程序。如果一个CGI脚本可以在每台计算机上做同样的事情；编写脚本就会变的很容易。不幸的是，CGI脚本依赖于服务器的操作系统，因此，对于非UNIX服务器来说，Prl（UNIX下编写脚本的一个常用工具）脚本毫无用处。这也是开发人员最痛苦的事情，这意味着同一个应用服务，需要根据不同的操作系统各自开发一套。所以，你必须定制安装你的CGI脚本。这也是后来基于 JVM 平台的语言流行的主要因素。</p>
 <h3 id="3-模板引擎时代"><a href="#3-模板引擎时代" class="headerlink" title="3. 模板引擎时代"></a>3. 模板引擎时代</h3><h4 id="（1）PHP-ASP时代"><a href="#（1）PHP-ASP时代" class="headerlink" title="（1）PHP/ASP时代"></a>（1）PHP/ASP时代</h4><p>尽管CGI解决了网页动态数据的问题，但它的弊端也是越来越明显，依赖于操作系统，移植性差，HTML代码与服务端代码杂糅在一起不便于维护。为了处理更复杂的应用，人们在想能不能把HTML返回中固定的部分存起来（我们称之为模版），把动态的部分标记出来， Web请求处理的时候，程序先获取动态数据，再把模版读入进来，把动态数据填充进去，形成最终返回。举个例子，你通过页面搜索框搜索一个关键词，请求到达Web服务器，后台从数据库或是文件里拿到数据，然后把这些数据填充到返回结果的HTML模版中，返回给浏览器。但是这件事情自己来做显然太繁琐而且是重复劳动，于是1994年的时候，PHP诞生了，PHP可以把程序（动态内容）嵌入到HTML（模版）中去执行，不仅能更好的组织Web应用的内容，而且执行效率比CGI还更高。之后96年出现的ASP上也都可以看成是一种支持某种脚本语言编程，ASP使用VB语言的模版引擎。更重要的是，模板引擎的出现使得HTML代码和服务端代码分离开来，使得开发流程更加规范，逻辑更加清晰。而CSS允许开发者用外联的样式表来取代难以维护的内嵌样式，而不需要逐个去修改HTML元素，这让HTML页面更加容易创建和维护。此时，有了这些脚本语言，搭配上后端的数据库技术，Web更是开始大杀四方了，像电子商务这样的应用系统也可以通过Web技术来构建。Web已经从一个静态资源分享媒介真正变为了一个分布式的计算平台了。反过来看，你也应该知道，不是只有当今这些流行脚本语言可以写Web应用，C语言一样可以做这件事情。通过C语言来获取数据和渲染Web页面的例子在追求极致访问速度的互联网公司是非常常见的，但是脚本语言在开发效率上更胜一筹。</p>
 <h4 id="（2）JSP-Servlet时代"><a href="#（2）JSP-Servlet时代" class="headerlink" title="（2）JSP/Servlet时代"></a>（2）JSP/Servlet时代</h4><p>Servlet是一个优秀的Web技术规范，Servlet 看起来像是通常的 Java 程序。Servlet 导入特定的属于 Java Servlet API 的包。因为是对象字节码，可动态地从网络加载，可以说 Servlet 对 Server 就如同 Applet对 Client 一样，但是，由于 Servlet 运行于 Server 中，它们并不需要一个图形用户界面。从这个角度讲，Servlet 也被称为 FacelessObject。由于前后端交互的问题，sun公司又发布了JSP，JSP全称是Java Server Pages，它和Servlet技术一样，都是sun公司定义的一种用于开发动态web资源的技术。JSP最大的特点在于，写jsp就像在写html，但它相比html而言，html只能为用户提供静态数据，而Jsp技术允许在页面中嵌套java代码，为用户提供动态数据。它的出现一改以前java开发人员需要在Servlet中自己将html代码 out.write 返回给前端的工作方式，而是直接在jsp中编写html代码，极大的方便了开发人员的使用。这时已经初见前端分离的雏形了。jsp出现后，美工可以把页面原型图画好，再交给前端工程师按照原型图将静态页面写出来，待静态页面写好后，再交给java开发工程师把html代码复制到jsp中，这时只需要把后端处理的值填到对应的jsp中即可。对于一个系统开发，人员可以明确分工，前端后端开发部分可以同时进行。这个时期后端架构图大致如下</p>
-<p><img src="/blog/2019/01/21/web开发技术的演变/web6.png" alt=""></p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/JSP.png" alt=""></p>
 <h3 id="4-JavaEE时代"><a href="#4-JavaEE时代" class="headerlink" title="4. JavaEE时代"></a>4. JavaEE时代</h3><p>Web开始广泛用于构建大型应用时，在分布式、安全性、事务性等方面的要求催生了J2EE(现在已更名为Java EE)平台在1999年的诞生，从那时开始为企业应用提供支撑平台的各种应用服务器也开始大行其道。Java Servlet、Java Server Pages (JSP)和Enterprise Java Bean (EJB )是Java EE中的核心规范，Servlet和JSP是运行在服务器端的Web组件。2000年随之而来的.net平台，其ASP.net构件化的Web开发方式以及Visual Stidio.net开发环境的强大支持，大大降低了开发企业应用的复杂度。ASP.Net第一次让程序员可以像拖拽组件来创建Windows Form程序那样来组件化地创建Web页面，Java平台后来出现的JSF也承袭了这一思想。两大平台在相互竞争和模仿中不断向前发展。EJB运行在服务器端的业务组件，是一种分布式组件技术J2EE里，除了Servlet外另一个重量级的规范就是EJB。EJB设计的来源是Corba技术，分布式对象技术在EJB规范中有完整的体现。Rod在著作中对EJB规范粗重庞大难用提出各种质疑，尤其是针对其强制分布的要求。我的观念是分布式支持没有错，现在EJB规范中对于Local和Remote的划分定义是正确的。开发人员应该一开始就需要了解接口粒度的划分，本地和远程接口是不同的。对于一般的小型应用，Servlet和EJB容器都在一个虚拟机中，本地接口是合理的，但对于大型企业应用和互联网级别应用，势必需要服务的远程划分和调用。所以早期的EJB，可以说一方面设计不完备，另一方面又过度设计。但EJB自从3以后完全脱胎换骨，成为设计良好的规范。大家有没有想过所谓企业应用和普通应用之间最大的差别是什么？我认为是用户数量级别的差异，导致前端设计方式，软件体系，后台数据库，缓存技术应用，有不同的设计理念和方式。用更技术化来说，就是可扩展性，高可用性，容灾能力以及数据的一致性。实际上这样的思维方式很好，因为企业应用追求的是稳定，所以在架构设计时一是要求效率，二是面向失败编程，即开发时首先不是想正常情况下应该怎么样，而是把所以有能异常的情况都考虑在里面，并为异常情况做好解决措施。从软件层面考虑，一个企业应用软件可能用户数并不太多，就企业中百来号人，但前后台的交互是长时间，多次会话交互的。JSF技术其实是借鉴了微软ASP.net，它们继承了传统IDE快速开发的思路，希望通过拖拽连接可以快速开发一个应用。页面上的组件，对应后台服务器的业务组件，在得到服务器请求之后，组件需要做一系列动作来完成解析，校验，模型重建，业务方法调用，页面渲染等步骤，这些必然有个较长的过程。复杂性，效率，和其他技术的融合，JSF技术从诞生起就被质疑不断，而且面对每个明星技术，都有些格格不入，比如Ajax出现了，而JSF要求的Post方式还需要重刷页面。但JSF一直在改进，越来越科学完善。如今，配合CDI，JSF是企业应用开发的首选技术之一，大家可以研究一下Oracle的应用产品和ADF开发框架。</p>
-<p><img src="/blog/2019/01/21/web开发技术的演变/web7.png" alt=""></p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/J2EE.png" alt=""></p>
+<h3 id="5-Web层框架百花齐放"><a href="#5-Web层框架百花齐放" class="headerlink" title="5. Web层框架百花齐放"></a>5. Web层框架百花齐放</h3><p>后端技术逐渐规范稳定后，为了提高工作效率避免重复造轮子。Web技术的发展开始了一段框架横飞的年代，各种辅助Web开发的技术框架层出不穷。虽然脚本语言大大提高了应用开发效率，但是试想一个复杂的大型Web应用，涉及到的Web页面多种多样，同时还管理着大量的后台数据，因此我们需要在架构层面上解决维护性和扩展性等问题。这个时候，MVC的概念被引入到Web开发中来了。2004年出现的Struts就是当时非常流行的Java Web开发的MVC框架。MVC早在1978年就作为Smalltalk的一种设计模式被提出来了，应用到Web应用上，模型Model用于封装与业务逻辑相关的数据和数据处理方法，视图View是数据的HTML展现，控制器Controller负责响应请求，协调Model和View。Model，View和Controller的分开，是一种典型的关注点分离的思想，不仅使得代码复用性和组织性更好，使得Web应用的配置性和灵活性更好。这是Spring MVC的示意图，典型的MVC架构。</p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/MVC.png" alt=""></p>
+<p>MVC的架构不仅仅是后端代码分层结构，由于各个层次相互解耦，因此用户可以根据业务场景合理选择各个层次的框架。例如View层可以使用jsp，thymeleaf。Model层可以使用mybatis，hibernate。Controller层可以使用Spring，Struts等等。也正是MVC的架构，使得各式各样的框架层出不穷。</p>
+<h3 id="6-CSS，Jacascript"><a href="#6-CSS，Jacascript" class="headerlink" title="6.  CSS，Jacascript"></a>6.  CSS，Jacascript</h3><p>上面主要说了后端web技术的演变，随着后端技术的发展前端技术也在日新月异，如今前端网页开发与莽荒时代的静态网页相比，不仅有各种各样的UI框架，更是参考了后端技术，在前端也实现MVC的架构。下面就来看一看前端技术的演变。首先就是CSS和JS的诞生。javacript的诞生还有一段故事，前面说到网景公司开发的浏览器只能展示静态页面，因此网景公司想在浏览器端嵌入一种语言或是脚本，使得用户可以和浏览器做一些动态交互，从而提升用户的体验。当时网景公司有两个方案：一个是采用现有的语言，如Perl、Python、Tcl、Scheme等等，允许它们直接嵌入网页；另一个是发明一种全新的语言。高层对于两个方案一时难以决定，就在这时，发生了另外一件大事：1995年Sun公司将Oak语言改名为Java，正式向市场推出。Sun公司大肆宣传，许诺这种语言可以”一次编写，到处运行”，它看上去很可能成为未来的主宰。网景公司动了心，决定与Sun公司结成联盟。它不仅允许Java程序以applet（小程序）的形式，直接在浏览器中运行；甚至还考虑直接将Java作为脚本语言嵌入网页，只是因为这样会使HTML网页过于复杂，后来才不得不放弃。此时，34岁的系统程序员Brendan Eich登场了。1995年4月，网景公司录用了他。公司决定指派他作为新语言的开发者，并要求这个语言必须与java足够相似，但比java简单。但是，他对Java一点兴趣也没有。为了应付公司安排的任务，他只用10天时间就把Javascript设计出来了。（ps：与大神的差距，别人10天开发出一门语言，我10天能完全上手一门新技术就不错了:）由于设计时间太短，语言的一些细节考虑得不够严谨，导致后来很长一段时间，Javascript写出来的程序混乱不堪。谁也想不到如今世界排名前5五的Javascript竟是在10天内被开发出来的。随着HTML的成长，为了满足页面设计者的要求，HTML添加了很多显示功能。但是随着这些功能的增加，HTML变的越来越杂乱，而且HTML页面也越来越臃肿。于是CSS便诞生了。1994年哈坤·利提出了CSS的最初建议。而当时伯特·波斯正在设计一个名为Argo的浏览器，于是他们决定一起设计CSS。其实当时在互联网界已经有过一些统一样式表语言的建议了，但CSS是第一个含有“层叠”丰意的样式表语言。层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标准通用标记语言的一个应用）或XML（标准通用标记语言的一个子集）等文件样式的计算机语言。CSS不仅可以静态地修饰网页，还可以配合各种脚本语言动态地对网页各元素进行格式化。CSS 能够对网页中元素位置的排版进行像素级精确控制，支持几乎所有的字体字号样式，拥有对网页对象和模型样式编辑的能力。</p>
+<h3 id="7-浏览器的魔术：AJAX"><a href="#7-浏览器的魔术：AJAX" class="headerlink" title="7. 浏览器的魔术：AJAX"></a>7. 浏览器的魔术：AJAX</h3><p>JavaScript最终被提交到欧洲计算机制造商协会(ECMA)，做为中立的ECMA开始了标准化脚本语言之路，并将其命名为ECMAScript。JavaScript可以响应浏览器端的用户事件，检测表单的正确性，动态修改DOM结构，因此可以减少与服务器端的通信开销，并且做出很酷的页面动态效果。2005年出现的AJAX这个概念使得JavaScript再次大放异彩。AJAX即“Asynchronous Javascript And XML”（异步的JavaScript和XML技术）。Ajax 不是一种新的编程语言，而是一种用于创建更好更快以及交互性更强的Web应用程序的技术。AJAX是一种已有技术的mashup，多种技术组合在一起形成了其特色和优势，早在1998年就已经开始有人使用。Google在地图和Gmail等产品中对这项技术的深入应用，以及AJAX这个吸引眼球的名字的提出，使其正式站在了聚光灯下，开始吸引无数人的目光。我们知道Web应用中用户提交表单时就向Web服务器发送一个请求，服务器接收并处理传来的表单，并返回一个新的网页。而前后两个页面中的往往大部分HTML代码是一样的，每次都返回整个页面内容是一种带宽资源的浪费。而AJAX应用仅向服务器发送并取回必须的数据，并在客户端采用JavaScript处理来自服务器响应，更新页面的局部信息。使用Ajax的最大优点，就是能在不更新整个页面的前提下维护数据。这使得Web应用程序更为迅捷地回应用户动作，并避免了在网络上发送那些没有改变的信息。对应用Ajax最主要的批评就是，它可能破坏浏览器的后退与加入收藏书签功能。在动态更新页面的情况下，用户无法回到前一个页面状态，这是因为浏览器仅能记下历史记录中的静态页面。一个被完整读入的页面与一个已经被动态修改过的页面之间的可能差别非常微妙；用户通常都希望单击后退按钮，就能够取消他们的前一次操作，但是在Ajax应用程序中，却无法这样做。不过开发者已想出了种种办法来解决这个问题。AJAX的出现，催生诸如EXTJS、EASYUI等一些基于JS的前端框架。大大提高了前端页面的开发效率。</p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/ajax.png" alt=""></p>
+<h3 id="8-前端MVC：Angular-React-Vue"><a href="#8-前端MVC：Angular-React-Vue" class="headerlink" title="8. 前端MVC：Angular/React/Vue"></a>8. 前端MVC：Angular/React/Vue</h3><p>这种模式下，前后端的分工非常清晰，前后端的关键协作点是 Ajax 接口，规定好交互接口后，前后端工程师就可以根据约定，分头开工，开发环境中通过Mock等方式进行测试，同时在特定时间节点进行前后端集成测试。但是，随着业务功能的愈发复杂，这种模式本质上和JSP时代的Web开发并无本质区别，只不过是将复杂的业务逻辑从JSP文件转移到了JavaScript文件中而已。现在，对于一个前端功能、交互复杂的业务，大量的逻辑处理使得javascript的代码量激增。很自然地，像服务端从JSP向MVC框架转换的过程一样，前端开发也出现了大量的MVC框架。通过MVC框架又衍生出了许多其它的架构，统称MV<em> ，最常见的是MVP与MVVM。总的来说，MV</em> 框架的提出是为了解决前端开发的复杂度，提供一套规则组织代码、分层，通过合理的组织和分层，前端的代码职责明确、清晰，便于开发与测试。目前比较优秀的前端MVC框架就是Angular.js，Vue.js和React.js。被尊为前端三大框架，下面分别介绍一下这几个框架。</p>
+<h4 id="（1）-React"><a href="#（1）-React" class="headerlink" title="（1）. React"></a>（1）. React</h4><p>React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设 Instagram 的网站。做出来以后，发现这套东西很好用，就在2013年5月开源了。由于 React 的设计思想极其独特，属于革命性创新，性能出众，代码逻辑却非常简单。所以，越来越多的人开始关注和使用，认为它可能是将来 Web 开发的主流工具。支持虚拟DOM（Virtual DOM）和组件化的开发。React<a href="https://react.docschina.org/" target="_blank" rel="noopener">官网</a>和github<a href="https://github.com/facebook/react/" target="_blank" rel="noopener">地址</a></p>
+<h4 id="（2）-Angular"><a href="#（2）-Angular" class="headerlink" title="（2） . Angular"></a>（2） . Angular</h4><p>AngularJS 诞生于2009年，由Misko Hevery 等人创建，后为Google所收购。是一款优秀的前端JS框架，已经被用于Google的多款产品当中。AngularJS有着诸多特性，最为核心的是：MVC（Model–view–controller）、模块化、自动化双向数据绑定、语义化标签、依赖注入等等。AngularJS是协助搭建单页面工程（SPA）的开源前端框架。它通过MVC模式使得开发与测试变得更容易。并试图成为WEB应用中的一种端对端的解决方案。它将指导开发整个应用。Angular <a href="http://www.angularjs.net.cn/" target="_blank" rel="noopener">官网</a>和github<a href="https://github.com/angular/" target="_blank" rel="noopener">地址</a></p>
+<h4 id="（3）-Vue"><a href="#（3）-Vue" class="headerlink" title="（3） . Vue"></a>（3） . Vue</h4><p>vue同时具备angular和react的优点,轻量级,api简单,文档齐全,简单强大,麻雀虽小五脏俱全，目前在github上众多的前端开源MVVM框架中vue拥有star最多。Vue是一个构建数据驱动的 web 界面的渐进式框架。Vue.js 的目标是通过尽可能简单的 API 实现响应的数据绑定和组合的视图组件。Vue.js 自身不是一个全能框架——它只聚焦于视图层。因此它非常容易学习，易于上手，非常容易与其它库或已有项目整合。另一方面，在与相关工具和支持库一起使用时，Vue.js 也能完美地驱动复杂的单页应用，其作者是尤雨溪是中国人。Vue<a href="https://cn.vuejs.org/" target="_blank" rel="noopener">官网</a>和github<a href="https://github.com/vuejs" target="_blank" rel="noopener">地址</a></p>
+<p>前端有了MVC框架后，web开发就真正实现了前后端解耦，分离开发。至此web开发的架构图大致如下图</p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/Frontend-MVC.png" alt=""></p>
+<h3 id="9-JS在服务器端的逆袭：Node-JS"><a href="#9-JS在服务器端的逆袭：Node-JS" class="headerlink" title="9. JS在服务器端的逆袭：Node.JS"></a>9. JS在服务器端的逆袭：Node.JS</h3><p>各大浏览器的竞争，使其引擎的性能不断提升，至今Google V8引擎的性能已经足以运行大型Javascript程序。在V8之上加以网络、文件系统等内置模块，形成了如今的Node.js。随着Node.js的出现，JavaScript开始拥有在服务端运行的能力，它让 JavaScript 成为与PHP、Python、Perl、Ruby 等服务端语言平起平坐的脚本语言。 [1]  发布于2009年5月，由Ryan Dahl开发，实质是对Chrome V8引擎进行了封装。它的异步本质使得Node.js在处理I/O密集型业务中优势凸显，而大多Web业务中I/O性能都是瓶颈。eBay、Yahoo、甚至Microsoft Azure纷纷引入Node.js以提升性能。Node.js的package每天都有几千万的下载量。这对前端工程师来说可是一个好消息，精通JavaScript的他们也能够做服务端开发了！虽然现实中并不是这样美好（服务端开发涉及的不仅仅是语言层面），但一种新的开发模式也因此兴起：浏览器端处理展现层逻辑、而服务端Controller这一层以及相关的模板渲染、路由、数据接口以及Session/Cookie先关处理实际上交给了Nodejs来做。通过Nodejs, 意味着前后端很多代码可以复用（例如数据验证，业务逻辑）。但另一方面，JavaScript刚被引入到服务器端开发，其生态环境还未成熟，甚至大量的常用package主版本号都是0。长期用来实现页面逻辑，天生自由的JavaScript，在服务器端开发中，仍未形成统一的开发范型。不同开发原则和编码风格的应用，都将对Node.js项目的性能、可维护性产生重大影响。Node.js可以在不新增额外线程的情况下，依然可以对任务进行并发处理， Node.js是单线程的。它通过事件循环（event loop）来实现并发操作，对此，我们应该要充分利用这一点 ， 尽可能的避免阻塞操作，取而代之，多使用非阻塞操作。在几年的时间里，Node.JS逐渐发展成一个成熟的开发平台，吸引了许多开发者。有许多大型高流量网站都采用Node.JS进行开发，此外，开发人员还可以使用它来开发一些快速移动Web框架。</p>
+<p><img src="/blog/2019/01/21/web开发技术的演变/Node.png" alt=""></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>现在Web技术依然在快速发展，Web本身的基础规范也在不断完善，HTML5和CSS3引入了更多激动人心的特性。回顾Web的发展历史，从某个角度看，就是抽象层次不断提高的一个过程，更高的抽象层次屏蔽更低层的复杂性，从而提高开发效率。每当技术发展到一定程度，出现某些局限性的时候，就会有更优秀的技术出现来突破这些局限性。其实这是计算机技术发展的一个普遍规律，比如高级语言的出现屏蔽了汇编语言的复杂性，帮助我们更快速的编程，更多的关注代码和业务逻辑；数据库技术的出现使得我们无需关心物理存储和访问细节，简单的SQL语句就能搞定我们本来需要复杂且晦涩难懂的底层的代码才能完成的事情，更进一步，ORM框架使得我们通过一条语句调用一个类的一个方法就能方便就行数据操作。我们应该让自己的技术视野具备一定的高度和广度，看到一门技术的发展规律和发展历程，这是一种技术修养的体现，其实跟人文修养是一样的。同时也应该具有一定的深度，因为我们往往站在比较高的抽象层次，比如今天你写几行代码就能把数据库创建好，增删改查的功能也自动生成好了，现在很多程序员对重复造轮子的事嗤之以鼻，实现功能或是遇到难点也是百度直接照搬代码。重复造轮子确实降低了工作效率，在企业中当然会使用前人造好的轮子，但是作为技术人员如果只是知其然而不知其所以然，那么永远只是个勤劳的搬砖工。要成为高手需要你对底层的原理机制有更透彻的理解，真正遇到问题的时候才能抽丝剥茧迎刃而解。</p>
 
       
 
@@ -576,7 +595,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,19 +603,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -624,11 +639,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
               </li>
              
               <li class="article-tag-list-item">
