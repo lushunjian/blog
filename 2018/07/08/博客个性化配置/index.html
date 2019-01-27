@@ -22,7 +22,13 @@
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/Hexo-github搭建个人博客/blogtalk3.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/Hexo-github搭建个人博客/blogtalk2.png">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/Hexo-github搭建个人博客/blogtalk4.png">
-<meta property="og:updated_time" content="2019-01-19T14:29:08.834Z">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/blog20.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/bolg1.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/bolg2.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/blog4.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/blog5.png">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2018/07/08/博客个性化配置/blog6.png">
+<meta property="og:updated_time" content="2019-01-27T00:33:33.752Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="博客个性化配置">
 <meta name="twitter:description" content="博客搭建好后，总会有一些个性化的想法。比如做网站的访问量统计，文章评论系统，文章分享功能，或是在博客主页放一个音乐播放器，让别人进来浏览博客的同时，还伴随着动听的音乐。大部分博客主题都兼容这些功能，只不过需要自己去配置。下面是我做个性化博客配置时踩的坑，供大家参考参考。 1 . 访问量统计访问量统计功能可以用百度的站长统计、leancloud，还有不蒜子，这里我用的不蒜子，主要原因是它很简单易用，">
@@ -275,6 +281,20 @@
 <p>然后在主题的配置文件 _config.yml 中添加以下配置属性</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">live2d:</span><br><span class="line">  enable: true</span><br><span class="line">  scriptFrom: local</span><br><span class="line">  model:</span><br><span class="line">  	#这里配置你想用的模型</span><br><span class="line">    use: live2d-widget-model-wanko  </span><br><span class="line">  display:</span><br><span class="line">  	#居左或是居右显示</span><br><span class="line">    position: right</span><br><span class="line">    #模型宽高</span><br><span class="line">    width: 150</span><br><span class="line">    height: 300</span><br><span class="line">  mobile:</span><br><span class="line">    show: true</span><br></pre></td></tr></table></figure>
 <p>更多模型选择可以作者的github地址：<a href="https://github.com/xiazeyu/live2d-widget-models" target="_blank" rel="noopener">模型</a></p>
+<h3 id="6-使用第三方图床，缩短图片加载时间"><a href="#6-使用第三方图床，缩短图片加载时间" class="headerlink" title="6. 使用第三方图床，缩短图片加载时间"></a>6. 使用第三方图床，缩短图片加载时间</h3><p>在博客中难免会频繁的使用图片，但是如果图片过多的放在github上，由于github服务器在国外，国内访问会导致页面加载异常缓慢，当然解决的办法也是很多的。就是图片放在国内的服务器上，这里选择方式就很多了，可以把图片单独放在专门的云服务上，也可托管在第三方平台上如七牛等。这里介绍我自己使用的一种方式，简单免费。我们知道在国外github比较有名气，但是由于网速和它禁用百度爬虫的问题，许多程序员会选用gitee作为在国内的代码托管平台，gitee可以说就是国内的github。功能也大多相同，gitee也提供了静态文件的访问服务。因此实际上我们直接可以之间把博客搭建在gitee上。这是一种一劳永逸的办法，而且还可以被百度爬虫爬到哦。由于本人比较懒，暂时没有迁移。github除了图片加载较慢外，其他到是还可以接受，所以我们可以只把图片放在gitee上，然后在github的文章中引用gitee上的图片，问题就完美的解决了。</p>
+<h4 id="（1）-在gitee上创建一个项目"><a href="#（1）-在gitee上创建一个项目" class="headerlink" title="（1）. 在gitee上创建一个项目"></a>（1）. 在gitee上创建一个项目</h4><p>点击右上角头像图标右边的加号，选择新建仓库，仓库名字自己定义好</p>
+<p><img src="/blog/2018/07/08/博客个性化配置/blog20.png" alt=""></p>
+<h4 id="（2）-开启pages服务"><a href="#（2）-开启pages服务" class="headerlink" title="（2）. 开启pages服务"></a>（2）. 开启pages服务</h4><p>创建完项目后，进入项目点击服务，选择gitee pages</p>
+<p><img src="/blog/2018/07/08/博客个性化配置/bolg1.png" alt=""></p>
+<p>在开启pages服务时，注意要勾选强制使用HTTPS，因为github在访问HTTP文件时会报错，导致访问出错。开启gitee pages服务后，上面会提示你网站地址。通过这个地址就可以访问到这个项目中的静态文件了。</p>
+<p><img src="/blog/2018/07/08/博客个性化配置/bolg2.png" alt=""></p>
+<h4 id="（3）-图片的访问"><a href="#（3）-图片的访问" class="headerlink" title="（3）. 图片的访问"></a>（3）. 图片的访问</h4><p>开启好gitee pages服务后，我们可以直接在浏览器中输入网站地址。例如我的是 <a href="https://lsjlsjlsj.gitee.io/photo。通过这个网址访问到的是项目根路径下的文件，假如我要访问文件夹中的图片该怎么写呢？举个例子，我的项目下有个img文件夹，我想访问img中的一张图片怎么做" target="_blank" rel="noopener">https://lsjlsjlsj.gitee.io/photo。通过这个网址访问到的是项目根路径下的文件，假如我要访问文件夹中的图片该怎么写呢？举个例子，我的项目下有个img文件夹，我想访问img中的一张图片怎么做</a></p>
+<p><img src="/blog/2018/07/08/博客个性化配置/blog4.png" alt=""></p>
+<p>进入到img文件夹中，假设我要访问11.jpg</p>
+<p><img src="/blog/2018/07/08/博客个性化配置/blog5.png" alt=""></p>
+<p>直接在浏览器中加上图片相对于根路径的相对路径就可以了。<a href="https://lsjlsjlsj.gitee.io/photo/img/11.jpg" target="_blank" rel="noopener">https://lsjlsjlsj.gitee.io/photo/img/11.jpg</a> ，可以在浏览器中打开看看，如果能打开就是能正常访问了。</p>
+<p><img src="/blog/2018/07/08/博客个性化配置/blog6.png" alt=""></p>
+<p>这样在使用github写博客，或者制作博客相册时，便可引用gitee中的图片作为图床。解决github博客页面因为图片加载过慢的问题</p>
 
       
 
@@ -634,15 +654,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">实践</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -666,11 +686,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">jvm</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -682,15 +702,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
