@@ -17,7 +17,7 @@
 <meta property="og:description" content="最近在公司参与公司运维监控平台的建设，用到一些关于监控的第三方开源工具包，在此记录一下。说到运维监控，本人在公司就曾经历过一段痛苦的日子，在某个重要的日子，由于公司没有完善运维监控平台，为保障系统稳定。公司大部分的开发人员和售后全都扑在了服务器和服务状态的监测上，每天的工作就是手动检查上千台服务器和几千个服务的内存，磁盘，CPU使用情况，大概持续了一周左右。因为这些都是重复性的工作，我还记得当时有">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/02/17/聊聊运维监控/yunwei.jpg">
-<meta property="og:updated_time" content="2019-02-17T09:47:56.630Z">
+<meta property="og:updated_time" content="2019-02-17T13:43:21.678Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊运维监控">
 <meta name="twitter:description" content="最近在公司参与公司运维监控平台的建设，用到一些关于监控的第三方开源工具包，在此记录一下。说到运维监控，本人在公司就曾经历过一段痛苦的日子，在某个重要的日子，由于公司没有完善运维监控平台，为保障系统稳定。公司大部分的开发人员和售后全都扑在了服务器和服务状态的监测上，每天的工作就是手动检查上千台服务器和几千个服务的内存，磁盘，CPU使用情况，大概持续了一周左右。因为这些都是重复性的工作，我还记得当时有">
@@ -198,9 +198,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近在公司参与公司运维监控平台的建设，用到一些关于监控的第三方开源工具包，在此记录一下。说到运维监控，本人在公司就曾经历过一段痛苦的日子，在某个重要的日子，由于公司没有完善运维监控平台，为保障系统稳定。公司大部分的开发人员和售后全都扑在了服务器和服务状态的监测上，每天的工作就是手动检查上千台服务器和几千个服务的内存，磁盘，CPU使用情况，大概持续了一周左右。因为这些都是重复性的工作，我还记得当时有人提出用跑脚本的方式直接看结果。没想到我们的上级负责人竟然说：“不许使用脚本，这种重要时候我只相信人，不相信脚本”。此言一出，我真的是无力吐槽，人是会累的，机器不会累，竟然还只信人，不信机器。后来想想其实可以理解，他是太过紧张了，那段重要日子对于公司来说确实非常重要，出不得差错。不过在经历过那段黑暗的时间后，我更加觉得，系统的运维监控真的太重要了，靠人力运维是一件高成本，低回报，费力不讨好的活。在未接触运维之前，我总认为开发就是一个项目的重中之重，一个优秀的开发者，一个精良的架构设计能使项目的工作事半功倍。但在接触了公司项目的运维后，逐渐改变了我的观点，因为任何一个项目的开发周期是远远小于它的维护周期的，如何低成本的保障系统长期稳定的运行才是最重要的，也是保证用户体验的重要手段  。特别是对于庞大复杂的系统，运维监控系统必不可少。一个成熟完善的运维系统能有效的监测公司服务器和业务系统的异常情况，并马上做出告警大大减小了问题排查的成本。后面公司也意识到了这一点，并开展了运维平台的建设工作，下面就是在工作中总结的一些关于监控开源工具包的使用，以及一些开源的运维监控组件的介绍。</p>
+        <p>最近在公司参与公司运维监控平台的建设，用到一些关于监控的第三方开源工具包，在此记录一下。说到运维监控，本人在公司就曾经历过一段痛苦的日子，在某个重要的日子，由于公司没有完善运维监控平台，为保障系统稳定。公司大部分的开发人员和售后全都扑在了服务器和服务状态的监测上，每天的工作就是手动检查上千台服务器和几千个服务的内存，磁盘，CPU使用情况，大概持续了一周左右。因为这些都是重复性的工作，我还记得当时有人提出用跑脚本的方式直接看结果。没想到我们的上级负责人竟然说：“不许使用脚本，这种重要时候我只相信人，不相信脚本”。此言一出，我真的是无力吐槽，人是会累的，机器不会累，竟然还只信人，不信机器。后来想想其实可以理解，他大概是太过紧张了，那段重要日子对于公司来说确实非常重要，出不得差错。不过在经历过那段黑暗的时间后，让我觉得，系统的运维监控必须要有，靠人力运维是一件高成本，低回报，费力不讨好的活。在未接触运维之前，我总认为开发就是一个项目的重中之重，一个优秀的开发者，一个精良的架构设计能使项目的工作事半功倍。但现在我觉得运维才是重点，因为任何一个项目的开发周期是远远小于它的维护周期的，如何低成本的保障系统长期稳定的运行才是最重要的，也是保证用户体验的重要手段  。特别是对于庞大复杂的系统，运维监控系统必不可少。一个成熟完善的运维系统能有效的监测公司服务器和业务系统的异常情况，并马上做出告警大大减小了问题排查的成本。后面公司也意识到了这一点，并开展了运维平台的建设工作，下面就是在工作中总结的一些关于监控开源工具包的使用，以及一些开源的运维监控组件的介绍。</p>
 <p><img src="/blog/2019/02/17/聊聊运维监控/yunwei.jpg" alt=""></p>
 <a id="more"></a> 
+<p>未完。。</p>
 
       
 
@@ -551,10 +552,6 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
@@ -563,11 +560,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color1">分布式系统</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -579,7 +580,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">other</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,7 +588,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color1">other</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,15 +604,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -615,11 +612,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+                <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">运维监控</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">大数据</a>
               </li>
              
               <li class="article-tag-list-item">
