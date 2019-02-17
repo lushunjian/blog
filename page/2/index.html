@@ -167,6 +167,103 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-CentOS搭建Hadoop集群" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/blog/2018/08/11/CentOS搭建Hadoop集群/">CentOS搭建Hadoop集群</a>
+    </h1>
+  
+
+        
+        <a href="/blog/2018/08/11/CentOS搭建Hadoop集群/" class="archive-article-date">
+  	<time datetime="2018-08-11T13:41:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-11</time>
+</a>
+        
+		
+		
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Hadoop是一个由Apache基金会所开发的分布式系统基础架构。 Hadoop实现了一个分布式文件系统（Hadoop Distributed File System），简称HDFS。HDFS有高容错性的特点，并且设计用来部署在低廉的（low-cost）硬件上 。Hadoop的框架最核心的设计就是：HDFS和MapReduce。HDFS为海量的数据提供了存储，则MapReduce为海量的数据提供了计算。 通俗的理解就是我们计算的数据量超过了单机处理的能力，于是使用多台机器并行处理计算数据，但并行处理数据会存在各种问题，例如怎么给每个节点分派任务，怎么使各个节点算力达到均衡，在部分节点任务失败时如何恢复。这些便Hadoop帮我们解决的问题，简而言之，Hadoop是一个计算框架，并行处理计算模型。本文主要记录使用虚拟机搭建Hadoop集群过程。Hadoop有几种部署模式，分别是本地模式，伪分布式模式，完全分布式。其中本地模式和伪分布式模式都是在本地运行，其算力使用的是本机资源，并不是真正的并行计算，完全作体验之用，且过程也相对简单，不做介绍。本文记录的是完全分布式搭建过程。</p>
+<p><img src="/blog/2018/08/11/CentOS搭建Hadoop集群/hadoop.png" alt=""></p>
+        
+          <a class="article-more-a" href="/blog/2018/08/11/CentOS搭建Hadoop集群/#more">more >></a>
+        
+      
+
+	  <!-- 博客主题自带打赏样式注释 -->
+	  <!--
+       -->
+	  
+	 <!-- 自定义打赏样式 -->
+	  
+    </div>
+	
+	
+	
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">hadoop</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">实践</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/blog/2018/08/11/CentOS搭建Hadoop集群/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+  
     <article id="post-CentOS搭建zookeeper集群" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -842,101 +939,6 @@
 
 
   
-    <article id="post-Http请求中转" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2018/06/30/Http请求中转/">Http请求中转</a>
-    </h1>
-  
-
-        
-        <a href="/blog/2018/06/30/Http请求中转/" class="archive-article-date">
-  	<time datetime="2018-06-30T14:58:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-30</time>
-</a>
-        
-		
-		
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>​    在工作中碰到需要在服务端中转Http请求的需求，一般的请求其实问题不大，用apache的HttpClient 提供的jar包即可解决问题，但是带文件上传的请求中转，遇到了一些小麻烦，在此记录一下。</p>
-<p>业务场景是这样的，由于是做系统升级，升级的同时不影响老版本的使用，同时又不和新版本的代码耦合，所以做了一个适配模块，这个模块是个单独的项目。在前端请求新版本系统时会先进入新版本系统的拦截器中，在拦截器中判断该请求是调用新版本的系统接口还是老版本的系统接口，如果调用老版本系统接口，就会先走适配模块，在适配模块中调用老系统的接口。整个流程大致如下图：</p>
-<p><img src="/blog/2018/06/30/Http请求中转/work.png" alt=""></p>
-<p>在适配器中使用了apache的HttpClient包，而在拦截器中使用的是jdk自带的java.net.URL类。因此两种方式我都会提供，此外还可以通过java.net.socket类实现Http请求，这几种种方式大同小异，只是HttpClient做了一下封装。最重要的还是要对Http请求协议有比较全面的认识，然后模拟出一个符合协议标准的请求报文就可以像浏览器那样模拟Http请求了。</p>
-        
-          <a class="article-more-a" href="/blog/2018/06/30/Http请求中转/#more">more >></a>
-        
-      
-
-	  <!-- 博客主题自带打赏样式注释 -->
-	  <!--
-       -->
-	  
-	 <!-- 自定义打赏样式 -->
-	  
-    </div>
-	
-	
-	
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">网络编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/blog/2018/06/30/Http请求中转/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/blog/">&laquo; Prev</a><a class="page-number" href="/blog/">1</a><span class="page-number current">2</span><a class="page-number" href="/blog/page/3/">3</a><a class="extend next" rel="next" href="/blog/page/3/">Next &raquo;</a>
@@ -1083,11 +1085,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1103,11 +1105,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1127,15 +1129,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">运维监控</a>
               </li>
              
               <li class="article-tag-list-item">

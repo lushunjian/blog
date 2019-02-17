@@ -17,9 +17,9 @@
 <meta property="og:description" content="相信java开发工程师对spring都不陌生，spring从2004年诞生至今已有10多年的历史，在企业级web服务开发领域举足轻重，也成为了每一个java开发工程师必须要掌握的一个框架。我从工作到现在使用spring有两年多，确也感觉到它不仅功能强大而且简单易上手，极大的降低了开发者的工作量。在感叹框架带给我的便捷之余，也不禁思考是什么样的人，在什么样的场景下开发出了spring这样强大的框架。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/20/spring的前世今生/spring1.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/20/spring的前世今生/spring2.png">
-<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/20/spring的前世今生/spring4.png">
-<meta property="og:updated_time" content="2019-01-23T15:10:28.415Z">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/20/spring的前世今生/rod.jpg">
+<meta property="og:image" content="https://lushunjian.github.io/blog/2019/01/20/spring的前世今生/spring.jpg">
+<meta property="og:updated_time" content="2019-02-17T13:31:32.443Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="spring的前世今生">
 <meta name="twitter:description" content="相信java开发工程师对spring都不陌生，spring从2004年诞生至今已有10多年的历史，在企业级web服务开发领域举足轻重，也成为了每一个java开发工程师必须要掌握的一个框架。我从工作到现在使用spring有两年多，确也感觉到它不仅功能强大而且简单易上手，极大的降低了开发者的工作量。在感叹框架带给我的便捷之余，也不禁思考是什么样的人，在什么样的场景下开发出了spring这样强大的框架。">
@@ -203,19 +203,37 @@
         <p>相信java开发工程师对spring都不陌生，spring从2004年诞生至今已有10多年的历史，在企业级web服务开发领域举足轻重，也成为了每一个java开发工程师必须要掌握的一个框架。我从工作到现在使用spring有两年多，确也感觉到它不仅功能强大而且简单易上手，极大的降低了开发者的工作量。在感叹框架带给我的便捷之余，也不禁思考是什么样的人，在什么样的场景下开发出了spring这样强大的框架。在spring没有出现之前，java开发者们又是使用什么样的方式开发web应用系统的呢？现如今各种各样的上层框架层出不穷，但任何一个框架的诞生必定是解决了某些方面的问题。只有在了解了框架的来龙去脉能更好的明白它的优势与劣势，才能更清楚的在何种场景下使用它，否则永远只是个搬砖的小码农，本文就来聊一聊spring的前世今生。先奉上spring的<a href="http://spring.io/" target="_blank" rel="noopener">官网</a>，spring社区如今非常活跃，spring也已发展出一系列成熟的组件和解决方案，如spring boot，spring cloud等。</p>
 <p><img src="/blog/2019/01/20/spring的前世今生/spring1.png" alt=""></p>
 <a id="more"></a> 
-<h3 id="1-servlet"><a href="#1-servlet" class="headerlink" title="1. servlet"></a>1. servlet</h3><p>在spring和EJB框架没有出来之前，web程序基本使用servlet开发。实际上在servlet没出来之前人们使用CGI开发动态网页，主要使用C/C++语言开发，暂且可把这个时期归结为天地初开，混沌未分之时。后来sun公司的servlet出现，Servlet（Server Applet）是Java Servlet的简称，称为小服务程序或服务连接器，用Java编写的服务器端程序，具有独立于平台和协议的特性，主要功能在于交互式地浏览和生成数据，生成动态Web内容。与传统的 CGI 技术相比，Servlet具有更高的效率，更容易使用，功能更强大，具有更好的可移植性。一经推出就受到web应用开发者们的喜爱。在传统的 CGI中，每个请求都要启动一个新的进程，如果 CGI 程序本身的执行时间较短，启动进程所需要的开销很可能反而超过实际执行时间。而在 Servlet 中，每个请求由一个轻量级的 Java 线程处理（而不是重量级的操作系统进程）。servlet的运行是依赖于servlet容器的，例如tomcat。我们知道servlet中有几个重要的方法doGet() 或者 doPost()，此外还有doHead()、doPut()、doDelete()等。当http请求过来时就会根据请求类型请求到对应的Servlet的方法中。请求流程大致如下</p>
-<p><img src="/blog/2019/01/20/spring的前世今生/spring2.png" alt=""></p>
-<p>客户端发送请求至服务器，服务器启动并调用 Servlet，Servlet 根据客户端请求生成响应内容并将其传给服务器，服务器将响应返回客户端。我们知道浏览器只认识HTML，那么Servlet怎么返回HTML呢？其实倒也简单，只需要在Servlet中写好HTML代码，然后返回给前端HTML字符串就可以了，浏览器拿到HTML代码会渲染成页面。但是这个会带另一些问题，一个java开放工程师，既要写服务端业务代码，又要写前端的HTML代码，更要命的是由于HTML是以字符串形式返回，如果字符串中某个符号不符合HTML的规范，将导致浏览器无法解析，非常难以排查问题所在。对于企业来说，这种方式美工与开发也不便于协同开发，效率低下。</p>
-<h3 id="2-jsp"><a href="#2-jsp" class="headerlink" title="2. jsp"></a>2. jsp</h3><p>由于前后端交互的问题，sun公司又发布了JSP，JSP全称是Java Server Pages，它和Servlet技术一样，都是SUN公司定义的一种用于开发动态web资源的技术。JSP最大的特点在于，写jsp就像在写html，但它相比html而言，html只能为用户提供静态数据，而Jsp技术允许在页面中嵌套java代码，为用户提供动态数据。它的出现一改以前java开发人员需要在Servlet中自己将html代码 out.write 返回给前端的工作方式，而是直接在jsp中编写html代码，极大的方便了开发人员的使用。这时已经初见前端分离的雏形了。jsp出现后，美工可以把页面原型图画好，再交给前端工程师按照原型图将静态页面写出来，待静态页面写好后，再交给java开发工程师把html代码复制到jsp中，这时只需要把后端处理的值填到对应的jsp中即可。对于一个系统开发，人员可以明确分工，前端后端开发部分可以同时进行。那jsp又是怎么返回HTML代码的呢？实际上JSP也是一个Servlet，它依赖于Servlet技术。下面用一个实例来解释JSP运行过程，定义一个hello.jsp内容如下</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">pageEncoding</span>=<span class="string">"UTF-8"</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Hello!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>下面代码通过注解来处理/hello的请求, 在代码中将请求转发到上述hello.jsp</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">@WebServlet</span>(<span class="string">"/hello"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloServlet</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        req.getRequestDispatcher(<span class="string">"/WEB-INF/jsp/hello.jsp"</span>).forward(req,resp);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>然后编译项目并运行，通过浏览器访问/hello。在项目的编译后的class文件中搜索hello_jsp.java文件, 可以找到如下内容的文件:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.apache.jsp.WEB_002dINF.jsp;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">hello_jsp</span> <span class="keyword">extends</span> <span class="title">org</span>.<span class="title">apache</span>.<span class="title">jasper</span>.<span class="title">runtime</span>.<span class="title">HttpJspBase</span></span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">org</span>.<span class="title">apache</span>.<span class="title">jasper</span>.<span class="title">runtime</span>.<span class="title">JspSourceDependent</span>,</span></span><br><span class="line"><span class="class">                 <span class="title">org</span>.<span class="title">apache</span>.<span class="title">jasper</span>.<span class="title">runtime</span>.<span class="title">JspSourceImports</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">  ...</span><br><span class="line"> </span><br><span class="line">  <span class="comment">// 这里是最主要的方法, 我们在jsp文件里的内容, 都在这里通过out.write写入到输出中.</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">_jspService</span><span class="params">(<span class="keyword">final</span> javax.servlet.http.HttpServletRequest request, <span class="keyword">final</span> javax.servlet.http.HttpServletResponse response)</span></span></span><br><span class="line"><span class="function">      <span class="keyword">throws</span> java.io.IOException, javax.servlet.ServletException </span>&#123;    </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      response.setContentType(<span class="string">"text/html;charset=UTF-8"</span>);</span><br><span class="line">      pageContext = _jspxFactory.getPageContext(<span class="keyword">this</span>, request, response,</span><br><span class="line">                <span class="keyword">null</span>, <span class="keyword">true</span>, <span class="number">8192</span>, <span class="keyword">true</span>);</span><br><span class="line">      _jspx_page_context = pageContext;</span><br><span class="line">      application = pageContext.getServletContext();</span><br><span class="line">      config = pageContext.getServletConfig();</span><br><span class="line">      session = pageContext.getSession();</span><br><span class="line">      out = pageContext.getOut();</span><br><span class="line">      _jspx_out = out;</span><br><span class="line"> </span><br><span class="line">      out.write(<span class="string">"\n"</span>);</span><br><span class="line">      out.write(<span class="string">"&lt;html&gt;\n"</span>);</span><br><span class="line">      out.write(<span class="string">"&lt;head&gt;\n"</span>);</span><br><span class="line">      out.write(<span class="string">"    &lt;title&gt;Hello&lt;/title&gt;\n"</span>);</span><br><span class="line">      out.write(<span class="string">"&lt;/head&gt;\n"</span>);</span><br><span class="line">      out.write(<span class="string">"&lt;body&gt;\n"</span>);</span><br><span class="line">      out.write(<span class="string">"\n"</span>);</span><br><span class="line">      out.write(<span class="string">"&lt;h1&gt;Hello!&lt;/h1&gt;\n"</span>);</span><br><span class="line">      out.write(<span class="string">"\n"</span>);</span><br><span class="line">      out.write(<span class="string">"&lt;/body&gt;\n"</span>);</span><br><span class="line">      out.write(<span class="string">"&lt;/html&gt;"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (java.lang.Throwable t) &#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      _jspxFactory.releasePageContext(_jspx_page_context);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由这个例子可以得出，jsp最终都会被编译成servlet。而原来由java开发人员手写的HTML代码变成了由jsp自动生成。由于jsp也是servlet，所以在jsp中是可以嵌入直接Java代码的，此外jsp还提供了jstl，el表达式，fmt库和九大内置对象，可以说功能很强大。这时请求过程大致如下</p>
-<p><img src="/blog/2019/01/20/spring的前世今生/spring4.png" alt=""></p>
-<p>使用Jsp的好处就是，与纯 Servlet （服务连接器）相比：JSP可以很方便的编写或者修改HTML网页而不用去面对大量的println语句，在这个流程图中，我们可以看出此时路由的servlet已经在充当着Controller的角色了，不过这里路由的servlet中还会充斥着jdbc，各种业务代码和JavaBean。</p>
-<h3 id="3-EJB"><a href="#3-EJB" class="headerlink" title="3. EJB"></a>3. EJB</h3>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h2><p>Spring 框架可以说是 Java 开发人员使用的最流行的应用程序开发框架之一，Spring Boot为开发者带来了更好的开发体验。它目前由大量提供一系列服务的模块组成。包括模块容器，为构建横切关注点提供支持的面向切面编程（AOP），安全框架，数据存取框架。Spring Boot在运维方面做了很多工作，部署、监控、度量，无一不在其涉猎范围之内，结合Spring Cloud后还可以轻松地实现服务发现、服务降级等功能。它还自带了不少非功能性的特性，比如安全、网关、监控、内嵌服务器和外置配置，这些都让选择Spring Boot成为了一件顺理成章的事情。多年来 Spring 框架已变得足够成熟。几乎所有 Java 企业应用需要用到的基础组件都可以在 Spring 框架中找到。但在一个新应用中将所有需要的 Spring 组件整合并配置好并不容易。随着动态语言的流行(Ruby,Scala,Node)，Java的开发显得格外的笨重：繁多的配置，低下的开发效率，复杂的部署流程以及第三方技术集成难度大。相信做开发的朋友在使用spring mvc时都经历过被配置文件折磨过的黑暗岁月，当需要集成开源组件时总需要在配置文件中加入相关的配置信息，有些配置信息甚至还有依赖关系，如果配置信息的顺序添加的不对，会报一些莫名其妙的错误，很是让人头疼。在添加配置时有一堆繁琐的操作，这包括在maven 中设置依赖库，使用 xml、注解或 java 代码配置需要的 Spring Bean。Spring 开发者意识到这里的绝大多数工作是可以可以自动化的，于是Spring Boot 出现了！</p>
+<h2 id="2-起源"><a href="#2-起源" class="headerlink" title="2. 起源"></a>2. 起源</h2><p>2002 年 ，Java EE 和 EJB 正是流行的时候，很多知名公司都是采用此技术方案进行项目开发。这时候有一个美国的小伙子认为 EJB 太过臃肿，并不是所有的项目都需要使用 EJB 这种大型框架，应该会有一种更好的方案来解决这个问题。这个聪明的小伙子是谁呢？他就是大名鼎鼎的 Rod Johnson（下图），额。。画风突变，现在已经是大叔了，Rod Johnson 在悉尼大学不仅获得了计算机学位，同时还获得了音乐学位，更令人吃惊的是在回到软件开发领域之前，他还获得了音乐学的博士学位。现在 Rod Johnson 已经离开了 Spring，成为了一个天使投资人，同时也是多个公司的董事，早已走上人生巅峰。</p>
+<p><img src="/blog/2019/01/20/spring的前世今生/rod.jpg" alt=""></p>
+<p>2002 年 10 月，Rod Johnson 撰写了一本名为 《Expert One-on-One J2EE》 设计和开发的书。本书由 Wrox出版，介绍了当时 Java 企业应用程序开发的情况，并指出了 Java EE 和 EJB 组件框架中的存在的一些主要缺陷。在这本书中，他提出了一个基于普通 Java 类和依赖注入的更简单的解决方案。在书中，他展示了如何在不使用 EJB 的情况下构建高质量、可扩展的在线座位预留系统。为了构建应用程序，他编写了超过 30,000 行的基础结构代码，项目中的根包命名为 <code>com.interface21</code>，所以人们最初称这套开源框架为 interface21，这就是 Spring 的前身。一对一的 J2EE 设计和开发一炮而红。本书免费提供的大部分基础架构代码都是高度可重用的。即使在 15 年后，本书及其原则仍然与构建高质量的 Java Web 应用程序相关。</p>
+<h2 id="3-Spring的诞生"><a href="#3-Spring的诞生" class="headerlink" title="3. Spring的诞生"></a>3. Spring的诞生</h2><p>在本书发布后不久，开发者 Juergen Hoeller 和 Yann Caroff 说服 Rod Johnson 创建一个基于基础结构代码的开源项目。Rod，Juergen 和 Yann 于 2003 年 2 月左右开始合作开发该项目 。并为新框架创造了“Spring”的名字。2003 年 6 月，Spring 2.0 在 Apache 2.0 许可下发布。2004 年 3 月，1.0 版发布。有趣的是，在1.0发布之前，spring 就被开发人员广泛采用。2004 年 8 月，Rod Johnson，Juergen Hoeller，Keith Donald 和Colin Sampaleanu 共同创立了一家专注于 Spring 咨询，培训和支持的公司 interface21。Yann Caroff 在早期离开了团队，Rod Johnson 在 2012 年离开，Juergen Hoeller 仍然是 Spring 开发团队的积极成员，据 Rod Johnson 介绍 ，Spring 是传统 J2EE 新的开始，随后 Spring 发展进入快车道。</p>
+<ul>
+<li>2004 年 03 月，1.0 版发布。</li>
+<li>2006 年 10 月，2.0 版发布。</li>
+<li>2007 年 11 月，更名为 SpringSource，同时发布了 Spring 2.5。</li>
+<li>2009 年 12 月，Spring 3.0 发布。</li>
+<li>2013 年 12 月，Pivotal 宣布发布 Spring 框架 4.0。</li>
+<li>2017 年 09 月，Spring 5.0 发布。</li>
+</ul>
+<p>网上有一张图，清晰的展示了 Spring 发展：</p>
+<p><img src="/blog/2019/01/20/spring的前世今生/spring.jpg" alt=""></p>
+<p><strong>(1) .</strong> 2004 年 1.0 版本发布，Spring 框架迅速发展。Spring 2.0 于 2006 年 10 月发布，到那时，Spring的下载量超过了 100 万。Spring 2.0 具有可扩展的 XML 配置功能，用于简化 XML 配置，支持 Java 5，额外的 IoC 容器扩展点，支持动态语言。</p>
+<p><strong>(2) .</strong>  2007 年 11 月，在 Rod 领导下管理 Interface21 项目于更名为 SpringSource。同时发布了 Spring 2.5。Spring 2.5 中的主要新功能包括支持 Java 6 / Java EE 5，支持注释配置，classpath 中的组件自动检测和兼容 OSGi 的 bundle。</p>
+<p><strong>(3) .</strong>  2007 年，SpringSource 从基准资本获得了 A 轮融资（1000万美元）。SpringSource 在此期间收购了多家公司，如Hyperic，G2One 等。2009年8月，SpringSource 以 4.2 亿美元被 VMWare 收购。SpringSource 在几周内收购了云代工厂，这是一家云 PaaS 提供商。2015 年，云代工厂转型成了非营利云代工厂。</p>
+<p><strong>(4) .</strong>  2009 年 12 月，Spring 3.0 发布。Spring 3.0 具有许多重要特性，如重组模块系统，支持 Spring 表达式语言，基于 Java 的 bean 配置（JavaConfig），支持嵌入式数据库（如 HSQL，H2 和 Derby），模型验证/ REST 支持和对 Java EE 的支持。</p>
+<p><strong>(5) .</strong>  2011 年和 2012 年发布了许多 3.x 系列的小版本。2012 年 7 月，Rod Johnson 离开了团队。2013 年 4月，VMware 和 EMC 通过 GE 投资创建了一家名为 Pivotal 的合资企业。所有的 Spring 应用项目都转移到了 Pivotal。</p>
+<p><strong>(6) .</strong>  2013 年 12 月，Pivotal 宣布发布 Spring 框架 4.0。Spring 4.0 是 Spring 框架的一大进步，它包含了对Java 8 的全面支持，更高的第三方库依赖性（groovy 1.8+，ehcache 2.1+，hibernate 3.6+等），Java EE 7 支持，groovy DSL for bean 定义，对 websockets 的支持以及对泛型类型的支持作为注入 bean 的限定符。</p>
+<p><strong>(7) .</strong>  2014 年至 2017 年期间发布了许多 Spring 框架 4.xx 系列版本。Spring 4.3.7 于 2017 年 3 月发布。Spring 4.3.8 于 2017 年 4 月发布，并成为 4.x 系列中的最后一个。Spring 框架的下一个延续的主要版本是在 5.0 版本展开。</p>
+<h2 id="2-Spring-boot的诞生"><a href="#2-Spring-boot的诞生" class="headerlink" title="2. Spring boot的诞生"></a>2. Spring boot的诞生</h2><p>随着使用 Spring 进行开发的个人和企业越来越多，Spring 也慢慢从一个精巧简洁的小框架变成一个大而全的开源组件，Spring 的边界不断的进行扩充，到了后来 Spring 几乎可以做任何事情了，市面上主流的开源中间件都有 Spring 对应组件支持，这时的spring就像一个强大的粘黏剂，可以把人们想要的组件方便的组合在一起使用，但随着开源组件越来越多，业务系统业务越来越复杂，人们在享用 Spring 的这种便利之后，也遇到了一些问题。Spring 每集成一个开源软件，就需要增加一些基础配置，慢慢的随着人们开发的项目越来越庞大，往往需要集成开源组件也越来越多，因此后期使用 Spirng 开发大型项目需要引入大量的配置文件，太多的配置不仅难以理解，容易出错，而且难以维护。到了后来人们甚至称 Spring 为配置地狱。Spring 似乎也意识到了这些问题，急需有方案可以解决这些问题，这个时候微服务的概念也慢慢兴起，快速开发微小独立的应用变得更为急迫，Spring 刚好处在这么一个交叉点上，于 2013 年初开始的 Spring Boot 项目的研发，2014年4月，Spring Boot 1.0.0 发布。Spring Boot 诞生之初，就受到开源社区的持续关注，陆续有一些个人和企业尝试着使用了 Spring Boot，并迅速喜欢上了这款开源软件。直到2016年，在国内 Spring Boot 才被正真使用了起来，期间很多研究 Spring Boot 的开发者在网上写了大量关于 Spring Boot 的文章，同时有一些公司在企业内部进行了小规模的使用，并将使用经验分享了出来。从2016年到2018年，使用 Spring Boot 的企业和个人开发者越来越多。Spring Boot 不是为了取代 Spring ,Spring Boot 基于 Spring 开发，是为了让人们更容易的使用 Spring。看到 Spring Boot 的市场反应，Spring 官方也非常重视 Spring Boot 的后续发展，已经将 Spring Boot 作为公司最顶级的项目来推广，放到了官网上第一的位置，因此后续 Spring Boot 的持续发展也被看好。下面是spring boot从诞生到2018年的版本更新内容：</p>
+<p><strong>Spring boot 1.1</strong>（2014 年 6 月） - 改进的模板支持，gemfire 支持，elasticsearch 和 apache solr 的自动配置。</p>
+<p><strong>Spring Boot 1.2</strong>（2015 年 3 月） - 升级到 servlet 3.1 / tomcat 8 / jetty 9，spring 4.1 升级，支持 banner / jms / SpringBootApplication 注解。</p>
+<p><strong>Spring Boot 1.3</strong>（2016 年 12 月） - Spring 4.2 升级，新的 spring-boot-devtools，用于缓存技术（ehcache，hazelcast，redis 和 infinispan）的自动配置以及完全可执行的 jar 支持。</p>
+<p><strong>Spring boot 1.4</strong>（2017年1月） - spring 4.3 升级，支持 couchbase / neo4j，分析启动失败和RestTemplateBuilder。</p>
+<p><strong>Spring boot 1.5</strong>（2017年2月） - 支持 kafka / ldap，第三方库升级，弃用 CRaSH 支持和执行器记录器端点以动态修改应用程序日志级别。</p>
+<p><strong>Spring boot 2.0</strong>（2018 年 03 月）-基于 Java 8，支持 Java 9，支持 Quartz ，调度程序大大简化了安全自动配置，支持嵌入式 Netty</p>
+<p>Spring Boot 简单性使 java 开发人员能够快速大规模地采用该项目。Spring Boot 可以说是在 Java 中开发基于 REST 的微服务 Web 应用程序的最快方法之一。也正是Pivotal 团队的开源精神，不断改进和维护着spring boot 才使得现在javaEE开发变得如此简单快捷。现在， Spring Boot让人人都能享受业内顶级公司的“福利”，站在巨人的肩膀之上，想想都让人觉得兴奋。</p>
+
       
 
 	  <!-- 博客主题自带打赏样式注释 -->
@@ -586,11 +604,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
+                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -606,11 +624,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -630,15 +648,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">web</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">docker</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">web</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">大数据</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">运维监控</a>
               </li>
              
               <li class="article-tag-list-item">
