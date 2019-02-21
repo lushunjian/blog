@@ -18,7 +18,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/02/17/聊聊运维监控/yunwei.jpg">
 <meta property="og:image" content="https://lushunjian.github.io/blog/2019/02/17/聊聊运维监控/yunwei1.png">
-<meta property="og:updated_time" content="2019-02-21T07:51:31.217Z">
+<meta property="og:updated_time" content="2019-02-21T07:55:42.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="聊聊运维监控">
 <meta name="twitter:description" content="最近在公司参与公司运维监控平台的建设，用到一些关于监控的第三方开源工具包，在此记录一下。说到运维监控，本人在公司就曾经历过一段痛苦的日子，在某个重要的日子，由于公司没有完善运维监控平台，为保障系统稳定。公司大部分的开发人员和售后全都扑在了服务器和服务状态的监测上，每天的工作就是手动检查上千台服务器和几千个服务的内存，磁盘，CPU使用情况，大概持续了一周左右。因为这些都是重复性的工作，我还记得当时有">
@@ -385,7 +385,7 @@
 </tbody>
 </table>
 </div>
-<h3 id="2-free"><a href="#2-free" class="headerlink" title="(2) . free"></a>(2) . free</h3><p>free命令可以显示Linux系统中空闲的、已用的物理内存及swap内存,及被内核使用的buffer。在Linux系统监控的工具中，free命令是最经常使用的命令之一。命令执行结果如下：</p>
+<h3 id="2-free"><a href="#2-free" class="headerlink" title="(2) . free"></a>(2) . free</h3><p>free命令可以显示Linux系统中空闲的、已用的物理内存及swap内存,及被内核使用的buffer。在Linux系统监控的工具中，free命令是最经常使用的命令之一。命令执行的结果如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# free -m</span><br><span class="line">             total       used       free     shared    buffers     cached</span><br><span class="line">Mem:          2871       2797         74          0         13        844</span><br><span class="line">-/+ buffers/cache:       1939        931</span><br><span class="line">Swap:         2047          0       2047</span><br></pre></td></tr></table></figure>
 <p>下面是各个参数的含义：</p>
 <div class="table-container">
@@ -1026,7 +1026,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
+                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1034,19 +1034,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Spark</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">zookeeper</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color2">hadoop</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1054,7 +1046,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">网络编程</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
